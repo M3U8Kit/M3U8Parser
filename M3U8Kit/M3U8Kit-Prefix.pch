@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'M3U8Kit' target in the 'M3U8Kit' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
