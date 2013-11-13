@@ -15,11 +15,12 @@ extern NSString *keyM3U8CodecsString;
 extern NSString *keyM3U8MediaResolution;
 extern NSString *keyM3U8URLString;
 
-typedef struct _MediaResoulution{
+typedef struct _mediaResoulution{
     CGFloat width;
     CGFloat height;
 } MediaResoulution;
 
+extern MediaResoulution MediaResoulutionZero;
 NSString * NSStringFromMediaResolution(MediaResoulution resolution);
 
 /*!

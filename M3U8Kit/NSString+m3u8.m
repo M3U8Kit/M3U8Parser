@@ -51,41 +51,49 @@
             return;
         
         NSString *attributeString = [lines[0] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        NSArray *attributeList = [attributeString componentsSeparatedByString:@","];
+        NSArray *array = [attributeString componentsSeparatedByString:@","];
+        
+        NSMutableArray *attributeList = [array mutableCopy];
+        for (NSInteger index = 0; index < array.count; index ++) {
+            NSString *str = array[index];
+            if ([str rangeOfString:@"="].location == NSNotFound) {
+                if (index > 0) {
+                    NSString *prevousStr = array[index -1];
+                    NSString *theWholeStr = [NSString stringWithFormat:@"%@,%@", prevousStr, str];
+                    [attributeList removeObject:prevousStr];
+                    [attributeList removeObject:str];
+                    [attributeList addObject:theWholeStr];
+                }
+                
+            }
+        }
         
         [attributeList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
-            @try {
-                NSString *value = nil;
-                if ([obj hasPrefix:kProgramID]) {
-                    value = [obj stringByReplacingOccurrencesOfString:kProgramID withString:@""];
-                    if (value) {
-                        [params setValue:value forKey:keyM3U8ProgramID];
-                    }
-                    
-                } else if ([obj hasPrefix:kBandwidth]) {
-                    value = [obj stringByReplacingOccurrencesOfString:kBandwidth withString:@""];
-                    if (value) {
-                        [params setValue:value forKey:keyM3U8Bandwidth];
-                    }
-                    
-                } else if ([obj hasPrefix:kCodecs]) {
-                    value = [obj stringByReplacingOccurrencesOfString:kCodecs withString:@""];
-                    if (value) {
-                        [params setValue:value forKey:keyM3U8CodecsString];
-                    }
-                } else if ([obj hasPrefix:kResolution]) {
-                    value = [obj stringByReplacingOccurrencesOfString:kResolution withString:@""];
-                    if (value) {
-                        [params setValue:value forKey:keyM3U8MediaResolution];
-                    }
+            NSString *value = nil;
+            if ([obj hasPrefix:kProgramID]) {
+                value = [obj stringByReplacingOccurrencesOfString:kProgramID withString:@""];
+                if (value) {
+                    [params setValue:value forKey:keyM3U8ProgramID];
                 }
-            }
-            @catch (NSException *exception) {
-                NSLog(@"exception: %@", exception);
-            }
-            @finally {
                 
+            } else if ([obj hasPrefix:kBandwidth]) {
+                value = [obj stringByReplacingOccurrencesOfString:kBandwidth withString:@""];
+                if (value) {
+                    [params setValue:value forKey:keyM3U8Bandwidth];
+                }
+                
+            } else if ([obj hasPrefix:kCodecs]) {
+                value = [obj stringByReplacingOccurrencesOfString:kCodecs withString:@""];
+                value = [value stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+                if (value) {
+                    [params setValue:value forKey:keyM3U8CodecsString];
+                }
+            } else if ([obj hasPrefix:kResolution]) {
+                value = [obj stringByReplacingOccurrencesOfString:kResolution withString:@""];
+                if (value) {
+                    [params setValue:value forKey:keyM3U8MediaResolution];
+                }
             }
         }];
         
@@ -149,7 +157,7 @@
             
             if ([line characterAtIndex:0] != '#' && 0 != line.length) {
                 // remove the CR character '\r'
-                char lastChar = [line characterAtIndex:line.length - 1];
+                unichar lastChar = [line characterAtIndex:line.length - 1];
                 if (lastChar == '\r') {
                     line = [line substringToIndex:line.length - 1];
                 }

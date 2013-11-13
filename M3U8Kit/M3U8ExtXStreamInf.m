@@ -8,6 +8,8 @@
 
 #import "M3U8ExtXStreamInf.h"
 
+MediaResoulution MediaResoulutionZero = {0, 0};
+
 NSString * NSStringFromMediaResolution(MediaResoulution resolution) {
     return [NSString stringWithFormat:@"%gx%g", resolution.width, resolution.height];
 }
@@ -16,7 +18,7 @@ NSString * NSStringFromMediaResolution(MediaResoulution resolution) {
 NSString *keyM3U8ProgramID = @"key.M3U8ProgramID";
 NSString *keyM3U8Bandwidth = @"key.M3U8Bandwidth";
 NSString *keyM3U8CodecsString = @"key.M3U8CodecsString";
-NSString *keyM3U8MediaResolution = @"key.M3U8CodecsString";
+NSString *keyM3U8MediaResolution = @"key.M3U8MediaResolutionString";
 NSString *keyM3U8URLString = @"key.M3U8URLString";
 
 // key for Coding
@@ -45,7 +47,7 @@ NSString *keyM3U8URLString = @"key.M3U8URLString";
             } else if ([key isEqualToString:keyM3U8URLString]) {
                 if ((NSNull *)obj != [NSNull null]) {
                     NSURL *baseURL = [params objectForKey:@"baseURL"];
-                    _m3u8URL = [[[NSURL URLWithString:obj relativeToURL:baseURL] absoluteURL] copy];
+                    _m3u8URL = [[NSURL URLWithString:obj relativeToURL:baseURL] absoluteURL];
                 }
             }
         }];
@@ -53,7 +55,6 @@ NSString *keyM3U8URLString = @"key.M3U8URLString";
     
     return self;
 }
-
 
 - (NSDictionary *)dictionaryValue {
     NSString *m3u8URLString = (_m3u8URL == nil || (_m3u8URL.absoluteString && !_m3u8URL.absoluteString.length)) ?

@@ -27,7 +27,6 @@
     return self;
 }
 
-
 #pragma mark - NSCopyding
 - (id)copyWithZone:(NSZone *)zone {
     M3U8ExtXStreamInfList *copy = [[[self class] allocWithZone:zone] init];
@@ -79,9 +78,9 @@
         if ( bandwidth1 == bandwidth2 ) {
             return NSOrderedSame;
         } else if (bandwidth1 < bandwidth2) {
-            return order * NSOrderedDescending;
+            return order;
         } else {
-            return order * NSOrderedAscending;
+            return order * (-1);
         }
     }];
     

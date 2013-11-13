@@ -23,7 +23,7 @@ NSString *keyM3U8SegmentMediaURLString = @"key.M3U8SegmentMediaURLString";
     if (self) {
         [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
             if ([key isEqualToString:keyM3U8SegmentDuration]) {
-                _duration = [obj doubleValue];
+                _duration = [obj floatValue];
             } else if ([key isEqualToString:keyM3U8SegmentMediaURLString]) {
                 if ((NSNull *)obj != [NSNull null]) {
                     NSURL *baseURL = [params objectForKey:@"baseURL"];
