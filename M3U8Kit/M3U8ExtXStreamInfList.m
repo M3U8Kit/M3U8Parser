@@ -64,6 +64,9 @@
 }
 
 - (M3U8ExtXStreamInf *)extXStreamInfAtIndex:(NSUInteger)index {
+    if (index >= self.count) {
+        return nil;
+    }
     return [_m3u8InfoList objectAtIndex:index];
 }
 
