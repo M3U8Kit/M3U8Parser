@@ -100,7 +100,7 @@
     [m3u8String appendString:@"#EXTM3U\n"];
     
     for (M3U8ExtXStreamInf *xStreamInf in _m3u8InfoList) {
-        [m3u8String appendString:[NSString stringWithFormat:@"#EXT-X-STREAM-INF:PROGRAM-ID=%d,BANDWIDTH=%d,CODECS=%@,RESOLUTION=%@,\n", xStreamInf.programId, xStreamInf.bandwidth, xStreamInf.codecs, NSStringFromMediaResolution(xStreamInf.resolution)]];
+        [m3u8String appendString:[NSString stringWithFormat:@"#EXT-X-STREAM-INF:PROGRAM-ID=%ld,BANDWIDTH=%ld,CODECS=%@,RESOLUTION=%@,\n", (long)xStreamInf.programId, (long)xStreamInf.bandwidth, xStreamInf.codecs, NSStringFromMediaResolution(xStreamInf.resolution)]];
         [m3u8String appendString:[NSString stringWithFormat:@"%@\n", xStreamInf.m3u8URL.absoluteString]];
     }
     

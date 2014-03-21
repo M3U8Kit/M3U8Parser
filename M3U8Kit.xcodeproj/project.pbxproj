@@ -191,7 +191,7 @@
 		9DE1818D1717EADC0067A26B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Jin Sun";
 			};
 			buildConfigurationList = 9DE181901717EADC0067A26B /* Build configuration list for PBXProject "M3U8Kit" */;

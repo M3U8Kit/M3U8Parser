@@ -70,7 +70,7 @@ NSString *keyM3U8URLString = @"key.M3U8URLString";
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"{ M3U8Info: <PROGRAM-ID: %d>, <BANDWIDTH: %d>, <CODECS: %@>, <RESOLUTION: %@>, <url:%@> }", self.programId, self.bandwidth, self.codecs, NSStringFromMediaResolution(self.resolution), self.m3u8URL.absoluteString];
+    return [NSString stringWithFormat:@"{ M3U8Info: <PROGRAM-ID: %ld>, <BANDWIDTH: %ld>, <CODECS: %@>, <RESOLUTION: %@>, <url:%@> }", (long)self.programId, (long)self.bandwidth, self.codecs, NSStringFromMediaResolution(self.resolution), self.m3u8URL.absoluteString];
 }
 
 #pragma mark - NSCopying
