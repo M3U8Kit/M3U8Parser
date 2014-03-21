@@ -25,7 +25,7 @@ NSString *keyM3U8URLString = @"key.M3U8URLString";
 #define KeyProgramID        @"key.ProgramID"
 #define KeyBandwidth        @"key.Bandwidth"
 #define KeyCodecsString     @"key.CodecsString"
-#define KeyMediaResolution  @"key.CodecsString"
+#define KeyMediaResolution  @"key.MediaResolution"
 #define KeyM3U8URL          @"key.M3U8URL"
 
 @implementation M3U8ExtXStreamInf
