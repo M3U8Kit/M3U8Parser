@@ -15,12 +15,15 @@ extern NSString *keyM3U8CodecsString;
 extern NSString *keyM3U8MediaResolution;
 extern NSString *keyM3U8URLString;
 
-typedef struct _mediaResoulution{
+struct MediaResoulution{
     CGFloat width;
     CGFloat height;
-} MediaResoulution;
+};
+typedef struct MediaResoulution MediaResoulution;
 
-extern MediaResoulution MediaResoulutionZero;
+extern MediaResoulution MediaResoulutionMake(CGFloat width, CGFloat height);
+
+extern const MediaResoulution MediaResoulutionZero;
 NSString * NSStringFromMediaResolution(MediaResoulution resolution);
 
 /*!
@@ -37,7 +40,9 @@ NSCoding
 @property (nonatomic, readonly) NSInteger bandwidth;
 @property (nonatomic, readonly, copy) NSString *codecs;
 @property (nonatomic, readonly) MediaResoulution resolution;
-@property (nonatomic, readonly, copy) NSURL   *m3u8URL;
+@property (nonatomic, readonly, copy) NSString   *m3u8URLString;
+
+- (NSURL *)m3u8URL;
 
 - (id)initWithDictionary:(NSDictionary *)params;
 - (NSDictionary *)dictionaryValue;

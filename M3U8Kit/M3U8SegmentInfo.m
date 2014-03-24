@@ -11,10 +11,21 @@
 // key for Copying
 NSString *keyM3U8SegmentDuration = @"key.M3U8SegmentDuration";
 NSString *keyM3U8SegmentMediaURLString = @"key.M3U8SegmentMediaURLString";
+NSString *keyM3U8BaseURL = @"baseURL";
 
 // key for Coding
 #define KeySegmentDuration      @"key.SegmentDuration"
-#define KeyMeidaURL             @"key.MediaURL"
+#define KeyMeidaURLString       @"key.MediaURLString"
+#define KeyBaseURL              @"key.baseURL"
+
+@interface M3U8SegmentInfo ()
+
+@property (readwrite, nonatomic) CGFloat duration;
+@property (readwrite, nonatomic, copy) NSString *mediaURLString;
+
+@property (nonatomic, strong) NSURL *baseURL;
+
+@end
 
 @implementation M3U8SegmentInfo
 
@@ -23,11 +34,14 @@ NSString *keyM3U8SegmentMediaURLString = @"key.M3U8SegmentMediaURLString";
     if (self) {
         [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
             if ([key isEqualToString:keyM3U8SegmentDuration]) {
-                _duration = [obj floatValue];
+                self.duration = [obj floatValue];
             } else if ([key isEqualToString:keyM3U8SegmentMediaURLString]) {
                 if ((NSNull *)obj != [NSNull null]) {
-                    NSURL *baseURL = [params objectForKey:@"baseURL"];
-                    _mediaURL = [[[NSURL URLWithString:obj relativeToURL:baseURL] absoluteURL] copy];
+                    self.mediaURLString = obj;
+                }
+            } else if ([key isEqualToString:keyM3U8BaseURL]) {
+                if (obj != [NSNull null]) {
+                    self.baseURL = obj;
                 }
             }
         }];
@@ -38,16 +52,23 @@ NSString *keyM3U8SegmentMediaURLString = @"key.M3U8SegmentMediaURLString";
 
 
 - (NSDictionary *)dictionaryValue {
-    NSString *mediaURLString = (_mediaURL == nil || (_mediaURL.absoluteString && !_mediaURL.absoluteString.length)) ?
-    (NSString *)[NSNull null] : _mediaURL.absoluteString;
+    NSString *mediaURLString = (self.mediaURLString.length == 0) ?
+    (NSString *)[NSNull null] : self.mediaURLString;
+    NSURL *baseURL = self.baseURL?:(NSURL *)[NSNull null];
     NSDictionary *dictionay = @{keyM3U8SegmentDuration: @(self.duration),
-    keyM3U8SegmentMediaURLString: mediaURLString};
+                                keyM3U8SegmentMediaURLString: mediaURLString,
+                                keyM3U8BaseURL: baseURL
+                                };
     
     return dictionay;
 }
 
+- (NSURL *)mediaURL {
+    return [NSURL URLWithString:self.mediaURLString relativeToURL:self.baseURL];
+}
+
 - (NSString *)description {
-    return [NSString stringWithFormat:@"SegmentInfo:<duration: %f>, <url:%@>", self.duration, self.mediaURL.absoluteString];
+    return [NSString stringWithFormat:@"SegmentInfo:<duration: %f>, <url:%@>", self.duration, self.mediaURLString];
 }
 
 #pragma mark - NSCopying
@@ -59,15 +80,17 @@ NSString *keyM3U8SegmentMediaURLString = @"key.M3U8SegmentMediaURLString";
 
 #pragma mark - NSCoding
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeFloat:_duration forKey:KeySegmentDuration];
-    [aCoder encodeObject:_mediaURL forKey:KeyMeidaURL];
+    [aCoder encodeFloat:self.duration forKey:KeySegmentDuration];
+    [aCoder encodeObject:self.mediaURLString forKey:KeyMeidaURLString];
+    [aCoder encodeObject:self.baseURL forKey:KeyBaseURL];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        _duration = [aDecoder decodeFloatForKey:KeySegmentDuration];
-        _mediaURL = [[aDecoder decodeObjectForKey:KeyMeidaURL] copy];
+        self.duration = [aDecoder decodeFloatForKey:KeySegmentDuration];
+        self.mediaURLString = [aDecoder decodeObjectForKey:KeyMeidaURLString];
+        self.baseURL = [aDecoder decodeObjectForKey:KeyBaseURL];
     }
     
     return self;

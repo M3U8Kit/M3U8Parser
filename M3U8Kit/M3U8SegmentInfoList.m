@@ -8,17 +8,24 @@
 
 #import "M3U8SegmentInfoList.h"
 
+#define KeyOriginalText         @"key.originalText"
+#define KeyBaseURL              @"key.baseURL"
 #define KeySegmentInfList       @"key.segmentList"
 
-@implementation M3U8SegmentInfoList {
-@private
-    NSMutableArray  *_segmentInfoList;
-}
+@interface M3U8SegmentInfoList ()
+
+@property (nonatomic, copy) NSString *originalText;
+@property (nonatomic, strong) NSURL *baseURL;
+@property (nonatomic, strong) NSMutableArray *segmentInfoList;
+
+@end
+
+@implementation M3U8SegmentInfoList
 
 - (id)init {
     self = [super init];
     if (self) {
-        _segmentInfoList = [[NSMutableArray alloc] init];
+        self.segmentInfoList = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -28,6 +35,8 @@
 #pragma mark - NSCopyding
 - (id)copyWithZone:(NSZone *)zone {
     M3U8SegmentInfoList *copy = [[[self class] allocWithZone:zone] init];
+    copy.originalText = self.originalText;
+    copy.baseURL = [self.baseURL copy];
     
     for (int i = 0; i < [self count]; i++) {
         M3U8SegmentInfo *infoCopy = [[self segmentInfoAtIndex:i] copyWithZone:zone];
@@ -39,13 +48,17 @@
 
 #pragma mark - NSCoding
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_segmentInfoList forKey:KeySegmentInfList];
+    [aCoder encodeObject:self.originalText forKey:KeyOriginalText];
+    [aCoder encodeObject:self.baseURL forKey:KeyBaseURL];
+    [aCoder encodeObject:self.segmentInfoList forKey:KeySegmentInfList];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        _segmentInfoList = [aDecoder decodeObjectForKey:KeySegmentInfList];
+        self.originalText = [aDecoder decodeObjectForKey:KeyOriginalText];
+        self.baseURL = [aDecoder decodeObjectForKey:KeyBaseURL];
+        self.segmentInfoList = [aDecoder decodeObjectForKey:KeySegmentInfList];
     }
     
     return self;
@@ -53,20 +66,20 @@
 
 #pragma mark - Getter && Setter
 - (NSUInteger)count {
-    return [_segmentInfoList count];
+    return [self.segmentInfoList count];
 }
 
 #pragma mark - Public
 - (void)addSegementInfo:(M3U8SegmentInfo *)segment {
-    [_segmentInfoList addObject:segment];
+    [self.segmentInfoList addObject:segment];
 }
 
 - (M3U8SegmentInfo *)segmentInfoAtIndex:(NSUInteger)index {
-    return [_segmentInfoList objectAtIndex:index];
+    return [self.segmentInfoList objectAtIndex:index];
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%@", _segmentInfoList];
+    return [NSString stringWithFormat:@"%@", self.segmentInfoList];
 }
 
 - (NSString *)originalM3U8PlanStringValue {
@@ -77,9 +90,9 @@
     [m3u8String appendString:@"#EXT-X-VERSION:3\n"];
     [m3u8String appendString:@"#EXT-X-DISCONTINUITY\n"];
     
-    for (M3U8SegmentInfo *segmentInfo in _segmentInfoList) {
+    for (M3U8SegmentInfo *segmentInfo in self.segmentInfoList) {
         [m3u8String appendString:[NSString stringWithFormat:@"#EXTINF:%.2f,\n", segmentInfo.duration]];
-        [m3u8String appendString:[NSString stringWithFormat:@"%@\n", segmentInfo.mediaURL.absoluteString]];
+        [m3u8String appendString:[NSString stringWithFormat:@"%@\n", segmentInfo.mediaURLString]];
     }
     [m3u8String appendString:@"#EXT-X-ENDLIST\n"];
     

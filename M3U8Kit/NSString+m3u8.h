@@ -8,16 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define kM3U8FirstTag @"#EXTM3U"
-#define kExtinfoString @"#EXTINF:"
-
-#define kExtXStreamInf @"#EXT-X-STREAM-INF:"
-
-#define kProgramID @"PROGRAM-ID="
-#define kBandwidth @"BANDWIDTH="
-#define kCodecs @"CODECS="
-#define kResolution @"RESOLUTION="
-
 @class M3U8ExtXStreamInfList, M3U8SegmentInfoList;
 @interface NSString (m3u8)
 

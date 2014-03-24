@@ -15,6 +15,10 @@ NSCopying,
 NSCoding
 >
 
+@property (readonly, nonatomic, strong) NSURL *baseURL;
+
+@property (readonly, nonatomic, copy) NSString *originalText;
+
 @property (nonatomic, assign ,readonly) NSUInteger count;
 
 - (void)addSegementInfo:(M3U8SegmentInfo *)segment;

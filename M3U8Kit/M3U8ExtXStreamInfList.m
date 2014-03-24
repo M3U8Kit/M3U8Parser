@@ -8,10 +8,14 @@
 
 #import "M3U8ExtXStreamInfList.h"
 
+#define KeyOriginalText         @"key.originalText"
+#define KeyBaseURL              @"key.baseURL"
 #define KeySegmentInfList       @"key.segmentList"
 
 @interface M3U8ExtXStreamInfList ()
 
+@property (nonatomic, copy) NSString *originalText;
+@property (nonatomic, strong) NSURL *baseURL;
 @property (nonatomic, strong) NSMutableArray *m3u8InfoList;
 
 @end
@@ -21,7 +25,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        _m3u8InfoList = [[NSMutableArray alloc] init];
+        self.m3u8InfoList = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -30,6 +34,9 @@
 #pragma mark - NSCopyding
 - (id)copyWithZone:(NSZone *)zone {
     M3U8ExtXStreamInfList *copy = [[[self class] allocWithZone:zone] init];
+    
+    copy.originalText = [self.originalText copy];
+    copy.baseURL = [self.baseURL copy];
     
     for (int i = 0; i < [self count]; i++) {
         M3U8ExtXStreamInf *infCopy = [[self extXStreamInfAtIndex:i] copyWithZone:zone];
@@ -41,13 +48,17 @@
 
 #pragma mark - NSCoding
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:_m3u8InfoList forKey:KeySegmentInfList];
+    [aCoder encodeObject:self.originalText forKey:KeyOriginalText];
+    [aCoder encodeObject:self.baseURL forKey:KeyBaseURL];
+    [aCoder encodeObject:self.m3u8InfoList forKey:KeySegmentInfList];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        _m3u8InfoList = [aDecoder decodeObjectForKey:KeySegmentInfList];
+        self.originalText = [aDecoder decodeObjectForKey:KeyOriginalText];
+        self.baseURL = [aDecoder decodeObjectForKey:KeyBaseURL];
+        self.m3u8InfoList = [aDecoder decodeObjectForKey:KeySegmentInfList];
     }
     
     return self;
@@ -55,27 +66,28 @@
 
 #pragma mark - Getter && Setter
 - (NSUInteger)count {
-    return [_m3u8InfoList count];
+    return [self.m3u8InfoList count];
 }
 
 #pragma mark - Public
 - (void)addExtXStreamInf:(M3U8ExtXStreamInf *)extStreamInf {
-    [_m3u8InfoList addObject:extStreamInf];
+    [self.m3u8InfoList addObject:extStreamInf];
 }
 
 - (M3U8ExtXStreamInf *)extXStreamInfAtIndex:(NSUInteger)index {
     if (index >= self.count) {
         return nil;
     }
-    return [_m3u8InfoList objectAtIndex:index];
+    return [self.m3u8InfoList objectAtIndex:index];
 }
 
 - (M3U8ExtXStreamInf *)lastXStreamInf {
-    return [_m3u8InfoList lastObject];
+    return [self.m3u8InfoList lastObject];
 }
 
 - (void)sortByBandWidthOrder:(NSComparisonResult)order {
-    NSArray *array = [_m3u8InfoList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+    
+    NSArray *array = [self.m3u8InfoList sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSInteger bandwidth1 = ((M3U8ExtXStreamInf *)obj1).bandwidth;
         NSInteger bandwidth2 = ((M3U8ExtXStreamInf *)obj2).bandwidth;
         if ( bandwidth1 == bandwidth2 ) {
@@ -91,23 +103,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%@", _m3u8InfoList];
-}
-
-- (NSString *)originalM3U8PlanStringValue {
-    NSMutableString *m3u8String = [[NSMutableString alloc] init];
-    
-    [m3u8String appendString:@"#EXTM3U\n"];
-    
-    for (M3U8ExtXStreamInf *xStreamInf in _m3u8InfoList) {
-        [m3u8String appendString:[NSString stringWithFormat:@"#EXT-X-STREAM-INF:PROGRAM-ID=%ld,BANDWIDTH=%ld,CODECS=%@,RESOLUTION=%@,\n", (long)xStreamInf.programId, (long)xStreamInf.bandwidth, xStreamInf.codecs, NSStringFromMediaResolution(xStreamInf.resolution)]];
-        [m3u8String appendString:[NSString stringWithFormat:@"%@\n", xStreamInf.m3u8URL.absoluteString]];
-    }
-    
-    NSString *returnString = [m3u8String copy];
-    
-    return returnString;
-    return nil;
+    return [NSString stringWithFormat:@"%@", self.m3u8InfoList];
 }
 
 @end

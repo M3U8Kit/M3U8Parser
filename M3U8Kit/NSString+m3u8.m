@@ -12,13 +12,32 @@
 #import "M3U8ExtXStreamInf.h"
 #import "M3U8ExtXStreamInfList.h"
 
+#import "M3U8TagsAndAttributes.h"
+
+NSString * const M3U8FirstTag = @"#EXTM3U";
+NSString * const M3U8ExtInfoTag = @"#EXTINF:";
+
+NSString * const M3U8ExtXStreamInfTag = @"#EXT-X-STREAM-INF:";
+
+#define kM3U8FirstTag @"#EXTM3U"
+#define kExtinfoString @"#EXTINF:"
+
+#define kExtXStreamInf @"#EXT-X-STREAM-INF:"
+
+#define kProgramID @"PROGRAM-ID="
+#define kBandwidth @"BANDWIDTH="
+#define kCodecs @"CODECS="
+#define kResolution @"RESOLUTION="
+
 @implementation NSString (m3u8)
 
 - (BOOL)isEXTXSTREAMINF {
     NSRange rangeOfEXTM3U = [self rangeOfString:kM3U8FirstTag];
     NSRange rangeOfEXTXSTREAMINF = [self rangeOfString:kExtXStreamInf];
-    if (rangeOfEXTM3U.location == NSNotFound || rangeOfEXTM3U.location != 0 ||
-        rangeOfEXTXSTREAMINF.location == NSNotFound || rangeOfEXTXSTREAMINF.location == 0) {
+    if (rangeOfEXTM3U.location == NSNotFound
+        || rangeOfEXTXSTREAMINF.location == NSNotFound
+        || rangeOfEXTXSTREAMINF.location == 0) {
+        
         return NO;
     }
     return YES;

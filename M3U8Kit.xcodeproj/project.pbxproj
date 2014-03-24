@@ -11,6 +11,7 @@
 		9D08DDE61720D7A4006547F9 /* M3U8ExtXStreamInf.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D08DDE21720D7A4006547F9 /* M3U8ExtXStreamInf.m */; };
 		9D08DDE71720D7A4006547F9 /* M3U8ExtXStreamInfList.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D08DDE31720D7A4006547F9 /* M3U8ExtXStreamInfList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D08DDE81720D7A4006547F9 /* M3U8ExtXStreamInfList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D08DDE41720D7A4006547F9 /* M3U8ExtXStreamInfList.m */; };
+		9D807A4C18E03F6800192C95 /* M3U8TagsAndAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D807A4A18E03F6800192C95 /* M3U8TagsAndAttributes.h */; };
 		9DE1819D1717EADC0067A26B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DE1819C1717EADC0067A26B /* Foundation.framework */; };
 		9DE181A31717EADC0067A26B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9DE181A11717EADC0067A26B /* InfoPlist.strings */; };
 		9DE181B71717EB480067A26B /* M3U8Kit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DE181AB1717EB480067A26B /* M3U8Kit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,6 +32,7 @@
 		9D08DDE21720D7A4006547F9 /* M3U8ExtXStreamInf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXStreamInf.m; sourceTree = "<group>"; };
 		9D08DDE31720D7A4006547F9 /* M3U8ExtXStreamInfList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXStreamInfList.h; sourceTree = "<group>"; };
 		9D08DDE41720D7A4006547F9 /* M3U8ExtXStreamInfList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXStreamInfList.m; sourceTree = "<group>"; };
+		9D807A4A18E03F6800192C95 /* M3U8TagsAndAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8TagsAndAttributes.h; sourceTree = "<group>"; };
 		9DE181991717EADC0067A26B /* M3U8Kit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = M3U8Kit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE1819C1717EADC0067A26B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9DE181A01717EADC0067A26B /* M3U8Kit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "M3U8Kit-Info.plist"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				9DE181AF1717EB480067A26B /* M3U8SegmentInfo.m */,
 				9DE181B01717EB480067A26B /* M3U8SegmentInfoList.h */,
 				9DE181B11717EB480067A26B /* M3U8SegmentInfoList.m */,
+				9D807A4A18E03F6800192C95 /* M3U8TagsAndAttributes.h */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DE181B71717EB480067A26B /* M3U8Kit.h in Headers */,
+				9D807A4C18E03F6800192C95 /* M3U8TagsAndAttributes.h in Headers */,
 				9DE181B81717EB480067A26B /* M3U8Parser.h in Headers */,
 				9DE181BA1717EB480067A26B /* M3U8SegmentInfo.h in Headers */,
 				9DE181BC1717EB480067A26B /* M3U8SegmentInfoList.h in Headers */,

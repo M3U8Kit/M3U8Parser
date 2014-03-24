@@ -11,6 +11,7 @@
 
 extern NSString *keyM3U8SegmentDuration;
 extern NSString *keyM3U8SegmentMediaURLString;
+extern NSString *keyM3U8BaseURL;
 
 /*!
  @class M3U8SegmentInfo
@@ -23,8 +24,10 @@ NSCopying,
 NSCoding
 >
 
-@property (nonatomic, readonly) CGFloat duration;
-@property (nonatomic, copy) NSURL   *mediaURL;
+@property (readonly, nonatomic) CGFloat duration;
+@property (readonly, nonatomic, copy) NSString *mediaURLString;
+
+- (NSURL *)mediaURL;
 
 - (id)initWithDictionary:(NSDictionary *)params;
 - (NSDictionary *)dictionaryValue;
