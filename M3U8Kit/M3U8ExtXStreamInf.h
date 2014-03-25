@@ -7,44 +7,34 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreGraphics/CoreGraphics.h>
-
-extern NSString *keyM3U8ProgramID;
-extern NSString *keyM3U8Bandwidth;
-extern NSString *keyM3U8CodecsString;
-extern NSString *keyM3U8MediaResolution;
-extern NSString *keyM3U8URLString;
 
 struct MediaResoulution{
-    CGFloat width;
-    CGFloat height;
+    float width;
+    float height;
 };
 typedef struct MediaResoulution MediaResoulution;
 
-extern MediaResoulution MediaResoulutionMake(CGFloat width, CGFloat height);
+extern MediaResoulution MediaResolutionMake(float width, float height);
 
 extern const MediaResoulution MediaResoulutionZero;
 NSString * NSStringFromMediaResolution(MediaResoulution resolution);
 
 /*!
  @class M3U8SegmentInfo
- @abstract This is the class indicates #EXTINF:<duration>,<title> + media in m3u8 file
+ @abstract This is the class indicates #EXT-X-STREAM-INF:<attribute-list> + <URI> in master playlist file.
  */
-@interface M3U8ExtXStreamInf : NSObject
-<
-NSCopying,
-NSCoding
->
+@interface M3U8ExtXStreamInf : NSMutableDictionary
 
-@property (nonatomic, readonly) NSInteger programId;
 @property (nonatomic, readonly) NSInteger bandwidth;
-@property (nonatomic, readonly, copy) NSString *codecs;
+@property (nonatomic, readonly) NSInteger programId;        // removed by draft 12
+@property (nonatomic, readonly) NSString *codecs;
 @property (nonatomic, readonly) MediaResoulution resolution;
-@property (nonatomic, readonly, copy) NSString   *m3u8URLString;
+@property (nonatomic, readonly) NSString *audio;
+@property (nonatomic, readonly) NSString *video;
+@property (nonatomic, readonly) NSString *subtitles;
+@property (nonatomic, readonly) NSString *closedCaptions;
+@property (nonatomic, readonly) NSString   *URI;
 
-- (NSURL *)m3u8URL;
-
-- (id)initWithDictionary:(NSDictionary *)params;
-- (NSDictionary *)dictionaryValue;
+- (NSURL *)m3u8URL; // the absolute url
 
 @end

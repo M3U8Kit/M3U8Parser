@@ -33,6 +33,17 @@
     return NO;
 }
 
+- (BOOL)isMediaPlaylist {
+    BOOL isM3U = [self isExtendedM3Ufile];
+    if (isM3U) {
+        NSRange r = [self rangeOfString:M3U8_EXTINF];
+        if (r.location != NSNotFound) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (M3U8ExtXStreamInfList *)m3u8ExtXStreamInfListValueRelativeToURL:(NSURL *)baseURL {
     if (0 == self.length || ![self isMasterPlaylist])
         return nil;
@@ -55,7 +66,7 @@
         NSString *url = lines[1];
         url = [url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if (url && url.length != 0) {
-            [params setValue:url forKey:keyM3U8URLString];
+            [params setValue:url forKey:M3U8_EXT_X_STREAM_INF_URI];
         } else
             return;
         
@@ -83,25 +94,25 @@
             if ([obj hasPrefix:M3U8_EXT_X_STREAM_INF_PROGRAM_ID]) {
                 value = [obj stringByReplacingOccurrencesOfString:M3U8_EXT_X_STREAM_INF_PROGRAM_ID withString:@""];
                 if (value) {
-                    [params setValue:value forKey:keyM3U8ProgramID];
+                    [params setValue:value forKey:M3U8_EXT_X_STREAM_INF_PROGRAM_ID];
                 }
                 
             } else if ([obj hasPrefix:M3U8_EXT_X_STREAM_INF_BANDWIDTH]) {
                 value = [obj stringByReplacingOccurrencesOfString:M3U8_EXT_X_STREAM_INF_BANDWIDTH withString:@""];
                 if (value) {
-                    [params setValue:value forKey:keyM3U8Bandwidth];
+                    [params setValue:value forKey:M3U8_EXT_X_STREAM_INF_BANDWIDTH];
                 }
                 
             } else if ([obj hasPrefix:M3U8_EXT_X_STREAM_INF_CODECS]) {
                 value = [obj stringByReplacingOccurrencesOfString:M3U8_EXT_X_STREAM_INF_CODECS withString:@""];
                 value = [value stringByReplacingOccurrencesOfString:@"\"" withString:@""];
                 if (value) {
-                    [params setValue:value forKey:keyM3U8CodecsString];
+                    [params setValue:value forKey:M3U8_EXT_X_STREAM_INF_CODECS];
                 }
             } else if ([obj hasPrefix:M3U8_EXT_X_STREAM_INF_RESOLUTION]) {
                 value = [obj stringByReplacingOccurrencesOfString:M3U8_EXT_X_STREAM_INF_RESOLUTION withString:@""];
                 if (value) {
-                    [params setValue:value forKey:keyM3U8MediaResolution];
+                    [params setValue:value forKey:M3U8_EXT_X_STREAM_INF_RESOLUTION];
                 }
             }
         }];
@@ -149,7 +160,7 @@
             break;
         
 		NSString *value = [remainingSegments substringWithRange:valueRange];
-		[params setValue:value forKey:keyM3U8SegmentDuration];
+		[params setValue:value forKey:M3U8_EXTINF_DURATION];
         
         // ignore the #EXTINF line
         remainingSegments = [remainingSegments substringFromIndex:segmentRange.location];
@@ -171,14 +182,15 @@
                     line = [line substringToIndex:line.length - 1];
                 }
                 
-                [params setValue:line forKey:keyM3U8SegmentMediaURLString];
+                [params setValue:line forKey:M3U8_EXTINF_URI];
                 break;
             }
         }
         
         M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params];
-        [segmentInfoList addSegementInfo:segment];
-        
+        if (segment) {
+            [segmentInfoList addSegementInfo:segment];
+        }
         
 		segmentRange = [remainingSegments rangeOfString:M3U8_EXTINF];
     }

@@ -8,14 +8,10 @@
 
 #import "M3U8ExtXStreamInfList.h"
 
-#define KeyOriginalText         @"key.originalText"
-#define KeyBaseURL              @"key.baseURL"
-#define KeySegmentInfList       @"key.segmentList"
+#define KeyM3u8InfoList       @"key.m3u8InfoList"
 
 @interface M3U8ExtXStreamInfList ()
 
-@property (nonatomic, copy) NSString *originalText;
-@property (nonatomic, strong) NSURL *baseURL;
 @property (nonatomic, strong) NSMutableArray *m3u8InfoList;
 
 @end
@@ -25,7 +21,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.m3u8InfoList = [[NSMutableArray alloc] init];
+        self.m3u8InfoList = [NSMutableArray array];
     }
     
     return self;
@@ -34,9 +30,6 @@
 #pragma mark - NSCopyding
 - (id)copyWithZone:(NSZone *)zone {
     M3U8ExtXStreamInfList *copy = [[[self class] allocWithZone:zone] init];
-    
-    copy.originalText = [self.originalText copy];
-    copy.baseURL = [self.baseURL copy];
     
     for (int i = 0; i < [self count]; i++) {
         M3U8ExtXStreamInf *infCopy = [[self extXStreamInfAtIndex:i] copyWithZone:zone];
@@ -48,17 +41,13 @@
 
 #pragma mark - NSCoding
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.originalText forKey:KeyOriginalText];
-    [aCoder encodeObject:self.baseURL forKey:KeyBaseURL];
-    [aCoder encodeObject:self.m3u8InfoList forKey:KeySegmentInfList];
+    [aCoder encodeObject:self.m3u8InfoList forKey:KeyM3u8InfoList];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        self.originalText = [aDecoder decodeObjectForKey:KeyOriginalText];
-        self.baseURL = [aDecoder decodeObjectForKey:KeyBaseURL];
-        self.m3u8InfoList = [aDecoder decodeObjectForKey:KeySegmentInfList];
+        self.m3u8InfoList = [aDecoder decodeObjectForKey:KeyM3u8InfoList];
     }
     
     return self;
@@ -79,6 +68,10 @@
         return nil;
     }
     return [self.m3u8InfoList objectAtIndex:index];
+}
+
+- (M3U8ExtXStreamInf *)firstStreamInf {
+    return [self.m3u8InfoList lastObject];
 }
 
 - (M3U8ExtXStreamInf *)lastXStreamInf {

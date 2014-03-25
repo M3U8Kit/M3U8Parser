@@ -23,14 +23,16 @@
 @implementation M3U8SegmentInfoList
 
 - (id)init {
-    self = [super init];
-    if (self) {
-        self.segmentInfoList = [[NSMutableArray alloc] init];
-    }
-    
-    return self;
+    return [self initWithBaseURL:nil];
 }
 
+- (id)initWithBaseURL:(NSURL *)URL {
+    if (self = [super init]) {
+        self.segmentInfoList = [NSMutableArray array];
+        self.baseURL = URL;
+    }
+    return self;
+}
 
 #pragma mark - NSCopyding
 - (id)copyWithZone:(NSZone *)zone {
@@ -71,7 +73,9 @@
 
 #pragma mark - Public
 - (void)addSegementInfo:(M3U8SegmentInfo *)segment {
-    [self.segmentInfoList addObject:segment];
+    if (segment) {
+        [self.segmentInfoList addObject:segment];
+    }
 }
 
 - (M3U8SegmentInfo *)segmentInfoAtIndex:(NSUInteger)index {
@@ -80,25 +84,6 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@", self.segmentInfoList];
-}
-
-- (NSString *)originalM3U8PlanStringValue {
-    NSMutableString *m3u8String = [[NSMutableString alloc] init];
-    
-    [m3u8String appendString:@"#EXTM3U\n"];
-    [m3u8String appendString:@"#EXT-X-TARGETDURATION:32\n"];
-    [m3u8String appendString:@"#EXT-X-VERSION:3\n"];
-    [m3u8String appendString:@"#EXT-X-DISCONTINUITY\n"];
-    
-    for (M3U8SegmentInfo *segmentInfo in self.segmentInfoList) {
-        [m3u8String appendString:[NSString stringWithFormat:@"#EXTINF:%.2f,\n", segmentInfo.duration]];
-        [m3u8String appendString:[NSString stringWithFormat:@"%@\n", segmentInfo.mediaURLString]];
-    }
-    [m3u8String appendString:@"#EXT-X-ENDLIST\n"];
-    
-    NSString *returnString = [m3u8String copy];
-    
-    return returnString;
 }
 
 @end

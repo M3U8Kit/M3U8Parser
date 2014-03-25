@@ -20,6 +20,9 @@
  @format  #EXTINF:<duration>,<title>
  */
 #define M3U8_EXTINF                         @"#EXTINF:"
+#define M3U8_EXTINF_DURATION                @"DURATION"
+#define M3U8_EXTINF_TITLE                   @"TITLE"
+#define M3U8_EXTINF_URI                     @"URI"
 
 
 /// NEW TAGS
@@ -130,6 +133,7 @@
 #define M3U8_EXT_X_STREAM_INF_VIDEO         @"VIDEO" // The value is a quoted-string.
 #define M3U8_EXT_X_STREAM_INF_SUBTITLES     @"SUBTITLES" // The value is a quoted-string.
 #define M3U8_EXT_X_STREAM_INF_CLOSED_CAPTIONS   @"CLOSED-CAPTIONS" // The value can be either a quoted-string or an enumerated-string with the value NONE.
+#define M3U8_EXT_X_STREAM_INF_URI           @"URI"  // The value is a enumerated-string containing a URI that identifies the Playlist file.
 
 
 

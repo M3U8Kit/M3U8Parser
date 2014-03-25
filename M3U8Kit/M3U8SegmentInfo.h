@@ -7,28 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreGraphics/CoreGraphics.h>
-
-extern NSString *keyM3U8SegmentDuration;
-extern NSString *keyM3U8SegmentMediaURLString;
 
 /*!
  @class M3U8SegmentInfo
  @abstract This is the class indicates #EXTINF:<duration>,<title> + media in m3u8 file
  */
 
-@interface M3U8SegmentInfo : NSObject
-<
-NSCopying,
-NSCoding
->
+@interface M3U8SegmentInfo : NSMutableDictionary
 
-@property (readonly, nonatomic) CGFloat duration;
-@property (readonly, nonatomic, copy) NSString *mediaURLString;
+@property (readonly, nonatomic) NSTimeInterval duration;
+@property (readonly, nonatomic) NSString *URI;
 
 - (NSURL *)mediaURL;
-
-- (id)initWithDictionary:(NSDictionary *)params;
-- (NSDictionary *)dictionaryValue;
 
 @end

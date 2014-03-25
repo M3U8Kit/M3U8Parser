@@ -21,9 +21,9 @@ NSCoding
 
 @property (nonatomic, assign ,readonly) NSUInteger count;
 
+- (id)initWithBaseURL:(NSURL *)URL;
+
 - (void)addSegementInfo:(M3U8SegmentInfo *)segment;
 - (M3U8SegmentInfo *)segmentInfoAtIndex:(NSUInteger)index;
-
-- (NSString *)originalM3U8PlanStringValue;
 
 @end

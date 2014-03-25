@@ -15,14 +15,11 @@ NSCopying,
 NSCoding
 >
 
-@property (readonly, nonatomic, strong) NSURL *baseURL;
-
-@property (readonly, nonatomic, copy) NSString *originalText;
-
 @property (nonatomic, assign ,readonly) NSUInteger count;
 
 - (void)addExtXStreamInf:(M3U8ExtXStreamInf *)extStreamInf;
 - (M3U8ExtXStreamInf *)extXStreamInfAtIndex:(NSUInteger)index;
+- (M3U8ExtXStreamInf *)firstStreamInf;
 - (M3U8ExtXStreamInf *)lastXStreamInf;
 
 - (void)sortByBandWidthOrder:(NSComparisonResult)order;
