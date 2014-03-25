@@ -31,20 +31,25 @@ NSString * const M3U8ExtXStreamInfTag = @"#EXT-X-STREAM-INF:";
 
 @implementation NSString (m3u8)
 
-- (BOOL)isEXTXSTREAMINF {
-    NSRange rangeOfEXTM3U = [self rangeOfString:kM3U8FirstTag];
-    NSRange rangeOfEXTXSTREAMINF = [self rangeOfString:kExtXStreamInf];
-    if (rangeOfEXTM3U.location == NSNotFound
-        || rangeOfEXTXSTREAMINF.location == NSNotFound
-        || rangeOfEXTXSTREAMINF.location == 0) {
-        
-        return NO;
+- (BOOL)isExtendedM3Ufile {
+    NSRange rangeOfEXTM3U = [self rangeOfString:M3U8_EXTM3U];
+    return rangeOfEXTM3U.location != NSNotFound;
+}
+
+- (BOOL)isMasterPlaylist {
+    BOOL isM3U = [self isExtendedM3Ufile];
+    if (isM3U) {
+        NSRange r1 = [self rangeOfString:M3U8_EXT_X_STREAM_INF];
+        NSRange r2 = [self rangeOfString:M3U8_EXT_X_I_FRAME_STREAM_INF];
+        if (r1.location != NSNotFound || r2.location != NSNotFound) {
+            return YES;
+        }
     }
-    return YES;
+    return NO;
 }
 
 - (M3U8ExtXStreamInfList *)m3u8ExtXStreamInfListValueRelativeToURL:(NSURL *)baseURL {
-    if (0 == self.length || ![self isEXTXSTREAMINF])
+    if (0 == self.length || ![self isMasterPlaylist])
         return nil;
     
     M3U8ExtXStreamInfList *xStreamInfLsit = [[M3U8ExtXStreamInfList alloc] init];

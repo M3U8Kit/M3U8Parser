@@ -11,7 +11,9 @@
 @class M3U8ExtXStreamInfList, M3U8SegmentInfoList;
 @interface NSString (m3u8)
 
-- (BOOL)isEXTXSTREAMINF;
+- (BOOL)isExtendedM3Ufile;
+- (BOOL)isMasterPlaylist;
+
 - (M3U8ExtXStreamInfList *)m3u8ExtXStreamInfListValueRelativeToURL:(NSURL *)baseURL;
 - (M3U8SegmentInfoList *)m3u8SegementInfoListValueRelativeToURL:(NSURL *)baseURL;
 
