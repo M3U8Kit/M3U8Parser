@@ -65,7 +65,7 @@ NSString *keyM3U8URLString = @"key.M3U8URLString";
                 if ((NSNull *)obj != [NSNull null]) {
                     self.m3u8URLString = obj;
                 }
-            } else if ([key isEqualToString:@"baseURL"]) {
+            } else if ([key isEqualToString:M3U8_BASE_URL]) {
                 if (obj != [NSNull null]) {
                     self.baseURL = obj;
                 }
@@ -86,7 +86,7 @@ NSString *keyM3U8URLString = @"key.M3U8URLString";
                                 keyM3U8CodecsString : mediaCodecs,
                                 keyM3U8MediaResolution : [NSValue valueWithBytes:&_resolution objCType:@encode(MediaResoulution)],
                                 keyM3U8URLString : m3u8URLString,
-                                keyM3U8};
+                                M3U8_BASE_URL : baseURL};
     
     return dictionay;
 }

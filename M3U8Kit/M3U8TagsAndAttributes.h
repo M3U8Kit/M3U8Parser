@@ -123,6 +123,7 @@
 #define M3U8_EXT_X_STREAM_INF               @"#EXT-X-STREAM-INF:"
 // EXT-X-STREAM-INF Attributes
 #define M3U8_EXT_X_STREAM_INF_BANDWIDTH     @"BANDWIDTH" // The value is a decimal-integer of bits per second.
+#define M3U8_EXT_X_STREAM_INF_PROGRAM_ID    @"PROGRAM-ID"   // The value is a decimal-integer that uniquely identifies a particular presentation within the scope of the Playlist file.
 #define M3U8_EXT_X_STREAM_INF_CODECS        @"CODECS" // The value is a quoted-string containing a comma-separated list of formats.
 #define M3U8_EXT_X_STREAM_INF_RESOLUTION    @"RESOLUTION" // The value is a decimal-resolution describing the approximate encoded horizontal and vertical resolution of video within the presentation.
 #define M3U8_EXT_X_STREAM_INF_AUDIO         @"AUDIO" // The value is a quoted-string.
@@ -177,8 +178,9 @@
  */
 #define M3U8_EXT_X_I_FRAME_STREAM_INF       @"#EXT-X-I-FRAME-STREAM-INF:"
 // EXT-X-I-FRAME-STREAM-INF Attributes
-#define M3U8_EXT_X_I_FRAME_STREAM_INF_URI   @"URI"  // The value is a quoted-string containing a URI that identifies the I-frame Playlist file.
+#define M3U8_EXT_X_I_FRAME_STREAM_INF_URI           @"URI"  // The value is a quoted-string containing a URI that identifies the I-frame Playlist file.
 #define M3U8_EXT_X_I_FRAME_STREAM_INF_BANDWIDTH     @"BANDWIDTH" // The value is a decimal-integer of bits per second.
+#define M3U8_EXT_X_I_FRAME_STREAM_INF_PROGRAM_ID    @"PROGRAM-ID"   // The value is a decimal-integer that uniquely identifies a particular presentation within the scope of the Playlist file.
 #define M3U8_EXT_X_I_FRAME_STREAM_INF_CODECS        @"CODECS" // The value is a quoted-string containing a comma-separated list of formats.
 #define M3U8_EXT_X_I_FRAME_STREAM_INF_RESOLUTION    @"RESOLUTION" // The value is a decimal-resolution describing the approximate encoded horizontal and vertical resolution of video within the presentation.
 #define M3U8_EXT_X_I_FRAME_STREAM_INF_VIDEO         @"VIDEO" // The value is a quoted-string.

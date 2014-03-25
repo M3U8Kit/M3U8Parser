@@ -11,7 +11,6 @@
 
 extern NSString *keyM3U8SegmentDuration;
 extern NSString *keyM3U8SegmentMediaURLString;
-extern NSString *keyM3U8BaseURL;
 
 /*!
  @class M3U8SegmentInfo

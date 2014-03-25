@@ -11,7 +11,6 @@
 // key for Copying
 NSString *keyM3U8SegmentDuration = @"key.M3U8SegmentDuration";
 NSString *keyM3U8SegmentMediaURLString = @"key.M3U8SegmentMediaURLString";
-NSString *keyM3U8BaseURL = @"baseURL";
 
 // key for Coding
 #define KeySegmentDuration      @"key.SegmentDuration"
@@ -39,7 +38,7 @@ NSString *keyM3U8BaseURL = @"baseURL";
                 if ((NSNull *)obj != [NSNull null]) {
                     self.mediaURLString = obj;
                 }
-            } else if ([key isEqualToString:keyM3U8BaseURL]) {
+            } else if ([key isEqualToString:M3U8_BASE_URL]) {
                 if (obj != [NSNull null]) {
                     self.baseURL = obj;
                 }
@@ -57,8 +56,7 @@ NSString *keyM3U8BaseURL = @"baseURL";
     NSURL *baseURL = self.baseURL?:(NSURL *)[NSNull null];
     NSDictionary *dictionay = @{keyM3U8SegmentDuration: @(self.duration),
                                 keyM3U8SegmentMediaURLString: mediaURLString,
-                                keyM3U8BaseURL: baseURL
-                                };
+                                M3U8_BASE_URL: baseURL};
     
     return dictionay;
 }

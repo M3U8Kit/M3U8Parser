@@ -14,21 +14,6 @@
 
 #import "M3U8TagsAndAttributes.h"
 
-NSString * const M3U8FirstTag = @"#EXTM3U";
-NSString * const M3U8ExtInfoTag = @"#EXTINF:";
-
-NSString * const M3U8ExtXStreamInfTag = @"#EXT-X-STREAM-INF:";
-
-#define kM3U8FirstTag @"#EXTM3U"
-#define kExtinfoString @"#EXTINF:"
-
-#define kExtXStreamInf @"#EXT-X-STREAM-INF:"
-
-#define kProgramID @"PROGRAM-ID="
-#define kBandwidth @"BANDWIDTH="
-#define kCodecs @"CODECS="
-#define kResolution @"RESOLUTION="
-
 @implementation NSString (m3u8)
 
 - (BOOL)isExtendedM3Ufile {
@@ -54,7 +39,7 @@ NSString * const M3U8ExtXStreamInfTag = @"#EXT-X-STREAM-INF:";
     
     M3U8ExtXStreamInfList *xStreamInfLsit = [[M3U8ExtXStreamInfList alloc] init];
     
-    NSArray *components = [self componentsSeparatedByString:kExtXStreamInf];
+    NSArray *components = [self componentsSeparatedByString:M3U8_EXT_X_STREAM_INF];
     
     [components enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         
@@ -64,7 +49,7 @@ NSString * const M3U8ExtXStreamInfTag = @"#EXT-X-STREAM-INF:";
         
         NSMutableDictionary *params = [NSMutableDictionary dictionaryWithCapacity:5];
         if (baseURL) {
-            [params setObject:baseURL forKey:@"baseURL"];
+            [params setObject:baseURL forKey:M3U8_BASE_URL];
         }
         
         NSString *url = lines[1];
@@ -95,26 +80,26 @@ NSString * const M3U8ExtXStreamInfTag = @"#EXT-X-STREAM-INF:";
         [attributeList enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             
             NSString *value = nil;
-            if ([obj hasPrefix:kProgramID]) {
-                value = [obj stringByReplacingOccurrencesOfString:kProgramID withString:@""];
+            if ([obj hasPrefix:M3U8_EXT_X_STREAM_INF_PROGRAM_ID]) {
+                value = [obj stringByReplacingOccurrencesOfString:M3U8_EXT_X_STREAM_INF_PROGRAM_ID withString:@""];
                 if (value) {
                     [params setValue:value forKey:keyM3U8ProgramID];
                 }
                 
-            } else if ([obj hasPrefix:kBandwidth]) {
-                value = [obj stringByReplacingOccurrencesOfString:kBandwidth withString:@""];
+            } else if ([obj hasPrefix:M3U8_EXT_X_STREAM_INF_BANDWIDTH]) {
+                value = [obj stringByReplacingOccurrencesOfString:M3U8_EXT_X_STREAM_INF_BANDWIDTH withString:@""];
                 if (value) {
                     [params setValue:value forKey:keyM3U8Bandwidth];
                 }
                 
-            } else if ([obj hasPrefix:kCodecs]) {
-                value = [obj stringByReplacingOccurrencesOfString:kCodecs withString:@""];
+            } else if ([obj hasPrefix:M3U8_EXT_X_STREAM_INF_CODECS]) {
+                value = [obj stringByReplacingOccurrencesOfString:M3U8_EXT_X_STREAM_INF_CODECS withString:@""];
                 value = [value stringByReplacingOccurrencesOfString:@"\"" withString:@""];
                 if (value) {
                     [params setValue:value forKey:keyM3U8CodecsString];
                 }
-            } else if ([obj hasPrefix:kResolution]) {
-                value = [obj stringByReplacingOccurrencesOfString:kResolution withString:@""];
+            } else if ([obj hasPrefix:M3U8_EXT_X_STREAM_INF_RESOLUTION]) {
+                value = [obj stringByReplacingOccurrencesOfString:M3U8_EXT_X_STREAM_INF_RESOLUTION withString:@""];
                 if (value) {
                     [params setValue:value forKey:keyM3U8MediaResolution];
                 }
@@ -140,7 +125,7 @@ NSString * const M3U8ExtXStreamInfTag = @"#EXT-X-STREAM-INF:";
      
      reference url:http://tools.ietf.org/html/draft-pantos-http-live-streaming-00
      */
-    NSRange rangeOfEXTM3U = [self rangeOfString:kM3U8FirstTag];
+    NSRange rangeOfEXTM3U = [self rangeOfString:M3U8_EXTM3U];
     if (rangeOfEXTM3U.location == NSNotFound ||
         rangeOfEXTM3U.location != 0) {
         return nil;
@@ -148,13 +133,13 @@ NSString * const M3U8ExtXStreamInfTag = @"#EXT-X-STREAM-INF:";
     
     M3U8SegmentInfoList *segmentInfoList = [[M3U8SegmentInfoList alloc] init];
     
-    NSRange segmentRange = [self rangeOfString:kExtinfoString];
+    NSRange segmentRange = [self rangeOfString:M3U8_EXTINF];
     NSString *remainingSegments = self;
     
     while (NSNotFound != segmentRange.location) {
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         if (baseURL) {
-            [params setObject:baseURL forKey:@"baseURL"];
+            [params setObject:baseURL forKey:M3U8_BASE_URL];
         }
         
 		// Read the EXTINF number between #EXTINF: and the comma
@@ -195,7 +180,7 @@ NSString * const M3U8ExtXStreamInfTag = @"#EXT-X-STREAM-INF:";
         [segmentInfoList addSegementInfo:segment];
         
         
-		segmentRange = [remainingSegments rangeOfString:kExtinfoString];
+		segmentRange = [remainingSegments rangeOfString:M3U8_EXTINF];
     }
     
     return segmentInfoList;

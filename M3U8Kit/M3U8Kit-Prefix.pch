@@ -5,3 +5,7 @@
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
 #endif
+
+
+
+#define M3U8_BASE_URL @"baseURL"
