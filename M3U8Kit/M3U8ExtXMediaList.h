@@ -10,10 +10,6 @@
 #import "M3U8ExtXMedia.h"
 
 @interface M3U8ExtXMediaList : NSObject
-<
-NSCopying,
-NSCoding
->
 
 @property (nonatomic, assign ,readonly) NSUInteger count;
 
@@ -23,7 +19,12 @@ NSCoding
 - (M3U8ExtXMedia *)lastExtXMedia;
 
 - (M3U8ExtXMediaList *)audioList;
+- (M3U8ExtXMedia *)suitableAudio;
+
 - (M3U8ExtXMediaList *)videoList;
+- (M3U8ExtXMedia *)suitableVideo;
+
 - (M3U8ExtXMediaList *)subtitleList;
+- (M3U8ExtXMedia *)suitableSubtitle;
 
 @end

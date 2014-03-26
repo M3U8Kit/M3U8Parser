@@ -10,18 +10,8 @@
 #import "M3U8SegmentInfo.h"
 
 @interface M3U8SegmentInfoList : NSObject
-<
-NSCopying,
-NSCoding
->
-
-@property (readonly, nonatomic, strong) NSURL *baseURL;
-
-@property (readonly, nonatomic, copy) NSString *originalText;
 
 @property (nonatomic, assign ,readonly) NSUInteger count;
-
-- (id)initWithBaseURL:(NSURL *)URL;
 
 - (void)addSegementInfo:(M3U8SegmentInfo *)segment;
 - (M3U8SegmentInfo *)segmentInfoAtIndex:(NSUInteger)index;

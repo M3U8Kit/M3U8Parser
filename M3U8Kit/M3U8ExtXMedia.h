@@ -31,7 +31,9 @@
  
  */
 
-@interface M3U8ExtXMedia : NSMutableDictionary
+@interface M3U8ExtXMedia : NSObject
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 - (NSString *)type;
 - (NSString *)URI;

@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class M3U8SegmentInfoList;
 @interface M3U8Parser : NSObject
 
-+ (M3U8SegmentInfoList *)m3u8SegmentInfoListFromPlanString:(NSString *)m3u8String baseURL:(NSURL *)baseURL;
-+ (M3U8SegmentInfoList *)m3u8SegmentInfoListFromData:(NSData *)m3u8Data baseURL:(NSURL *)baseURL;
 
 @end

@@ -8,10 +8,21 @@
 
 #import "M3U8SegmentInfo.h"
 
+@interface M3U8SegmentInfo()
+@property (nonatomic, strong) NSDictionary *dictionary;
+@end
+
 @implementation M3U8SegmentInfo
 
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    if (self = [super init]) {
+        self.dictionary = dictionary;
+    }
+    return self;
+}
+
 - (NSURL *)baseURL {
-    return self[M3U8_BASE_URL];
+    return self.dictionary[M3U8_BASE_URL];
 }
 
 - (NSURL *)mediaURL {
@@ -19,11 +30,11 @@
 }
 
 - (NSTimeInterval)duration {
-    return [self[M3U8_EXTINF_DURATION] doubleValue];
+    return [self.dictionary[M3U8_EXTINF_DURATION] doubleValue];
 }
 
 - (NSString *)URI {
-    return self[M3U8_EXTINF_URI];
+    return self.dictionary[M3U8_EXTINF_URI];
 }
 
 @end

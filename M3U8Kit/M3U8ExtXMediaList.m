@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Jin Sun. All rights reserved.
 //
 
-#define KeyM3u8InfoList       @"key.m3u8InfoList"
-
 #import "M3U8ExtXMediaList.h"
 
 @interface M3U8ExtXMediaList ()
@@ -61,6 +59,23 @@
     return audioList;
 }
 
+- (M3U8ExtXMedia *)suitableAudio {
+    NSString *lan = [NSLocale preferredLanguages].firstObject;
+    NSArray *copy = [self.m3u8InfoList copy];
+    M3U8ExtXMedia *suitableAudio = nil;
+    for (M3U8ExtXMedia *media in copy) {
+        if ([media.type isEqualToString:@"AUDIO"]) {
+            if (nil == suitableAudio) {
+                suitableAudio = media;
+            }
+            if ([media.language isEqualToString:lan]) {
+                suitableAudio = media;
+            }
+        }
+    }
+    return suitableAudio;
+}
+
 - (M3U8ExtXMediaList *)videoList {
     M3U8ExtXMediaList *videoList = [[M3U8ExtXMediaList alloc] init];
     NSArray *copy = [self.m3u8InfoList copy];
@@ -70,6 +85,24 @@
         }
     }
     return videoList;
+}
+
+- (M3U8ExtXMedia *)suitableVideo {
+    NSString *lan = [NSLocale preferredLanguages].firstObject;
+    NSArray *copy = [self.m3u8InfoList copy];
+    M3U8ExtXMedia *suitableVideo = nil;
+    for (M3U8ExtXMedia *media in copy) {
+        if ([media.type isEqualToString:@"VIDEO"]) {
+            
+            if (nil == suitableVideo) {
+                suitableVideo = media;
+            }
+            if ([media.language isEqualToString:lan]) {
+                suitableVideo = media;
+            }
+        }
+    }
+    return suitableVideo;
 }
 
 - (M3U8ExtXMediaList *)subtitleList {
@@ -83,26 +116,21 @@
     return subtitleList;
 }
 
-#pragma mark - NSCopying
-
-- (id)copyWithZone:(NSZone *)zone {
-    M3U8ExtXMediaList *copy = [[M3U8ExtXMediaList allocWithZone:zone] init];
-    copy.m3u8InfoList = [self.m3u8InfoList copy];
-    
-    return copy;
-}
-
-#pragma mark - NSCoding
-
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super init]) {
-        self.m3u8InfoList = [aDecoder decodeObjectForKey:KeyM3u8InfoList];
+- (M3U8ExtXMedia *)suitableSubtitle {
+    NSString *lan = [NSLocale preferredLanguages].firstObject;
+    NSArray *copy = [self.m3u8InfoList copy];
+    M3U8ExtXMedia *suitableSubtitle = nil;
+    for (M3U8ExtXMedia *media in copy) {
+        if ([media.type isEqualToString:@"SUBTITLES"]) {
+            if (nil == suitableSubtitle) {
+                suitableSubtitle = media;
+            }
+            if ([media.language isEqualToString:lan]) {
+                suitableSubtitle = media;
+            }
+        }
     }
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.m3u8InfoList forKey:KeyM3u8InfoList];
+    return suitableSubtitle;
 }
 
 @end

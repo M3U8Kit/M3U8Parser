@@ -10,10 +10,6 @@
 #import "M3U8ExtXStreamInf.h"
 
 @interface M3U8ExtXStreamInfList : NSObject
-<
-NSCopying,
-NSCoding
->
 
 @property (nonatomic, assign ,readonly) NSUInteger count;
 
@@ -22,9 +18,6 @@ NSCoding
 - (M3U8ExtXStreamInf *)firstStreamInf;
 - (M3U8ExtXStreamInf *)lastXStreamInf;
 
-- (void)sortByBandWidthOrder:(NSComparisonResult)order;
-
-
-
+- (void)sortByBandwidthInOrder:(NSComparisonResult)order;
 
 @end

@@ -31,11 +31,21 @@ MediaResoulution MediaResolutionMake(float width, float height) {
 }
 
 
+@interface M3U8ExtXStreamInf()
+@property (nonatomic, strong) NSDictionary *dictionary;
+@end
 
 @implementation M3U8ExtXStreamInf
 
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    if (self = [super init]) {
+        self.dictionary = dictionary;
+    }
+    return self;
+}
+
 - (NSURL *)baseURL {
-    return self[M3U8_BASE_URL];
+    return self.dictionary[M3U8_BASE_URL];
 }
 
 - (NSURL *)m3u8URL {
@@ -43,41 +53,41 @@ MediaResoulution MediaResolutionMake(float width, float height) {
 }
 
 - (NSInteger)bandwidth {
-    return [self[M3U8_EXT_X_STREAM_INF_BANDWIDTH] integerValue];
+    return [self.dictionary[M3U8_EXT_X_STREAM_INF_BANDWIDTH] integerValue];
 }
 
 - (NSInteger)programId {
-    return [self[M3U8_EXT_X_STREAM_INF_PROGRAM_ID] integerValue];
+    return [self.dictionary[M3U8_EXT_X_STREAM_INF_PROGRAM_ID] integerValue];
 }
 
 - (NSString *)codecs {
-    return self[M3U8_EXT_X_STREAM_INF_CODECS];
+    return self.dictionary[M3U8_EXT_X_STREAM_INF_CODECS];
 }
 
 - (MediaResoulution)resolution {
-    NSString *rStr = self[M3U8_EXT_X_STREAM_INF_RESOLUTION];
+    NSString *rStr = self.dictionary[M3U8_EXT_X_STREAM_INF_RESOLUTION];
     MediaResoulution resolution = MediaResolutionFromString(rStr);
     return resolution;
 }
 
 - (NSString *)audio {
-    return self[M3U8_EXT_X_STREAM_INF_AUDIO];
+    return self.dictionary[M3U8_EXT_X_STREAM_INF_AUDIO];
 }
 
 - (NSString *)video {
-    return self[M3U8_EXT_X_STREAM_INF_VIDEO];
+    return self.dictionary[M3U8_EXT_X_STREAM_INF_VIDEO];
 }
 
 - (NSString *)subtitles {
-    return self[M3U8_EXT_X_STREAM_INF_SUBTITLES];
+    return self.dictionary[M3U8_EXT_X_STREAM_INF_SUBTITLES];
 }
 
 - (NSString *)closedCaptions {
-    return self[M3U8_EXT_X_STREAM_INF_CLOSED_CAPTIONS];
+    return self.dictionary[M3U8_EXT_X_STREAM_INF_CLOSED_CAPTIONS];
 }
 
 - (NSString *)URI {
-    return self[M3U8_EXT_X_STREAM_INF_URI];
+    return self.dictionary[M3U8_EXT_X_STREAM_INF_URI];
 }
 
 @end
