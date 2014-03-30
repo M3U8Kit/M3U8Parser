@@ -133,4 +133,21 @@
     return suitableSubtitle;
 }
 
+- (NSString *)description {
+    return [NSString stringWithString:self.m3u8InfoList.description];
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+

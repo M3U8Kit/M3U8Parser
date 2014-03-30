@@ -7,7 +7,7 @@
 //
 
 
-// M3U8 Tags & Attributes according to Draft Pantos Http Live Streaming 12 http://tools.ietf.org/html/draft-pantos-http-live-streaming-12
+// M3U8 Tags & Attributes definded in Draft Pantos Http Live Streaming 12 http://tools.ietf.org/html/draft-pantos-http-live-streaming-12
 
 
 ///------------------------------

@@ -38,7 +38,7 @@
 }
 
 - (NSString *)language {
-    return self.dictionary[M3U8_EXT_X_MEDIA_LANGUAGE];
+    return [self.dictionary[M3U8_EXT_X_MEDIA_LANGUAGE] lowercaseString];
 }
 
 - (NSString *)assocLanguage {
@@ -69,8 +69,12 @@
     return self.dictionary[M3U8_EXT_X_MEDIA_CHARACTERISTICS];
 }
 
-- (NSString *)m3u8UrlStr {
+- (NSURL *)m3u8URL {
     return [NSURL URLWithString:self.URI relativeToURL:[self baseURL]];
+}
+
+- (NSString *)description {
+    return [NSString stringWithString:self.dictionary.description];
 }
 
 @end

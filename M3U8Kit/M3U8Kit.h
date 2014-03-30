@@ -9,8 +9,6 @@
 #ifndef M3U8Kit_M3U8Kit_h
 #define M3U8Kit_M3U8Kit_h
 
-#import "M3U8Parser.h"
-
 #import "M3U8ExtXStreamInf.h"
 #import "M3U8ExtXStreamInfList.h"
 

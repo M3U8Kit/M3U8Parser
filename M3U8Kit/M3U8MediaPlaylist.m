@@ -27,6 +27,7 @@
         self.originalText = string;
         self.baseURL = baseURL;
         self.segmentList = [string m3u8SegementInfoListValueRelativeToURL:baseURL];
+        self.type = -1;
     }
     return self;
 }

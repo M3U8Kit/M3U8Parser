@@ -37,4 +37,8 @@
     return self.dictionary[M3U8_EXTINF_URI];
 }
 
+- (NSString *)description {
+    return [NSString stringWithString:self.dictionary.description];
+}
+
 @end
