@@ -8,18 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "M3U8ExtXStreamInfList.h"
-#import "M3U8ExtXMediaList.h"
 
 @interface M3U8MasterPlaylist : NSObject
+
+@property (nonatomic, strong) NSString *name;
+
+@property (readonly, nonatomic, strong) NSString *version;
 
 @property (readonly, nonatomic, copy) NSString *originalText;
 @property (readonly, nonatomic, strong) NSURL *baseURL;
 
 @property (readonly, nonatomic, strong) M3U8ExtXStreamInfList *xStreamList;
-@property (readonly, nonatomic, strong) M3U8ExtXMediaList *xMediaList;
+- (NSOrderedSet *)allStreamURLs;
 
 - (instancetype)initWithContent:(NSString *)string baseURL:(NSURL *)baseURL;
-
 - (instancetype)initWithContentOfURL:(NSURL *)URL error:(NSError **)error;
 
 @end

@@ -35,7 +35,7 @@
     [self.m3u8InfoList addObject:extStreamInf];
 }
 
-- (M3U8ExtXStreamInf *)extXStreamInfAtIndex:(NSUInteger)index {
+- (M3U8ExtXStreamInf *)xStreamInfAtIndex:(NSUInteger)index {
     if (index >= self.count) {
         return nil;
     }

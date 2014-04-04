@@ -26,7 +26,7 @@
 }
 
 - (NSURL *)mediaURL {
-    return [NSURL URLWithString:self.URI relativeToURL:self.baseURL];
+    return [[NSURL URLWithString:self.URI relativeToURL:self.baseURL] absoluteURL];
 }
 
 - (NSTimeInterval)duration {

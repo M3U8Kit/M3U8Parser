@@ -70,7 +70,7 @@
 }
 
 - (NSURL *)m3u8URL {
-    return [NSURL URLWithString:self.URI relativeToURL:[self baseURL]];
+    return [[NSURL URLWithString:self.URI relativeToURL:[self baseURL]] absoluteURL];
 }
 
 - (NSString *)description {

@@ -22,6 +22,8 @@
 
 #import "M3U8MediaPlaylist.h"
 
+#import "M3U8PlaylistModel.h"
+
 #import "NSString+m3u8.h"
 
 #endif

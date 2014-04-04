@@ -24,32 +24,38 @@
  --- master playlist 中的内容，如果有的话
  1. master playlist
  2. 默认的 media playlist, 由第一个 #EXT-X-STREAM-INF Tag 指定
- 3. 适合当前系统语言的音频playlist, 如果没有，优先下载默认音频(DEFAULT=YES), 如果没有默认音频，下载英文音频(language="en"), 如果没有，下载第一个
- 4. 下载字幕playlist, 选择优先级同上
- 5. 忽略EXT-X-MEDIA TYPE＝VIDEO 的项目
- 6. 下载各 media playlist 对应的分段内容
+ 3. 音频 如果有一个 #EXT-X-STREAM-INF Tag 的codecs只有音频部分，则认为它的URI指向一个音频文件，应该下载下来，其它的Tag 暂时都简单的忽略掉
+ 
+ . 下载各 media playlist 对应的分段内容
  
  */
 
 @interface M3U8PlaylistModel : NSObject
 
-// 如果初始化时的字符串是 master playlist, masterPlaylist 将会被初始化，mediaPlaylist为nil
-// 如果初始化时的字符串是 media playlist, mediaPlaylist 将会被初始化，masterPlaylist为nil
-// M3U8PlaylistModel 默认会按照《需要下载的内容》规则选取默认的playlist，如果需要手动指定获取特定的media playlist, 需调用方法 -specifyVideoURL:;
+// 如果初始化时的字符串是 media playlist, masterPlaylist为nil
+// M3U8PlaylistModel 默认会按照《需要下载的内容》规则选取默认的playlist，如果需要手动指定获取特定的media playlist, 需调用方法 -specifyVideoURL:(这个在选取视频源的时候会用到);
 
 @property (readonly, nonatomic, strong) M3U8MasterPlaylist *masterPlaylist;
-@property (readonly, nonatomic, strong) M3U8MediaPlaylist *mediaPlaylist;
+
+@property (readonly, nonatomic, strong) M3U8MediaPlaylist *mainMediaPl;
+@property (readonly, nonatomic, strong) M3U8MediaPlaylist *audioPl;
+//@property (readonly, nonatomic, strong) M3U8MediaPlaylist *subtitlePl;
 
 //
 - (id)initWithURL:(NSURL *)URL error:(NSError **)error;
 - (id)initWithString:(NSString *)string baseURL:(NSURL *)URL;
 
-- (void)specifyVideoURL:(NSString *)url completion:(void (^)(BOOL success))completion;    // 这个url必须是master playlist 中多码率url中的一个; 如果URL内容获取失败
+// 改变 mainMediaPl
+// 这个url必须是master playlist 中多码率url(绝对地址)中的一个; 如果URL内容获取失败,不会引起变化
+- (void)specifyVideoURL:(NSString *)url completion:(void (^)(BOOL success))completion;
 
 - (NSString *)indexPlaylistName;
 
-- (NSArray *)segmentNamesForPlaylist:(M3U8MediaPlaylist *)playlist;
+- (NSString *)prefixOfSegmentNameInPlaylist:(M3U8MediaPlaylist *)playlist;
 
-- (void)savePlaylistsToPath:(NSString *)path;
+
+//- (NSArray *)segmentNamesForPlaylist:(M3U8MediaPlaylist *)playlist;
+
+- (void)savePlaylistsToPath:(NSString *)path error:(NSError **)error;
 
 @end

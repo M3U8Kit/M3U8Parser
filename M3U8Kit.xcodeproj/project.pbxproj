@@ -16,9 +16,7 @@
 		9D05823D18E52DF500A12776 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D05823B18E52DF500A12776 /* InfoPlist.strings */; };
 		9D05823F18E52DF500A12776 /* M3U8KitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D05823E18E52DF500A12776 /* M3U8KitTests.m */; };
 		9D05825E18E52E9500A12776 /* M3U8ExtXMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D05824818E52E9500A12776 /* M3U8ExtXMedia.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D05825F18E52E9500A12776 /* M3U8ExtXMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D05824918E52E9500A12776 /* M3U8ExtXMedia.m */; };
 		9D05826018E52E9500A12776 /* M3U8ExtXMediaList.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D05824A18E52E9500A12776 /* M3U8ExtXMediaList.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D05826118E52E9500A12776 /* M3U8ExtXMediaList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D05824B18E52E9500A12776 /* M3U8ExtXMediaList.m */; };
 		9D05826218E52E9500A12776 /* M3U8ExtXStreamInf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D05824C18E52E9500A12776 /* M3U8ExtXStreamInf.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D05826318E52E9500A12776 /* M3U8ExtXStreamInf.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D05824D18E52E9500A12776 /* M3U8ExtXStreamInf.m */; };
 		9D05826418E52E9500A12776 /* M3U8ExtXStreamInfList.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D05824E18E52E9500A12776 /* M3U8ExtXStreamInfList.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -234,17 +232,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D05826618E52E9500A12776 /* M3U8Kit.h in Headers */,
+				9D05827118E52E9500A12776 /* M3U8TagsAndAttributes.h in Headers */,
 				9D05827218E52E9500A12776 /* NSString+m3u8.h in Headers */,
 				9D05826D18E52E9500A12776 /* M3U8SegmentInfo.h in Headers */,
-				9D05827118E52E9500A12776 /* M3U8TagsAndAttributes.h in Headers */,
+				9D05826F18E52E9500A12776 /* M3U8SegmentInfoList.h in Headers */,
 				9D05826918E52E9500A12776 /* M3U8MediaPlaylist.h in Headers */,
 				9D05826718E52E9500A12776 /* M3U8MasterPlaylist.h in Headers */,
-				9D05826418E52E9500A12776 /* M3U8ExtXStreamInfList.h in Headers */,
 				9D05826218E52E9500A12776 /* M3U8ExtXStreamInf.h in Headers */,
-				9D05826B18E52E9500A12776 /* M3U8PlaylistModel.h in Headers */,
+				9D05826418E52E9500A12776 /* M3U8ExtXStreamInfList.h in Headers */,
 				9D05825E18E52E9500A12776 /* M3U8ExtXMedia.h in Headers */,
 				9D05826018E52E9500A12776 /* M3U8ExtXMediaList.h in Headers */,
-				9D05826F18E52E9500A12776 /* M3U8SegmentInfoList.h in Headers */,
+				9D05826B18E52E9500A12776 /* M3U8PlaylistModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,13 +363,11 @@
 				9D05826E18E52E9500A12776 /* M3U8SegmentInfo.m in Sources */,
 				9D05826318E52E9500A12776 /* M3U8ExtXStreamInf.m in Sources */,
 				9D05826518E52E9500A12776 /* M3U8ExtXStreamInfList.m in Sources */,
-				9D05826118E52E9500A12776 /* M3U8ExtXMediaList.m in Sources */,
 				9D05826A18E52E9500A12776 /* M3U8MediaPlaylist.m in Sources */,
 				9D05826818E52E9500A12776 /* M3U8MasterPlaylist.m in Sources */,
 				9D05827318E52E9500A12776 /* NSString+m3u8.m in Sources */,
 				9D05827018E52E9500A12776 /* M3U8SegmentInfoList.m in Sources */,
 				9D05826C18E52E9500A12776 /* M3U8PlaylistModel.m in Sources */,
-				9D05825F18E52E9500A12776 /* M3U8ExtXMedia.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

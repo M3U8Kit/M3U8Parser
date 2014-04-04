@@ -49,7 +49,7 @@ NSString * NSStringFromMediaResolution(MediaResoulution resolution);
 
 @property (nonatomic, readonly) NSInteger bandwidth;
 @property (nonatomic, readonly) NSInteger programId;        // removed by draft 12
-@property (nonatomic, readonly) NSString *codecs;
+@property (nonatomic, readonly) NSArray *codecs;
 @property (nonatomic, readonly) MediaResoulution resolution;
 @property (nonatomic, readonly) NSString *audio;
 @property (nonatomic, readonly) NSString *video;

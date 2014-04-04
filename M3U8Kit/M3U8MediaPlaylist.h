@@ -18,6 +18,10 @@ typedef enum {
 
 @interface M3U8MediaPlaylist : NSObject
 
+@property (nonatomic, strong) NSString *name;
+
+@property (readonly, nonatomic, strong) NSString *version;
+
 @property (readonly, nonatomic, copy) NSString *originalText;
 @property (readonly, nonatomic, strong) NSURL *baseURL;
 
@@ -25,7 +29,9 @@ typedef enum {
 
 @property (nonatomic) M3U8MediaPlaylistType type;   // -1 by default
 
-- (instancetype)initWithContent:(NSString *)string baseURL:(NSURL *)baseURL;
-- (instancetype)initWithContentOfURL:(NSURL *)URL error:(NSError **)error;
+- (instancetype)initWithContent:(NSString *)string type:(M3U8MediaPlaylistType)type baseURL:(NSURL *)baseURL;
+- (instancetype)initWithContentOfURL:(NSURL *)URL type:(M3U8MediaPlaylistType)type error:(NSError **)error;
+
+- (NSOrderedSet *)allSegmentURLs;
 
 @end

@@ -19,7 +19,6 @@
 @property (nonatomic, strong) NSString *version;
 
 @property (nonatomic, strong) M3U8ExtXStreamInfList *xStreamList;
-@property (nonatomic, strong) M3U8ExtXMediaList *xMediaList;
 
 @end
 
@@ -48,7 +47,6 @@
 - (void)parseMasterPlaylist {
     
     self.xStreamList = [[M3U8ExtXStreamInfList alloc] init];
-    self.xMediaList = [[M3U8ExtXMediaList alloc] init];
     
     NSRange crRange = [self.originalText rangeOfString:@"\n"];
     NSString *remainingPart = self.originalText;
@@ -86,6 +84,8 @@
             [self.xStreamList addExtXStreamInf:xStreamInf];
         }
         
+        
+        // 简单地忽略掉下面两个Tag
         // #EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=65531,PROGRAM-ID=1,CODECS="avc1.42c00c",RESOLUTION=320x180,URI="/talks/769/video/64k_iframe.m3u8?sponsor=Ripple"
         else if ([line hasPrefix:M3U8_EXT_X_I_FRAME_STREAM_INF]) {
             
@@ -94,14 +94,14 @@
         
         // #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="600k",LANGUAGE="eng",NAME="Audio",AUTOSELECT=YES,DEFAULT=YES,URI="/talks/769/audio/600k.m3u8?sponsor=Ripple",BANDWIDTH=614400
         else if ([line hasPrefix:M3U8_EXT_X_MEDIA]) {
-            NSRange range = [line rangeOfString:M3U8_EXT_X_MEDIA];
-            NSString *attribute_list = [line substringFromIndex:range.location + range.length];
-            NSMutableDictionary *attr = [self attributesFromString:attribute_list];
-            if (self.baseURL) {
-                attr[M3U8_BASE_URL] = self.baseURL;
-            }
-            M3U8ExtXMedia *media = [[M3U8ExtXMedia alloc] initWithDictionary:attr];
-            [self.xMediaList addExtXMedia:media];
+//            NSRange range = [line rangeOfString:M3U8_EXT_X_MEDIA];
+//            NSString *attribute_list = [line substringFromIndex:range.location + range.length];
+//            NSMutableDictionary *attr = [self attributesFromString:attribute_list];
+//            if (self.baseURL) {
+//                attr[M3U8_BASE_URL] = self.baseURL;
+//            }
+//            M3U8ExtXMedia *media = [[M3U8ExtXMedia alloc] initWithDictionary:attr];
+//            [self.xMediaList addExtXMedia:media];
         }
     }
 }
@@ -139,6 +139,17 @@
         dict[key] = value;
     }
     return dict;
+}
+
+- (NSOrderedSet *)allStreamURLs {
+    NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSet];
+    for (int i = 0; i < self.xStreamList.count; i ++) {
+        M3U8ExtXStreamInf *xsinf = [self.xStreamList xStreamInfAtIndex:i];
+        if (xsinf.m3u8URL) {
+            [set addObject:xsinf.m3u8URL];
+        }
+    }
+    return [set copy];
 }
 
 @end

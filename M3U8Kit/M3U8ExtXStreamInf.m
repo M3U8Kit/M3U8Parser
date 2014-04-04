@@ -49,7 +49,7 @@ MediaResoulution MediaResolutionMake(float width, float height) {
 }
 
 - (NSURL *)m3u8URL {
-    return [NSURL URLWithString:self.URI relativeToURL:self.baseURL];
+    return [[NSURL URLWithString:self.URI relativeToURL:self.baseURL] absoluteURL];
 }
 
 - (NSInteger)bandwidth {
@@ -60,8 +60,9 @@ MediaResoulution MediaResolutionMake(float width, float height) {
     return [self.dictionary[M3U8_EXT_X_STREAM_INF_PROGRAM_ID] integerValue];
 }
 
-- (NSString *)codecs {
-    return self.dictionary[M3U8_EXT_X_STREAM_INF_CODECS];
+- (NSArray *)codecs {
+    NSString *codecsString = self.dictionary[M3U8_EXT_X_STREAM_INF_CODECS];
+    return [codecsString componentsSeparatedByString:@","];
 }
 
 - (MediaResoulution)resolution {

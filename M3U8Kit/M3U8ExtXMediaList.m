@@ -33,7 +33,7 @@
     }
 }
 
-- (M3U8ExtXMedia *)extXMediaAtIndex:(NSUInteger)index {
+- (M3U8ExtXMedia *)xMediaAtIndex:(NSUInteger)index {
     if (index >= self.count) {
         return nil;
     }
