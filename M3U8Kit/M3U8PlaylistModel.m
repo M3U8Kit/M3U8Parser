@@ -60,7 +60,7 @@
             if (list.count > 1) {
                 for (int i = 0; i < list.count; i++) {
                     M3U8ExtXStreamInf *xsinf = [list xStreamInfAtIndex:i];
-                    if (xsinf.codecs.count == 1) {
+                    if (xsinf.codecs.count == 1 && [xsinf.codecs.firstObject hasPrefix:@"mp4a"]) {
                         self.audioPl = [[M3U8MediaPlaylist alloc] initWithContentOfURL:xsinf.m3u8URL type:M3U8MediaPlaylistTypeAudio error:NULL];
                         self.audioPl.name = [NSString stringWithFormat:@"%@0", PREFIX_AUDIO_PLAYLIST];
                         break;
@@ -134,14 +134,37 @@
     return prefix;
 }
 
+- (NSString *)sufixOfSegmentNameInPlaylist:(M3U8MediaPlaylist *)playlist {
+    NSString *prefix = nil;
+    
+    switch (playlist.type) {
+        case M3U8MediaPlaylistTypeMedia:
+        case M3U8MediaPlaylistTypeVideo:
+            prefix = @"ts";
+            break;
+        case M3U8MediaPlaylistTypeAudio:
+            prefix = @"aac";
+            break;
+        case M3U8MediaPlaylistTypeSubtitle:
+            prefix = @"vtt";
+            break;
+            
+        default:
+            return @"";
+            break;
+    }
+    return prefix;
+}
+
 - (NSArray *)segmentNamesForPlaylist:(M3U8MediaPlaylist *)playlist {
     
     NSUInteger count = playlist.segmentList.count;
     
     NSString *prefix = [self prefixOfSegmentNameInPlaylist:playlist];
+    NSString *sufix = [self sufixOfSegmentNameInPlaylist:playlist];
     NSMutableArray *names = [NSMutableArray array];
-    for (NSUInteger index = 0; index < count; index ++) {
-        NSString *n = [NSString stringWithFormat:@"%@%ld", prefix, (long)index];
+    for (NSInteger index = 0; index < count; index ++) {
+        NSString *n = [NSString stringWithFormat:@"%@%ld.%@", prefix, (long)index, sufix];
         [names addObject:n];
     }
     return names;
@@ -186,7 +209,7 @@
     NSString *mainMediaPlContext = playlist.originalText;
     for (int i = 0; i < playlist.segmentList.count; i ++) {
         M3U8SegmentInfo *sinfo = [playlist.segmentList segmentInfoAtIndex:i];
-        NSString *name = [NSString stringWithFormat:@"%@%d", [self prefixOfSegmentNameInPlaylist:playlist], i];
+        NSString *name = [NSString stringWithFormat:@"%@%d.%@", [self prefixOfSegmentNameInPlaylist:playlist], i, [self sufixOfSegmentNameInPlaylist:playlist]];
         mainMediaPlContext = [mainMediaPlContext stringByReplacingOccurrencesOfString:sinfo.URI withString:name];
     }
     NSString *mainMediaPlPath = [path stringByAppendingPathComponent:playlist.name];
