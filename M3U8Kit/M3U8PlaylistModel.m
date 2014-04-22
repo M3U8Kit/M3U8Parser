@@ -211,7 +211,7 @@
         NSString *mPath = [path stringByAppendingPathComponent:self.indexPlaylistName];
         BOOL success = [masterContext writeToFile:mPath atomically:YES encoding:NSUTF8StringEncoding error:error];
         if (NO == success) {
-            NSLog(@"M3U8Kit Error: failed to save master playlist to file. error: %@", *error);
+            NSLog(@"M3U8Kit Error: failed to save master playlist to file. error: %@", error?*error:@"null");
             return;
         }
         
