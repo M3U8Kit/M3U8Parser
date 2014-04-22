@@ -16,7 +16,7 @@
 
 @interface M3U8PlaylistModel()
 
-@property (nonatomic, strong) NSURL *URL;
+@property (nonatomic, strong) NSString *URL;
 
 @property (nonatomic, strong) M3U8MasterPlaylist *masterPlaylist;
 
@@ -30,9 +30,9 @@
 
 @implementation M3U8PlaylistModel
 
-- (id)initWithURL:(NSURL *)URL error:(NSError **)error {
+- (id)initWithURL:(NSString *)URL error:(NSError **)error {
     
-    NSString *str = [[NSString alloc] initWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:error];
+    NSString *str = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:URL] encoding:NSUTF8StringEncoding error:error];
     if (*error) {
         return nil;
     }
@@ -40,7 +40,7 @@
     return [self initWithString:str baseURL:URL error:error];
 }
 
-- (id)initWithString:(NSString *)string baseURL:(NSURL *)URL error:(NSError **)error {
+- (id)initWithString:(NSString *)string baseURL:(NSString *)URL error:(NSError **)error {
     
     if (NO == [string isExtendedM3Ufile]) {
         *error = [NSError errorWithDomain:@"M3U8PlaylistModel" code:-998 userInfo:@{NSLocalizedDescriptionKey:@"The content is not a m3u8 playlist"}];
@@ -55,7 +55,8 @@
             self.currentXStreamInf = self.masterPlaylist.xStreamList.firstStreamInf;
             if (self.currentXStreamInf) {
                 NSError *error;
-                self.mainMediaPl = [[M3U8MediaPlaylist alloc] initWithContentOfURL:self.currentXStreamInf.m3u8URL type:M3U8MediaPlaylistTypeMedia error:&error];
+                NSURL *m3u8URL = [NSURL URLWithString:self.currentXStreamInf.m3u8URL];
+                self.mainMediaPl = [[M3U8MediaPlaylist alloc] initWithContentOfURL:m3u8URL type:M3U8MediaPlaylistTypeMedia error:&error];
                 self.mainMediaPl.name = [NSString stringWithFormat:@"%@0.m3u8", PREFIX_MAIN_MEDIA_PLAYLIST];
                 if (error) {
                     NSLog(@"Get main media playlist failed, error: %@", error);
@@ -68,7 +69,8 @@
                 for (int i = 0; i < list.count; i++) {
                     M3U8ExtXStreamInf *xsinf = [list xStreamInfAtIndex:i];
                     if (xsinf.codecs.count == 1 && [xsinf.codecs.firstObject hasPrefix:@"mp4a"]) {
-                        self.audioPl = [[M3U8MediaPlaylist alloc] initWithContentOfURL:xsinf.m3u8URL type:M3U8MediaPlaylistTypeAudio error:NULL];
+                        NSURL *audioURL = [NSURL URLWithString:xsinf.m3u8URL];
+                        self.audioPl = [[M3U8MediaPlaylist alloc] initWithContentOfURL:audioURL type:M3U8MediaPlaylistTypeAudio error:NULL];
                         self.audioPl.name = [NSString stringWithFormat:@"%@%d.m3u8", PREFIX_MAIN_MEDIA_PLAYLIST, i];
                         break;
                     }
@@ -76,7 +78,7 @@
             }
             
         } else if ([string isMediaPlaylist]) {
-            self.mainMediaPl = [[M3U8MediaPlaylist alloc] initWithContent:string type:M3U8MediaPlaylistTypeMedia baseURL:URL];
+            self.mainMediaPl = [[M3U8MediaPlaylist alloc] initWithContent:string type:M3U8MediaPlaylistTypeMedia baseURL:self.URL];
             self.mainMediaPl.name = INDEX_PLAYLIST_NAME;
         }
     }
@@ -88,7 +90,7 @@
     M3U8ExtXStreamInfList *xsilist = self.masterPlaylist.alternativeXStreamInfList;
     for (int index = 0; index < xsilist.count; index ++) {
         M3U8ExtXStreamInf *xsinf = [xsilist xStreamInfAtIndex:index];
-        [allAlternativeURLStrings addObject:xsinf.m3u8URL.absoluteString];
+        [allAlternativeURLStrings addObject:xsinf.m3u8URL];
     }
     
     return allAlternativeURLStrings;
@@ -104,7 +106,7 @@
             && nil != self.masterPlaylist
             && [self.allAlternativeURLStrings containsObject:url]) {
             
-            if ([url isEqualToString:self.mainMediaPl.baseURL.absoluteString]) {
+            if ([url isEqualToString:self.mainMediaPl.baseURL]) {
                 success = YES;
             } else {
                 NSError *error;
@@ -176,7 +178,7 @@
     NSString *sufix = [self sufixOfSegmentNameInPlaylist:playlist];
     NSMutableArray *names = [NSMutableArray array];
     
-    NSArray *URLs = playlist.allSegmentURLs.array;
+    NSArray *URLs = playlist.allSegmentURLs;
     NSUInteger count = playlist.segmentList.count;
     NSUInteger index = 0;
     for (int i = 0; i < count; i ++) {

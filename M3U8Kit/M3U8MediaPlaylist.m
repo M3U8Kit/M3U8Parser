@@ -11,7 +11,7 @@
 @interface M3U8MediaPlaylist()
 
 @property (nonatomic, copy) NSString *originalText;
-@property (nonatomic, strong) NSURL *baseURL;
+@property (nonatomic, strong) NSString *baseURL;
 
 @property (nonatomic, strong) NSString *version;
 
@@ -21,7 +21,7 @@
 
 @implementation M3U8MediaPlaylist
 
-- (instancetype)initWithContent:(NSString *)string type:(M3U8MediaPlaylistType)type baseURL:(NSURL *)baseURL {
+- (instancetype)initWithContent:(NSString *)string type:(M3U8MediaPlaylistType)type baseURL:(NSString *)baseURL {
     if (NO == [string isMediaPlaylist]) {
         return nil;
     }
@@ -39,18 +39,20 @@
         return nil;
     }
     NSString *string = [[NSString alloc] initWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:error];
-    return [self initWithContent:string type:type baseURL:URL];
+    return [self initWithContent:string type:type baseURL:URL.absoluteString];
 }
 
-- (NSOrderedSet *)allSegmentURLs {
-    NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSet];
+- (NSArray *)allSegmentURLs {
+    NSMutableArray *array = [NSMutableArray array];
     for (int i = 0; i < self.segmentList.count; i ++) {
         M3U8SegmentInfo *info = [self.segmentList segmentInfoAtIndex:i];
-        if (info.mediaURL) {
-            [set addObject:info.mediaURL];
+        if (info.mediaURL.length > 0) {
+            if (NO == [array containsObject:info.mediaURL]) {
+                [array addObject:info.mediaURL];
+            }
         }
     }
-    return [set copy];
+    return [array copy];
 }
 
 - (void)parseMediaPlaylist {

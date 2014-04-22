@@ -30,6 +30,6 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
-- (NSURL *)mediaURL;
+- (NSString *)mediaURL;
 
 @end

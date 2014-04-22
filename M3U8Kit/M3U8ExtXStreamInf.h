@@ -59,6 +59,6 @@ NSString * NSStringFromMediaResolution(MediaResoulution resolution);
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
-- (NSURL *)m3u8URL; // the absolute url
+- (NSString *)m3u8URL; // the absolute url
 
 @end

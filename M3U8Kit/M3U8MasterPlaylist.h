@@ -16,14 +16,14 @@
 @property (readonly, nonatomic, strong) NSString *version;
 
 @property (readonly, nonatomic, copy) NSString *originalText;
-@property (readonly, nonatomic, strong) NSURL *baseURL;
+@property (readonly, nonatomic, strong) NSString *baseURL;
 
 @property (readonly, nonatomic, strong) M3U8ExtXStreamInfList *xStreamList;
-- (NSOrderedSet *)allStreamURLs;
+- (NSArray *)allStreamURLs;
 
 - (M3U8ExtXStreamInfList *)alternativeXStreamInfList;
 
-- (instancetype)initWithContent:(NSString *)string baseURL:(NSURL *)baseURL;
-- (instancetype)initWithContentOfURL:(NSURL *)URL error:(NSError **)error;
+- (instancetype)initWithContent:(NSString *)string baseURL:(NSString *)baseURL;
+- (instancetype)initWithContentOfURL:(NSString *)URL error:(NSError **)error;
 
 @end

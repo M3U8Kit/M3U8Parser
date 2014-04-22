@@ -14,7 +14,7 @@
 @interface M3U8MasterPlaylist ()
 
 @property (nonatomic, copy) NSString *originalText;
-@property (nonatomic, strong) NSURL *baseURL;
+@property (nonatomic, strong) NSString *baseURL;
 
 @property (nonatomic, strong) NSString *version;
 
@@ -24,7 +24,7 @@
 
 @implementation M3U8MasterPlaylist
 
-- (instancetype)initWithContent:(NSString *)string baseURL:(NSURL *)baseURL {
+- (instancetype)initWithContent:(NSString *)string baseURL:(NSString *)baseURL {
     if (NO == [string isMasterPlaylist]) {
         return nil;
     }
@@ -36,11 +36,11 @@
     return self;
 }
 
-- (instancetype)initWithContentOfURL:(NSURL *)URL error:(NSError **)error {
+- (instancetype)initWithContentOfURL:(NSString *)URL error:(NSError **)error {
     if (!URL) {
         return nil;
     }
-    NSString *string = [NSString stringWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:error];
+    NSString *string = [NSString stringWithContentsOfURL:[NSURL URLWithString:URL] encoding:NSUTF8StringEncoding error:error];
     return [self initWithContent:string baseURL:URL];
 }
 
@@ -141,15 +141,17 @@
     return dict;
 }
 
-- (NSOrderedSet *)allStreamURLs {
-    NSMutableOrderedSet *set = [NSMutableOrderedSet orderedSet];
+- (NSArray *)allStreamURLs {
+    NSMutableArray *array = [NSMutableArray array];
     for (int i = 0; i < self.xStreamList.count; i ++) {
         M3U8ExtXStreamInf *xsinf = [self.xStreamList xStreamInfAtIndex:i];
-        if (xsinf.m3u8URL) {
-            [set addObject:xsinf.m3u8URL];
+        if (xsinf.m3u8URL.length > 0) {
+            if (NO == [array containsObject:xsinf.m3u8URL]) {
+                [array addObject:xsinf.m3u8URL];
+            }
         }
     }
-    return [set copy];
+    return [array copy];
 }
 
 - (M3U8ExtXStreamInfList *)alternativeXStreamInfList {
@@ -174,7 +176,7 @@
     //    M3U8ExtXMediaList *xmlist = self.masterPlaylist.xMediaList.videoList;
     //    for (int i = 0; i < xmlist.count; i ++) {
     //        M3U8ExtXMedia *media = [xmlist extXMediaAtIndex:i];
-    //        [allAlternativeURLStrings addObject:media.m3u8URL.absoluteString];
+    //        [allAlternativeURLStrings addObject:media.m3u8URL];
     //    }
     return list;
 }

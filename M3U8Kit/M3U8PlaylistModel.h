@@ -35,7 +35,7 @@
 
 @interface M3U8PlaylistModel : NSObject
 
-@property (readonly, nonatomic, strong) NSURL *URL;
+@property (readonly, nonatomic, strong) NSString *URL;
 
 // 如果初始化时的字符串是 media playlist, masterPlaylist为nil
 // M3U8PlaylistModel 默认会按照《需要下载的内容》规则选取默认的playlist，如果需要手动指定获取特定的media playlist, 需调用方法 -specifyVideoURL:(这个在选取视频源的时候会用到);
@@ -47,8 +47,8 @@
 //@property (readonly, nonatomic, strong) M3U8MediaPlaylist *subtitlePl;
 
 //
-- (id)initWithURL:(NSURL *)URL error:(NSError **)error;
-- (id)initWithString:(NSString *)string baseURL:(NSURL *)URL error:(NSError **)error;
+- (id)initWithURL:(NSString *)URL error:(NSError **)error;
+- (id)initWithString:(NSString *)string baseURL:(NSString *)URL error:(NSError **)error;
 
 // 改变 mainMediaPl
 // 这个url必须是master playlist 中多码率url(绝对地址)中的一个

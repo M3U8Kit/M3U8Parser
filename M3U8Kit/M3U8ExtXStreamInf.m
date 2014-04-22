@@ -44,12 +44,13 @@ MediaResoulution MediaResolutionMake(float width, float height) {
     return self;
 }
 
-- (NSURL *)baseURL {
+- (NSString *)baseURL {
     return self.dictionary[M3U8_BASE_URL];
 }
 
-- (NSURL *)m3u8URL {
-    return [[NSURL URLWithString:self.URI relativeToURL:self.baseURL] absoluteURL];
+- (NSString *)m3u8URL {
+    NSURL *baseURL = [NSURL URLWithString:[self baseURL]];
+    return [[NSURL URLWithString:self.URI relativeToURL:baseURL] absoluteString];
 }
 
 - (NSInteger)bandwidth {
