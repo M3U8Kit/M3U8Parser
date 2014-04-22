@@ -1,18 +1,18 @@
 //
-//  M3U8KitTests.m
-//  M3U8KitTests
+//  M3U8KitDemoTests.m
+//  M3U8KitDemoTests
 //
-//  Created by Sun Jin on 3/28/14.
-//  Copyright (c) 2014 Allen. All rights reserved.
+//  Created by Sun Jin on 4/22/14.
+//  Copyright (c) 2014 iLegendsoft. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface M3U8KitTests : XCTestCase
+@interface M3U8KitDemoTests : XCTestCase
 
 @end
 
-@implementation M3U8KitTests
+@implementation M3U8KitDemoTests
 
 - (void)setUp
 {

@@ -43,7 +43,7 @@
 }
 
 - (M3U8ExtXStreamInf *)firstStreamInf {
-    return [self.m3u8InfoList lastObject];
+    return [self.m3u8InfoList firstObject];
 }
 
 - (M3U8ExtXStreamInf *)lastXStreamInf {

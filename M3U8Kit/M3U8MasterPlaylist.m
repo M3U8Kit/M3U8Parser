@@ -152,6 +152,33 @@
     return [set copy];
 }
 
+- (M3U8ExtXStreamInfList *)alternativeXStreamInfList {
+    
+    M3U8ExtXStreamInfList *list = [[M3U8ExtXStreamInfList alloc] init];
+    
+    M3U8ExtXStreamInfList *xsilist = self.xStreamList;
+    for (int index = 0; index < xsilist.count; index ++) {
+        M3U8ExtXStreamInf *xsinf = [xsilist xStreamInfAtIndex:index];
+        BOOL flag = NO;
+        for (NSString *str in xsinf.codecs) {
+            if (NO == flag) {
+                flag = [str hasPrefix:@"avc1"];
+            }
+        }
+        if (flag) {
+            [list addExtXStreamInf:xsinf];
+        }
+    }
+    
+    // 暂时只有在分辨率选择的时候用到
+    //    M3U8ExtXMediaList *xmlist = self.masterPlaylist.xMediaList.videoList;
+    //    for (int i = 0; i < xmlist.count; i ++) {
+    //        M3U8ExtXMedia *media = [xmlist extXMediaAtIndex:i];
+    //        [allAlternativeURLStrings addObject:media.m3u8URL.absoluteString];
+    //    }
+    return list;
+}
+
 @end
 
 

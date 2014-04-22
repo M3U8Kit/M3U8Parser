@@ -16,6 +16,8 @@
 
 @interface M3U8PlaylistModel()
 
+@property (nonatomic, strong) NSURL *URL;
+
 @property (nonatomic, strong) M3U8MasterPlaylist *masterPlaylist;
 
 @property (nonatomic, strong) M3U8ExtXStreamInf *currentXStreamInf;
@@ -31,25 +33,30 @@
 - (id)initWithURL:(NSURL *)URL error:(NSError **)error {
     
     NSString *str = [[NSString alloc] initWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:error];
+    if (*error) {
+        return nil;
+    }
     
-    return [self initWithString:str baseURL:URL];
+    return [self initWithString:str baseURL:URL error:error];
 }
 
-- (id)initWithString:(NSString *)string baseURL:(NSURL *)URL {
+- (id)initWithString:(NSString *)string baseURL:(NSURL *)URL error:(NSError **)error {
     
     if (NO == [string isExtendedM3Ufile]) {
+        *error = [NSError errorWithDomain:@"M3U8PlaylistModel" code:-998 userInfo:@{NSLocalizedDescriptionKey:@"The content is not a m3u8 playlist"}];
         return nil;
     }
     
     if (self = [super init]) {
         if ([string isMasterPlaylist]) {
+            self.URL = URL;
             self.masterPlaylist = [[M3U8MasterPlaylist alloc] initWithContent:string baseURL:URL];
             self.masterPlaylist.name = INDEX_PLAYLIST_NAME;
             self.currentXStreamInf = self.masterPlaylist.xStreamList.firstStreamInf;
             if (self.currentXStreamInf) {
                 NSError *error;
                 self.mainMediaPl = [[M3U8MediaPlaylist alloc] initWithContentOfURL:self.currentXStreamInf.m3u8URL type:M3U8MediaPlaylistTypeMedia error:&error];
-                self.mainMediaPl.name = [NSString stringWithFormat:@"%@1.m3u8", PREFIX_MAIN_MEDIA_PLAYLIST];
+                self.mainMediaPl.name = [NSString stringWithFormat:@"%@0.m3u8", PREFIX_MAIN_MEDIA_PLAYLIST];
                 if (error) {
                     NSLog(@"Get main media playlist failed, error: %@", error);
                 }
@@ -62,7 +69,7 @@
                     M3U8ExtXStreamInf *xsinf = [list xStreamInfAtIndex:i];
                     if (xsinf.codecs.count == 1 && [xsinf.codecs.firstObject hasPrefix:@"mp4a"]) {
                         self.audioPl = [[M3U8MediaPlaylist alloc] initWithContentOfURL:xsinf.m3u8URL type:M3U8MediaPlaylistTypeAudio error:NULL];
-                        self.audioPl.name = [NSString stringWithFormat:@"%@0", PREFIX_AUDIO_PLAYLIST];
+                        self.audioPl.name = [NSString stringWithFormat:@"%@%d.m3u8", PREFIX_MAIN_MEDIA_PLAYLIST, i];
                         break;
                     }
                 }
@@ -78,36 +85,43 @@
 
 - (NSSet *)allAlternativeURLStrings {
     NSMutableSet *allAlternativeURLStrings = [NSMutableSet set];
-    M3U8ExtXStreamInfList *xsilist = self.masterPlaylist.xStreamList;
-    for (int i = 0; i < xsilist.count; i ++) {
-        M3U8ExtXStreamInf *xsinf = [xsilist xStreamInfAtIndex:0];
+    M3U8ExtXStreamInfList *xsilist = self.masterPlaylist.alternativeXStreamInfList;
+    for (int index = 0; index < xsilist.count; index ++) {
+        M3U8ExtXStreamInf *xsinf = [xsilist xStreamInfAtIndex:index];
         [allAlternativeURLStrings addObject:xsinf.m3u8URL.absoluteString];
     }
     
-    // 暂时只有在分辨率选择的时候用到
-//    M3U8ExtXMediaList *xmlist = self.masterPlaylist.xMediaList.videoList;
-//    for (int i = 0; i < xmlist.count; i ++) {
-//        M3U8ExtXMedia *media = [xmlist extXMediaAtIndex:i];
-//        [allAlternativeURLStrings addObject:media.m3u8URL.absoluteString];
-//    }
     return allAlternativeURLStrings;
 }
 
 - (void)specifyVideoURL:(NSString *)url completion:(void (^)(BOOL))completion {
-    if (nil == url || nil == self.masterPlaylist) {
-        return;
-    }
     
-    if ([self.allAlternativeURLStrings containsObject:url]) {
-        NSError *error;
-        M3U8MediaPlaylist *pl = [[M3U8MediaPlaylist alloc] initWithContentOfURL:[NSURL URLWithString:url] type:M3U8MediaPlaylistTypeMedia error:&error];
-        if (pl) {
-            self.mainMediaPl = pl;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        BOOL success = NO;
+        
+        if (url.length > 0
+            && nil != self.masterPlaylist
+            && [self.allAlternativeURLStrings containsObject:url]) {
+            
+            if ([url isEqualToString:self.mainMediaPl.baseURL.absoluteString]) {
+                success = YES;
+            } else {
+                NSError *error;
+                M3U8MediaPlaylist *pl = [[M3U8MediaPlaylist alloc] initWithContentOfURL:[NSURL URLWithString:url] type:M3U8MediaPlaylistTypeMedia error:&error];
+                if (pl) {
+                    self.mainMediaPl = pl;
+                    success = YES;
+                }
+            }
         }
         
-    } else {
-        return;
-    }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completion) {
+                completion(success);
+            }
+        });
+    });
 }
 
 - (NSString *)prefixOfSegmentNameInPlaylist:(M3U8MediaPlaylist *)playlist {
@@ -115,16 +129,16 @@
     
     switch (playlist.type) {
         case M3U8MediaPlaylistTypeMedia:
-            prefix = @"main_media_";
+            prefix = @"media_";
             break;
         case M3U8MediaPlaylistTypeAudio:
-            prefix = @"ext-x-media-audio_";
+            prefix = @"audio_";
             break;
         case M3U8MediaPlaylistTypeSubtitle:
-            prefix = @"ext-x-media-subtitle_";
+            prefix = @"subtitle_";
             break;
         case M3U8MediaPlaylistTypeVideo:
-            prefix = @"ext-x-media-video_";
+            prefix = @"video_";
             break;
             
         default:
@@ -158,13 +172,17 @@
 
 - (NSArray *)segmentNamesForPlaylist:(M3U8MediaPlaylist *)playlist {
     
-    NSUInteger count = playlist.segmentList.count;
-    
     NSString *prefix = [self prefixOfSegmentNameInPlaylist:playlist];
     NSString *sufix = [self sufixOfSegmentNameInPlaylist:playlist];
     NSMutableArray *names = [NSMutableArray array];
-    for (NSInteger index = 0; index < count; index ++) {
-        NSString *n = [NSString stringWithFormat:@"%@%ld.%@", prefix, (long)index, sufix];
+    
+    NSArray *URLs = playlist.allSegmentURLs.array;
+    NSUInteger count = playlist.segmentList.count;
+    NSUInteger index = 0;
+    for (int i = 0; i < count; i ++) {
+        M3U8SegmentInfo *inf = [playlist.segmentList segmentInfoAtIndex:i];
+        index = [URLs indexOfObject:inf.mediaURL];
+        NSString *n = [NSString stringWithFormat:@"%@%lu.%@", prefix, (unsigned long)index, sufix];
         [names addObject:n];
     }
     return names;
@@ -193,12 +211,13 @@
         NSString *mPath = [path stringByAppendingPathComponent:self.indexPlaylistName];
         BOOL success = [masterContext writeToFile:mPath atomically:YES encoding:NSUTF8StringEncoding error:error];
         if (NO == success) {
-            NSLog(@"M3U8Kit Error: failed to save master playlist to file.");
+            NSLog(@"M3U8Kit Error: failed to save master playlist to file. error: %@", *error);
             return;
         }
         
         // main media playlist
         [self saveMediaPlaylist:self.mainMediaPl toPath:path error:error];
+        [self saveMediaPlaylist:self.audioPl toPath:path error:error];
         
     } else {
         [self saveMediaPlaylist:self.mainMediaPl toPath:path error:error];
@@ -206,16 +225,23 @@
 }
 
 - (void)saveMediaPlaylist:(M3U8MediaPlaylist *)playlist toPath:(NSString *)path error:(NSError **)error {
+    if (nil == playlist) {
+        return;
+    }
     NSString *mainMediaPlContext = playlist.originalText;
+    if (mainMediaPlContext.length == 0) {
+        return;
+    }
+    
+    NSArray *names = [self segmentNamesForPlaylist:playlist];
     for (int i = 0; i < playlist.segmentList.count; i ++) {
         M3U8SegmentInfo *sinfo = [playlist.segmentList segmentInfoAtIndex:i];
-        NSString *name = [NSString stringWithFormat:@"%@%d.%@", [self prefixOfSegmentNameInPlaylist:playlist], i, [self sufixOfSegmentNameInPlaylist:playlist]];
-        mainMediaPlContext = [mainMediaPlContext stringByReplacingOccurrencesOfString:sinfo.URI withString:name];
+        mainMediaPlContext = [mainMediaPlContext stringByReplacingOccurrencesOfString:sinfo.URI withString:names[i]];
     }
     NSString *mainMediaPlPath = [path stringByAppendingPathComponent:playlist.name];
     BOOL success = [mainMediaPlContext writeToFile:mainMediaPlPath atomically:YES encoding:NSUTF8StringEncoding error:error];
     if (NO == success) {
-        NSLog(@"M3U8Kit Error: failed to save mian media playlist to file.");
+        NSLog(@"M3U8Kit Error: failed to save mian media playlist to file. error: %@", *error);
         return;
     }
 }

@@ -21,6 +21,8 @@
 @property (readonly, nonatomic, strong) M3U8ExtXStreamInfList *xStreamList;
 - (NSOrderedSet *)allStreamURLs;
 
+- (M3U8ExtXStreamInfList *)alternativeXStreamInfList;
+
 - (instancetype)initWithContent:(NSString *)string baseURL:(NSURL *)baseURL;
 - (instancetype)initWithContentOfURL:(NSURL *)URL error:(NSError **)error;
 
