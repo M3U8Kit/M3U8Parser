@@ -111,7 +111,7 @@
 #define M3U8_EXT_X_MEDIA_FORCED             @"FORCED"   // The value is an enumerated-string; valid strings are YES and NO.
 #define M3U8_EXT_X_MEDIA_INSTREAM_ID        @"INSTREAM-ID" // The value is a quoted-string that specifies a rendition within the segments in the Media Playlist.
 #define M3U8_EXT_X_MEDIA_CHARACTERISTICS    @"CHARACTERISTICS" // The value is a quoted-string containing one or more Uniform Type Identifiers [UTI] separated by comma (,) characters.
-
+#define M3U8_EXT_X_MEDIA_BANDWIDTH          @"BANDWIDTH"
 
 
 /// EXT-X-STREAM-INF

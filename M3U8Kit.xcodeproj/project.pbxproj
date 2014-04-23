@@ -29,6 +29,8 @@
 		9D05827118E52E9500A12776 /* M3U8TagsAndAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D05825B18E52E9500A12776 /* M3U8TagsAndAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D05827218E52E9500A12776 /* NSString+m3u8.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D05825C18E52E9500A12776 /* NSString+m3u8.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D05827318E52E9500A12776 /* NSString+m3u8.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D05825D18E52E9500A12776 /* NSString+m3u8.m */; };
+		9D59A11B1907680C00C1F7C6 /* M3U8ExtXMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D05824918E52E9500A12776 /* M3U8ExtXMedia.m */; };
+		9D59A11C1907681000C1F7C6 /* M3U8ExtXMediaList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D05824B18E52E9500A12776 /* M3U8ExtXMediaList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -267,7 +269,9 @@
 			files = (
 				9D05826E18E52E9500A12776 /* M3U8SegmentInfo.m in Sources */,
 				9D05826318E52E9500A12776 /* M3U8ExtXStreamInf.m in Sources */,
+				9D59A11C1907681000C1F7C6 /* M3U8ExtXMediaList.m in Sources */,
 				9D05826518E52E9500A12776 /* M3U8ExtXStreamInfList.m in Sources */,
+				9D59A11B1907680C00C1F7C6 /* M3U8ExtXMedia.m in Sources */,
 				9D05826A18E52E9500A12776 /* M3U8MediaPlaylist.m in Sources */,
 				9D05826818E52E9500A12776 /* M3U8MasterPlaylist.m in Sources */,
 				9D05827318E52E9500A12776 /* NSString+m3u8.m in Sources */,

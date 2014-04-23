@@ -96,4 +96,29 @@ MediaResoulution MediaResolutionMake(float width, float height) {
     return [NSString stringWithString:self.dictionary.description];
 }
 
+/*
+ #EXT-X-STREAM-INF:AUDIO="600k",BANDWIDTH=1049794,PROGRAM-ID=1,CODECS="avc1.42c01e,mp4a.40.2",RESOLUTION=640x360,SUBTITLES="subs"
+ main_media_0.m3u8
+ */
+- (NSString *)m3u8PlanString {
+    NSMutableString *str = [NSMutableString string];
+    [str appendString:M3U8_EXT_X_STREAM_INF];
+    if (self.audio.length > 0) {
+        [str appendString:[NSString stringWithFormat:@"AUDIO=\"%@\"", self.audio]];
+    }
+    [str appendString:[NSString stringWithFormat:@",BANDWIDTH=%ld", (long)self.bandwidth]];
+    [str appendString:[NSString stringWithFormat:@",PROGRAM-ID=%ld", (long)self.programId]];
+    NSString *codecsString = self.dictionary[M3U8_EXT_X_STREAM_INF_CODECS];
+    [str appendString:[NSString stringWithFormat:@",CODECS=\"%@\"", codecsString]];
+    NSString *rStr = self.dictionary[M3U8_EXT_X_STREAM_INF_RESOLUTION];
+    [str appendString:[NSString stringWithFormat:@",RESOLUTION=%@", rStr]];
+    [str appendString:[NSString stringWithFormat:@"\n%@", self.URI]];
+    return str;
+}
+
 @end
+
+
+
+
+

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "M3U8ExtXStreamInfList.h"
+#import "M3U8ExtXMediaList.h"
 
 @interface M3U8MasterPlaylist : NSObject
 
@@ -25,5 +26,7 @@
 
 - (instancetype)initWithContent:(NSString *)string baseURL:(NSString *)baseURL;
 - (instancetype)initWithContentOfURL:(NSString *)URL error:(NSError **)error;
+
+- (NSString *)m3u8PlanString;
 
 @end

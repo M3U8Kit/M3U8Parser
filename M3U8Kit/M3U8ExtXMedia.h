@@ -46,7 +46,9 @@
 - (BOOL)forced;
 - (NSString *)instreamId;
 - (NSString *)characteristics;
+- (NSInteger)bandwidth;
 
 - (NSString *)m3u8URL;   // the absolute url of media playlist file
+- (NSString *)m3u8PlanString;
 
 @end

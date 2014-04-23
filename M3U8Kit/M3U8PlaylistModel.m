@@ -233,7 +233,7 @@
     if (self.masterPlaylist) {
         
         // master playlist
-        NSString *masterContext = self.masterPlaylist.originalText;
+        NSString *masterContext = self.masterPlaylist.m3u8PlanString;
         for (int i = 0; i < self.masterPlaylist.xStreamList.count; i ++) {
             M3U8ExtXStreamInf *xsinf = [self.masterPlaylist.xStreamList xStreamInfAtIndex:i];
             NSString *name = [NSString stringWithFormat:@"%@%d.m3u8", PREFIX_MAIN_MEDIA_PLAYLIST, i];
