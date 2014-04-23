@@ -184,15 +184,21 @@
 
 - (NSString *)m3u8PlanString {
     NSMutableString *str = [NSMutableString string];
+    [str appendString:M3U8_EXTM3U];
+    if (self.version.length > 0) {
+        [str appendString:[NSString stringWithFormat:@"%@%@", M3U8_EXT_X_VERSION, self.version]];
+    }
     for (NSInteger index = 0; index < self.xStreamList.count; index ++) {
         M3U8ExtXStreamInf *xsinf = [self.xStreamList xStreamInfAtIndex:index];
         [str appendString:xsinf.m3u8PlanString];
+        [str appendString:@"\n"];
     }
     
     M3U8ExtXMediaList *audioList = self.xMediaList.audioList;
     for (NSInteger index = 0; index < audioList.count; index ++) {
         M3U8ExtXMedia *media = [audioList xMediaAtIndex:index];
         [str appendString:media.m3u8PlanString];
+        [str appendString:@"\n"];
     }
     
     return str;

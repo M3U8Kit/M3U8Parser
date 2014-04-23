@@ -105,8 +105,11 @@ MediaResoulution MediaResolutionMake(float width, float height) {
     [str appendString:M3U8_EXT_X_STREAM_INF];
     if (self.audio.length > 0) {
         [str appendString:[NSString stringWithFormat:@"AUDIO=\"%@\"", self.audio]];
+        [str appendString:[NSString stringWithFormat:@",BANDWIDTH=%ld", (long)self.bandwidth]];
+    } else {
+        [str appendString:[NSString stringWithFormat:@"BANDWIDTH=%ld", (long)self.bandwidth]];
     }
-    [str appendString:[NSString stringWithFormat:@",BANDWIDTH=%ld", (long)self.bandwidth]];
+    
     [str appendString:[NSString stringWithFormat:@",PROGRAM-ID=%ld", (long)self.programId]];
     NSString *codecsString = self.dictionary[M3U8_EXT_X_STREAM_INF_CODECS];
     [str appendString:[NSString stringWithFormat:@",CODECS=\"%@\"", codecsString]];
