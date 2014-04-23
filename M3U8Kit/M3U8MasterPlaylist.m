@@ -185,8 +185,10 @@
 - (NSString *)m3u8PlanString {
     NSMutableString *str = [NSMutableString string];
     [str appendString:M3U8_EXTM3U];
+    [str appendString:@"\n"];
     if (self.version.length > 0) {
         [str appendString:[NSString stringWithFormat:@"%@%@", M3U8_EXT_X_VERSION, self.version]];
+        [str appendString:@"\n"];
     }
     for (NSInteger index = 0; index < self.xStreamList.count; index ++) {
         M3U8ExtXStreamInf *xsinf = [self.xStreamList xStreamInfAtIndex:index];
