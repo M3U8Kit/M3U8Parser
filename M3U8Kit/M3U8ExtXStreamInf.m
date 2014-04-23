@@ -33,6 +33,7 @@ MediaResoulution MediaResolutionMake(float width, float height) {
 
 @interface M3U8ExtXStreamInf()
 @property (nonatomic, strong) NSDictionary *dictionary;
+@property (nonatomic) MediaResoulution resolution;
 @end
 
 @implementation M3U8ExtXStreamInf
@@ -40,6 +41,7 @@ MediaResoulution MediaResolutionMake(float width, float height) {
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super init]) {
         self.dictionary = dictionary;
+        self.resolution = MediaResoulutionZero;
     }
     return self;
 }
@@ -114,7 +116,9 @@ MediaResoulution MediaResolutionMake(float width, float height) {
     NSString *codecsString = self.dictionary[M3U8_EXT_X_STREAM_INF_CODECS];
     [str appendString:[NSString stringWithFormat:@",CODECS=\"%@\"", codecsString]];
     NSString *rStr = self.dictionary[M3U8_EXT_X_STREAM_INF_RESOLUTION];
-    [str appendString:[NSString stringWithFormat:@",RESOLUTION=%@", rStr]];
+    if (rStr.length > 0) {
+        [str appendString:[NSString stringWithFormat:@",RESOLUTION=%@", rStr]];
+    }
     [str appendString:[NSString stringWithFormat:@"\n%@", self.URI]];
     return str;
 }
