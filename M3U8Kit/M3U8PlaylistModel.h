@@ -43,6 +43,7 @@
 @property (readonly, nonatomic, strong) M3U8MasterPlaylist *masterPlaylist;
 
 @property (readonly, nonatomic, strong) M3U8MediaPlaylist *mainMediaPl;
+- (void)changeMainMediaPlWithPlaylist:(M3U8MediaPlaylist *)playlist;
 @property (readonly, nonatomic, strong) M3U8MediaPlaylist *audioPl;
 //@property (readonly, nonatomic, strong) M3U8MediaPlaylist *subtitlePl;
 

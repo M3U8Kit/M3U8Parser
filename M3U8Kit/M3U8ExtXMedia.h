@@ -47,6 +47,6 @@
 - (NSString *)instreamId;
 - (NSString *)characteristics;
 
-- (NSURL *)m3u8URL;   // the absolute url of media playlist file
+- (NSString *)m3u8URL;   // the absolute url of media playlist file
 
 @end

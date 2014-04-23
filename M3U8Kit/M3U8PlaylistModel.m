@@ -54,12 +54,12 @@
             self.masterPlaylist.name = INDEX_PLAYLIST_NAME;
             self.currentXStreamInf = self.masterPlaylist.xStreamList.firstStreamInf;
             if (self.currentXStreamInf) {
-                NSError *error;
+                NSError *ero;
                 NSURL *m3u8URL = [NSURL URLWithString:self.currentXStreamInf.m3u8URL];
-                self.mainMediaPl = [[M3U8MediaPlaylist alloc] initWithContentOfURL:m3u8URL type:M3U8MediaPlaylistTypeMedia error:&error];
+                self.mainMediaPl = [[M3U8MediaPlaylist alloc] initWithContentOfURL:m3u8URL type:M3U8MediaPlaylistTypeMedia error:&ero];
                 self.mainMediaPl.name = [NSString stringWithFormat:@"%@0.m3u8", PREFIX_MAIN_MEDIA_PLAYLIST];
-                if (error) {
-                    NSLog(@"Get main media playlist failed, error: %@", error);
+                if (ero) {
+                    NSLog(@"Get main media playlist failed, error: %@", ero);
                 }
             }
             
@@ -113,6 +113,16 @@
                 M3U8MediaPlaylist *pl = [[M3U8MediaPlaylist alloc] initWithContentOfURL:[NSURL URLWithString:url] type:M3U8MediaPlaylistTypeMedia error:&error];
                 if (pl) {
                     self.mainMediaPl = pl;
+                    M3U8ExtXStreamInfList *list = self.masterPlaylist.xStreamList;
+                    if (list.count > 1) {
+                        for (int i = 0; i < list.count; i++) {
+                            M3U8ExtXStreamInf *xsinf = [list xStreamInfAtIndex:i];
+                            if ([xsinf.m3u8URL isEqualToString:pl.baseURL]) {
+                                pl.name = [NSString stringWithFormat:@"%@%d.m3u8", PREFIX_MAIN_MEDIA_PLAYLIST, i];
+                                break;
+                            }
+                        }
+                    }
                     success = YES;
                 }
             }
@@ -124,6 +134,25 @@
             }
         });
     });
+}
+
+- (void)changeMainMediaPlWithPlaylist:(M3U8MediaPlaylist *)playlist {
+    if (playlist
+        && playlist.type == M3U8MediaPlaylistTypeMedia
+        && [[self allAlternativeURLStrings] containsObject:playlist.baseURL]) {
+        
+        self.mainMediaPl = playlist;
+        M3U8ExtXStreamInfList *list = self.masterPlaylist.xStreamList;
+        if (list.count > 1) {
+            for (int i = 0; i < list.count; i++) {
+                M3U8ExtXStreamInf *xsinf = [list xStreamInfAtIndex:i];
+                if ([xsinf.m3u8URL isEqualToString:playlist.baseURL]) {
+                    playlist.name = [NSString stringWithFormat:@"%@%d.m3u8", PREFIX_MAIN_MEDIA_PLAYLIST, i];
+                    break;
+                }
+            }
+        }
+    }
 }
 
 - (NSString *)prefixOfSegmentNameInPlaylist:(M3U8MediaPlaylist *)playlist {
@@ -243,7 +272,9 @@
     NSString *mainMediaPlPath = [path stringByAppendingPathComponent:playlist.name];
     BOOL success = [mainMediaPlContext writeToFile:mainMediaPlPath atomically:YES encoding:NSUTF8StringEncoding error:error];
     if (NO == success) {
-        NSLog(@"M3U8Kit Error: failed to save mian media playlist to file. error: %@", *error);
+        if (NULL != error) {
+            NSLog(@"M3U8Kit Error: failed to save mian media playlist to file. error: %@", *error);
+        }
         return;
     }
 }
