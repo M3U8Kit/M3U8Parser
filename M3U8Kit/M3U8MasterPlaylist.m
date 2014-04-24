@@ -48,6 +48,7 @@
 - (void)parseMasterPlaylist {
     
     self.xStreamList = [[M3U8ExtXStreamInfList alloc] init];
+    self.xMediaList = [[M3U8ExtXMediaList alloc] init];
     
     NSRange crRange = [self.originalText rangeOfString:@"\n"];
     NSString *remainingPart = self.originalText;
@@ -98,7 +99,7 @@
             NSRange range = [line rangeOfString:M3U8_EXT_X_MEDIA];
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
             NSMutableDictionary *attr = [self attributesFromString:attribute_list];
-            if (self.baseURL) {
+            if (self.baseURL.length > 0) {
                 attr[M3U8_BASE_URL] = self.baseURL;
             }
             M3U8ExtXMedia *media = [[M3U8ExtXMedia alloc] initWithDictionary:attr];
@@ -197,8 +198,9 @@
     }
     
     M3U8ExtXMediaList *audioList = self.xMediaList.audioList;
-    for (NSInteger index = 0; index < audioList.count; index ++) {
-        M3U8ExtXMedia *media = [audioList xMediaAtIndex:index];
+    for (NSInteger i = 0; i < audioList.count; i ++) {
+        NSLog(@"ext x media %ld", (long)i);
+        M3U8ExtXMedia *media = [audioList xMediaAtIndex:i];
         [str appendString:media.m3u8PlanString];
         [str appendString:@"\n"];
     }

@@ -25,7 +25,7 @@
         
         NSTimeInterval begin = [NSDate timeIntervalSinceReferenceDate];
         
-        NSURL *baseURL = [NSURL URLWithString:@"http://hls.ted.com/"];
+        NSString *baseURL = @"http://hls.ted.com/";
         NSString *path = [[NSBundle mainBundle] pathForResource:@"769" ofType:@"m3u8"];
         NSError *error;
         NSString *str = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
@@ -33,7 +33,7 @@
             NSLog(@"error: %@", error);
         }
         
-        M3U8PlaylistModel *medel = [[M3U8PlaylistModel alloc] initWithString:str baseURL:baseURL];
+        M3U8PlaylistModel *medel = [[M3U8PlaylistModel alloc] initWithString:str baseURL:baseURL error:NULL];
         
         NSLog(@"segments names: %@", [medel segmentNamesForPlaylist:medel.audioPl]);
         
