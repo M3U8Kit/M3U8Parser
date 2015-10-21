@@ -1,5 +1,7 @@
 //
-// Prefix header for all source files of the 'M3U8Kit' target in the 'M3U8Kit' project
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
 //
 
 #ifdef __OBJC__
@@ -9,7 +11,6 @@
 #import "NSString+m3u8.h"
 
 #endif
-
 
 
 #define M3U8_BASE_URL @"baseURL"

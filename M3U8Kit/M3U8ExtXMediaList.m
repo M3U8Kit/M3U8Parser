@@ -33,7 +33,7 @@
     }
 }
 
-- (M3U8ExtXMedia *)extXMediaAtIndex:(NSUInteger)index {
+- (M3U8ExtXMedia *)xMediaAtIndex:(NSUInteger)index {
     if (index >= self.count) {
         return nil;
     }
@@ -133,4 +133,21 @@
     return suitableSubtitle;
 }
 
+- (NSString *)description {
+    return [NSString stringWithString:self.m3u8InfoList.description];
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,8 +9,6 @@
 #ifndef M3U8Kit_M3U8Kit_h
 #define M3U8Kit_M3U8Kit_h
 
-#import "M3U8Parser.h"
-
 #import "M3U8ExtXStreamInf.h"
 #import "M3U8ExtXStreamInfList.h"
 
@@ -23,6 +21,8 @@
 #import "M3U8SegmentInfoList.h"
 
 #import "M3U8MediaPlaylist.h"
+
+#import "M3U8PlaylistModel.h"
 
 #import "NSString+m3u8.h"
 

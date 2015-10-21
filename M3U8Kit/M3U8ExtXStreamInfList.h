@@ -14,7 +14,7 @@
 @property (nonatomic, assign ,readonly) NSUInteger count;
 
 - (void)addExtXStreamInf:(M3U8ExtXStreamInf *)extStreamInf;
-- (M3U8ExtXStreamInf *)extXStreamInfAtIndex:(NSUInteger)index;
+- (M3U8ExtXStreamInf *)xStreamInfAtIndex:(NSUInteger)index;
 - (M3U8ExtXStreamInf *)firstStreamInf;
 - (M3U8ExtXStreamInf *)lastXStreamInf;
 

@@ -14,7 +14,7 @@
 @interface M3U8MasterPlaylist ()
 
 @property (nonatomic, copy) NSString *originalText;
-@property (nonatomic, strong) NSURL *baseURL;
+@property (nonatomic, strong) NSString *baseURL;
 
 @property (nonatomic, strong) NSString *version;
 
@@ -25,7 +25,7 @@
 
 @implementation M3U8MasterPlaylist
 
-- (instancetype)initWithContent:(NSString *)string baseURL:(NSURL *)baseURL {
+- (instancetype)initWithContent:(NSString *)string baseURL:(NSString *)baseURL {
     if (NO == [string isMasterPlaylist]) {
         return nil;
     }
@@ -37,11 +37,11 @@
     return self;
 }
 
-- (instancetype)initWithContentOfURL:(NSURL *)URL error:(NSError **)error {
+- (instancetype)initWithContentOfURL:(NSString *)URL error:(NSError **)error {
     if (!URL) {
         return nil;
     }
-    NSString *string = [NSString stringWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:error];
+    NSString *string = [NSString stringWithContentsOfURL:[NSURL URLWithString:URL] encoding:NSUTF8StringEncoding error:error];
     return [self initWithContent:string baseURL:URL];
 }
 
@@ -86,6 +86,8 @@
             [self.xStreamList addExtXStreamInf:xStreamInf];
         }
         
+        
+        // 简单地忽略掉下面这个Tag
         // #EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=65531,PROGRAM-ID=1,CODECS="avc1.42c00c",RESOLUTION=320x180,URI="/talks/769/video/64k_iframe.m3u8?sponsor=Ripple"
         else if ([line hasPrefix:M3U8_EXT_X_I_FRAME_STREAM_INF]) {
             
@@ -97,7 +99,7 @@
             NSRange range = [line rangeOfString:M3U8_EXT_X_MEDIA];
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
             NSMutableDictionary *attr = [self attributesFromString:attribute_list];
-            if (self.baseURL) {
+            if (self.baseURL.length > 0) {
                 attr[M3U8_BASE_URL] = self.baseURL;
             }
             M3U8ExtXMedia *media = [[M3U8ExtXMedia alloc] initWithDictionary:attr];
@@ -141,7 +143,85 @@
     return dict;
 }
 
+- (NSArray *)allStreamURLs {
+    NSMutableArray *array = [NSMutableArray array];
+    for (int i = 0; i < self.xStreamList.count; i ++) {
+        M3U8ExtXStreamInf *xsinf = [self.xStreamList xStreamInfAtIndex:i];
+        if (xsinf.m3u8URL.length > 0) {
+            if (NO == [array containsObject:xsinf.m3u8URL]) {
+                [array addObject:xsinf.m3u8URL];
+            }
+        }
+    }
+    return [array copy];
+}
+
+- (M3U8ExtXStreamInfList *)alternativeXStreamInfList {
+    
+    M3U8ExtXStreamInfList *list = [[M3U8ExtXStreamInfList alloc] init];
+    
+    M3U8ExtXStreamInfList *xsilist = self.xStreamList;
+    for (int index = 0; index < xsilist.count; index ++) {
+        M3U8ExtXStreamInf *xsinf = [xsilist xStreamInfAtIndex:index];
+        BOOL flag = NO;
+        for (NSString *str in xsinf.codecs) {
+            if (NO == flag) {
+                flag = [str hasPrefix:@"avc1"];
+            }
+        }
+        if (flag) {
+            [list addExtXStreamInf:xsinf];
+        }
+    }
+    
+    // 暂时只有在分辨率选择的时候用到
+    //    M3U8ExtXMediaList *xmlist = self.masterPlaylist.xMediaList.videoList;
+    //    for (int i = 0; i < xmlist.count; i ++) {
+    //        M3U8ExtXMedia *media = [xmlist extXMediaAtIndex:i];
+    //        [allAlternativeURLStrings addObject:media.m3u8URL];
+    //    }
+    return list;
+}
+
+- (NSString *)m3u8PlanString {
+    NSMutableString *str = [NSMutableString string];
+    [str appendString:M3U8_EXTM3U];
+    [str appendString:@"\n"];
+    if (self.version.length > 0) {
+        [str appendString:[NSString stringWithFormat:@"%@%@", M3U8_EXT_X_VERSION, self.version]];
+        [str appendString:@"\n"];
+    }
+    for (NSInteger index = 0; index < self.xStreamList.count; index ++) {
+        M3U8ExtXStreamInf *xsinf = [self.xStreamList xStreamInfAtIndex:index];
+        [str appendString:xsinf.m3u8PlanString];
+        [str appendString:@"\n"];
+    }
+    
+    M3U8ExtXMediaList *audioList = self.xMediaList.audioList;
+    for (NSInteger i = 0; i < audioList.count; i ++) {
+        NSLog(@"ext x media %ld", (long)i);
+        M3U8ExtXMedia *media = [audioList xMediaAtIndex:i];
+        [str appendString:media.m3u8PlanString];
+        [str appendString:@"\n"];
+    }
+    
+    return str;
+}
+
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

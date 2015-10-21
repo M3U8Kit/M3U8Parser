@@ -21,12 +21,13 @@
     return self;
 }
 
-- (NSURL *)baseURL {
+- (NSString *)baseURL {
     return self.dictionary[M3U8_BASE_URL];
 }
 
-- (NSURL *)mediaURL {
-    return [NSURL URLWithString:self.URI relativeToURL:self.baseURL];
+- (NSString *)mediaURL {
+    NSURL *baseURL = [NSURL URLWithString:self.baseURL];
+    return [[NSURL URLWithString:self.URI relativeToURL:baseURL] absoluteString];
 }
 
 - (NSTimeInterval)duration {
@@ -35,6 +36,10 @@
 
 - (NSString *)URI {
     return self.dictionary[M3U8_EXTINF_URI];
+}
+
+- (NSString *)description {
+    return [NSString stringWithString:self.dictionary.description];
 }
 
 @end

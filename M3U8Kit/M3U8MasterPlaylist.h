@@ -12,14 +12,21 @@
 
 @interface M3U8MasterPlaylist : NSObject
 
+@property (nonatomic, strong) NSString *name;
+
+@property (readonly, nonatomic, strong) NSString *version;
+
 @property (readonly, nonatomic, copy) NSString *originalText;
-@property (readonly, nonatomic, strong) NSURL *baseURL;
+@property (readonly, nonatomic, strong) NSString *baseURL;
 
 @property (readonly, nonatomic, strong) M3U8ExtXStreamInfList *xStreamList;
-@property (readonly, nonatomic, strong) M3U8ExtXMediaList *xMediaList;
+- (NSArray *)allStreamURLs;
 
-- (instancetype)initWithContent:(NSString *)string baseURL:(NSURL *)baseURL;
+- (M3U8ExtXStreamInfList *)alternativeXStreamInfList;
 
-- (instancetype)initWithContentOfURL:(NSURL *)URL error:(NSError **)error;
+- (instancetype)initWithContent:(NSString *)string baseURL:(NSString *)baseURL;
+- (instancetype)initWithContentOfURL:(NSString *)URL error:(NSError **)error;
+
+- (NSString *)m3u8PlanString;
 
 @end

@@ -33,6 +33,7 @@ MediaResoulution MediaResolutionMake(float width, float height) {
 
 @interface M3U8ExtXStreamInf()
 @property (nonatomic, strong) NSDictionary *dictionary;
+@property (nonatomic) MediaResoulution resolution;
 @end
 
 @implementation M3U8ExtXStreamInf
@@ -40,16 +41,18 @@ MediaResoulution MediaResolutionMake(float width, float height) {
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super init]) {
         self.dictionary = dictionary;
+        self.resolution = MediaResoulutionZero;
     }
     return self;
 }
 
-- (NSURL *)baseURL {
+- (NSString *)baseURL {
     return self.dictionary[M3U8_BASE_URL];
 }
 
-- (NSURL *)m3u8URL {
-    return [NSURL URLWithString:self.URI relativeToURL:self.baseURL];
+- (NSString *)m3u8URL {
+    NSURL *baseURL = [NSURL URLWithString:[self baseURL]];
+    return [[NSURL URLWithString:self.URI relativeToURL:baseURL] absoluteString];
 }
 
 - (NSInteger)bandwidth {
@@ -60,8 +63,9 @@ MediaResoulution MediaResolutionMake(float width, float height) {
     return [self.dictionary[M3U8_EXT_X_STREAM_INF_PROGRAM_ID] integerValue];
 }
 
-- (NSString *)codecs {
-    return self.dictionary[M3U8_EXT_X_STREAM_INF_CODECS];
+- (NSArray *)codecs {
+    NSString *codecsString = self.dictionary[M3U8_EXT_X_STREAM_INF_CODECS];
+    return [codecsString componentsSeparatedByString:@","];
 }
 
 - (MediaResoulution)resolution {
@@ -90,4 +94,38 @@ MediaResoulution MediaResolutionMake(float width, float height) {
     return self.dictionary[M3U8_EXT_X_STREAM_INF_URI];
 }
 
+- (NSString *)description {
+    return [NSString stringWithString:self.dictionary.description];
+}
+
+/*
+ #EXT-X-STREAM-INF:AUDIO="600k",BANDWIDTH=1049794,PROGRAM-ID=1,CODECS="avc1.42c01e,mp4a.40.2",RESOLUTION=640x360,SUBTITLES="subs"
+ main_media_0.m3u8
+ */
+- (NSString *)m3u8PlanString {
+    NSMutableString *str = [NSMutableString string];
+    [str appendString:M3U8_EXT_X_STREAM_INF];
+    if (self.audio.length > 0) {
+        [str appendString:[NSString stringWithFormat:@"AUDIO=\"%@\"", self.audio]];
+        [str appendString:[NSString stringWithFormat:@",BANDWIDTH=%ld", (long)self.bandwidth]];
+    } else {
+        [str appendString:[NSString stringWithFormat:@"BANDWIDTH=%ld", (long)self.bandwidth]];
+    }
+    
+    [str appendString:[NSString stringWithFormat:@",PROGRAM-ID=%ld", (long)self.programId]];
+    NSString *codecsString = self.dictionary[M3U8_EXT_X_STREAM_INF_CODECS];
+    [str appendString:[NSString stringWithFormat:@",CODECS=\"%@\"", codecsString]];
+    NSString *rStr = self.dictionary[M3U8_EXT_X_STREAM_INF_RESOLUTION];
+    if (rStr.length > 0) {
+        [str appendString:[NSString stringWithFormat:@",RESOLUTION=%@", rStr]];
+    }
+    [str appendString:[NSString stringWithFormat:@"\n%@", self.URI]];
+    return str;
+}
+
 @end
+
+
+
+
+

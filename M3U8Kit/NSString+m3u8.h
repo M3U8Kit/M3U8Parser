@@ -12,6 +12,7 @@
 @interface NSString (m3u8)
 
 - (BOOL)isExtendedM3Ufile;
+
 - (BOOL)isMasterPlaylist;
 - (BOOL)isMediaPlaylist;
 

@@ -21,7 +21,7 @@
     return self;
 }
 
-- (NSURL *)baseURL {
+- (NSString *)baseURL {
     return self.dictionary[M3U8_BASE_URL];
 }
 
@@ -38,7 +38,7 @@
 }
 
 - (NSString *)language {
-    return self.dictionary[M3U8_EXT_X_MEDIA_LANGUAGE];
+    return [self.dictionary[M3U8_EXT_X_MEDIA_LANGUAGE] lowercaseString];
 }
 
 - (NSString *)assocLanguage {
@@ -69,8 +69,53 @@
     return self.dictionary[M3U8_EXT_X_MEDIA_CHARACTERISTICS];
 }
 
-- (NSString *)m3u8UrlStr {
-    return [NSURL URLWithString:self.URI relativeToURL:[self baseURL]].absoluteString;
+- (NSInteger)bandwidth {
+    return [self.dictionary[M3U8_EXT_X_MEDIA_BANDWIDTH] integerValue];
+}
+
+- (NSString *)m3u8URL {
+    NSURL *baseURL = [NSURL URLWithString:[self baseURL]];
+    return [[NSURL URLWithString:self.URI relativeToURL:baseURL] absoluteString];
+}
+
+- (NSString *)description {
+    return [NSString stringWithString:self.dictionary.description];
+}
+
+/*
+ #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="600k",LANGUAGE="eng",NAME="Audio",AUTOSELECT=YES,DEFAULT=YES,URI="main_media_7.m3u8",BANDWIDTH=614400
+ */
+- (NSString *)m3u8PlanString {
+    NSMutableString *str = [NSMutableString string];
+    [str appendString:M3U8_EXT_X_MEDIA];
+    [str appendString:[NSString stringWithFormat:@"TYPE=%@", self.type]];
+    [str appendString:[NSString stringWithFormat:@",GROUP-ID=\"%@\"", self.groupId]];
+    [str appendString:[NSString stringWithFormat:@",LANGUAGE=\"%@\"", self.language]];
+    [str appendString:[NSString stringWithFormat:@",NAME=\"%@\"", self.name]];
+    [str appendString:[NSString stringWithFormat:@",AUTOSELECT=%@", self.autoSelect?@"YES":@"NO"]];
+    [str appendString:[NSString stringWithFormat:@",DEFAULT=%@", self.isDefault?@"YES":@"NO"]];
+    
+    NSString *fStr = self.dictionary[M3U8_EXT_X_MEDIA_FORCED];
+    if (fStr.length > 0) {
+        [str appendString:[NSString stringWithFormat:@",FORCED=%@", fStr]];
+    }
+    
+    [str appendString:[NSString stringWithFormat:@",URI=\"%@\"", self.URI]];
+    
+    NSString *bStr = self.dictionary[M3U8_EXT_X_MEDIA_BANDWIDTH];
+    if (bStr.length > 0) {
+        [str appendString:[NSString stringWithFormat:@",BANDWIDTH=%@", bStr]];
+    }
+    
+    return str;
 }
 
 @end
+
+
+
+
+
+
+
+
