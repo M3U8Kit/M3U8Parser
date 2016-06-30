@@ -50,7 +50,7 @@
     return NO;
 }
 
-- (M3U8SegmentInfoList *)m3u8SegementInfoListValueRelativeToURL:(NSURL *)baseURL {
+- (M3U8SegmentInfoList *)m3u8SegementInfoListValueRelativeToURL:(NSString *)baseURL {
     // self == @""
     if (0 == self.length)
         return nil;
