@@ -16,6 +16,6 @@
 - (BOOL)isMasterPlaylist;
 - (BOOL)isMediaPlaylist;
 
-- (M3U8SegmentInfoList *)m3u8SegementInfoListValueRelativeToURL:(NSURL *)baseURL;
+- (M3U8SegmentInfoList *)m3u8SegementInfoListValueRelativeToURL:(NSString *)baseURL;
 
 @end
