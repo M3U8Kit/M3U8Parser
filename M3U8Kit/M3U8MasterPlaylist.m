@@ -7,6 +7,8 @@
 //
 
 #import "M3U8MasterPlaylist.h"
+#import "NSString+m3u8.h"
+#import "M3U8TagsAndAttributes.h"
 
 // #define M3U8_EXT_X_STREAM_INF_CLOSED_CAPTIONS   @"CLOSED-CAPTIONS" // The value can be either a quoted-string or an enumerated-string with the value NONE.
 //    NSArray *quotedValueAttrs = @[@"URI", @"KEYFORMAT", @"KEYFORMATVERSIONS", @"GROUP-ID", @"LANGUAGE", @"ASSOC-LANGUAGE", @"NAME", @"INSTREAM-ID", @"CHARACTERISTICS", @"CODECS", @"AUDIO", @"VIDEO", @"SUBTITLES", @"BYTERANGE"];
@@ -73,17 +75,23 @@
             NSMutableDictionary *attr = [self attributesFromString:attribute_list];
             
             // parse URI
-            NSString *nextLine = [remainingPart substringToIndex:crRange.location]; // the URI
+            BOOL endOfLine = crRange.location == NSNotFound;
+            
+            NSString *nextLine = endOfLine ? remainingPart : [remainingPart substringToIndex:crRange.location]; // the URI
             attr[@"URI"] = nextLine;
             if (self.baseURL) {
                 attr[M3U8_BASE_URL] = self.baseURL;
             }
             
-            remainingPart = [remainingPart substringFromIndex:crRange.location +1];
-            crRange = [remainingPart rangeOfString:@"\n"];
-            
             M3U8ExtXStreamInf *xStreamInf = [[M3U8ExtXStreamInf alloc] initWithDictionary:attr];
             [self.xStreamList addExtXStreamInf:xStreamInf];
+            
+            if (endOfLine) {
+                break;
+            }
+            
+            remainingPart = [remainingPart substringFromIndex:crRange.location +1];
+            crRange = [remainingPart rangeOfString:@"\n"];
         }
         
         

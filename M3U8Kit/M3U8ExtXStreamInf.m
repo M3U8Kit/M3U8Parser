@@ -7,6 +7,7 @@
 //
 
 #import "M3U8ExtXStreamInf.h"
+#import "M3U8TagsAndAttributes.h"
 
 const MediaResoulution MediaResoulutionZero = {0.f, 0.f};
 

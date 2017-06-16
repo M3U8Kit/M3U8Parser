@@ -7,6 +7,7 @@
 //
 
 #import "M3U8PlaylistModel.h"
+#import "NSString+m3u8.h"
 
 #define INDEX_PLAYLIST_NAME @"index.m3u8"
 

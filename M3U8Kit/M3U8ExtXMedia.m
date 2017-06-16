@@ -7,6 +7,7 @@
 //
 
 #import "M3U8ExtXMedia.h"
+#import "M3U8TagsAndAttributes.h"
 
 @interface M3U8ExtXMedia()
 @property (nonatomic, strong) NSDictionary *dictionary;

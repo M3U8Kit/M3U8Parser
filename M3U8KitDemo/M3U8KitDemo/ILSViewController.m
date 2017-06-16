@@ -8,7 +8,7 @@
 
 #import "ILSViewController.h"
 
-#import <M3U8Kit/M3U8Kit.h>
+#import "M3U8Kit.h"
 
 @interface ILSViewController ()
 

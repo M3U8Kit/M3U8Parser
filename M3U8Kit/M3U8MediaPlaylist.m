@@ -7,6 +7,8 @@
 //
 
 #import "M3U8MediaPlaylist.h"
+#import "NSString+m3u8.h"
+#import "M3U8TagsAndAttributes.h"
 
 @interface M3U8MediaPlaylist()
 

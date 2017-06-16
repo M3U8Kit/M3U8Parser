@@ -7,6 +7,7 @@
 //
 
 #import "M3U8SegmentInfo.h"
+#import "M3U8TagsAndAttributes.h"
 
 @interface M3U8SegmentInfo()
 @property (nonatomic, strong) NSDictionary *dictionary;
