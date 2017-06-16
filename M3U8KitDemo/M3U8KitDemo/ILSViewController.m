@@ -8,7 +8,7 @@
 
 #import "ILSViewController.h"
 
-#import <M3U8Kit/M3U8Kit.h>
+#import "M3U8Kit.h"
 
 @interface ILSViewController ()
 
@@ -25,21 +25,21 @@
         
         NSTimeInterval begin = [NSDate timeIntervalSinceReferenceDate];
         
-        NSString *baseURL = @"http://hls.ted.com/";
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"769" ofType:@"m3u8"];
         NSError *error;
-        NSString *str = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
+        
+        M3U8PlaylistModel *model = [[M3U8PlaylistModel alloc] initWithURL:[NSURL URLWithString:@"https://hls.ted.com/talks/2639.m3u8?preroll=Thousands"] error:&error];
+        
         if (error) {
             NSLog(@"error: %@", error);
         }
         
-        M3U8PlaylistModel *medel = [[M3U8PlaylistModel alloc] initWithString:str baseURL:baseURL error:NULL];
         
-        NSLog(@"segments names: %@", [medel segmentNamesForPlaylist:medel.audioPl]);
+        
+        NSLog(@"segments names: %@", [model segmentNamesForPlaylist:model.audioPl]);
         
         NSString *m3u8Path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"str.m3u8"];
         error = nil;
-        [medel savePlaylistsToPath:m3u8Path error:&error];
+        [model savePlaylistsToPath:m3u8Path error:&error];
         if (error) {
             NSLog(@"playlists save error: %@", error);
         }

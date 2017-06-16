@@ -36,7 +36,7 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 - (NSString *)type;
-- (NSString *)URI;
+- (NSURL *)URI;
 - (NSString *)groupId;
 - (NSString *)language;
 - (NSString *)assocLanguage;
@@ -48,7 +48,7 @@
 - (NSString *)characteristics;
 - (NSInteger)bandwidth;
 
-- (NSString *)m3u8URL;   // the absolute url of media playlist file
+- (NSURL *)m3u8URL;   // the absolute url of media playlist file
 - (NSString *)m3u8PlanString;
 
 @end

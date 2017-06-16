@@ -7,6 +7,7 @@
 //
 
 #import "M3U8ExtXMedia.h"
+#import "M3U8TagsAndAttributes.h"
 
 @interface M3U8ExtXMedia()
 @property (nonatomic, strong) NSDictionary *dictionary;
@@ -21,16 +22,20 @@
     return self;
 }
 
-- (NSString *)baseURL {
+- (NSURL *)baseURL {
     return self.dictionary[M3U8_BASE_URL];
+}
+
+- (NSURL *)URL {
+    return self.dictionary[M3U8_URL];
 }
 
 - (NSString *)type {
     return self.dictionary[M3U8_EXT_X_MEDIA_TYPE];
 }
 
-- (NSString *)URI {
-    return self.dictionary[M3U8_EXT_X_MEDIA_URI];
+- (NSURL *)URI {
+    return [NSURL URLWithString:self.dictionary[M3U8_EXT_X_MEDIA_URI]];
 }
 
 - (NSString *)groupId {
@@ -73,9 +78,12 @@
     return [self.dictionary[M3U8_EXT_X_MEDIA_BANDWIDTH] integerValue];
 }
 
-- (NSString *)m3u8URL {
-    NSURL *baseURL = [NSURL URLWithString:[self baseURL]];
-    return [[NSURL URLWithString:self.URI relativeToURL:baseURL] absoluteString];
+- (NSURL *)m3u8URL {
+    if (self.URI.scheme) {
+        return self.URI;
+    }
+    
+    return [NSURL URLWithString:self.URI.absoluteString relativeToURL:[self baseURL]];
 }
 
 - (NSString *)description {
@@ -100,7 +108,7 @@
         [str appendString:[NSString stringWithFormat:@",FORCED=%@", fStr]];
     }
     
-    [str appendString:[NSString stringWithFormat:@",URI=\"%@\"", self.URI]];
+    [str appendString:[NSString stringWithFormat:@",URI=\"%@\"", self.URI.absoluteString]];
     
     NSString *bStr = self.dictionary[M3U8_EXT_X_MEDIA_BANDWIDTH];
     if (bStr.length > 0) {

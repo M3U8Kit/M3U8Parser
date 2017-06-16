@@ -7,6 +7,7 @@
 //
 
 #import "M3U8ExtXStreamInf.h"
+#import "M3U8TagsAndAttributes.h"
 
 const MediaResoulution MediaResoulutionZero = {0.f, 0.f};
 
@@ -46,13 +47,20 @@ MediaResoulution MediaResolutionMake(float width, float height) {
     return self;
 }
 
-- (NSString *)baseURL {
+- (NSURL *)baseURL {
     return self.dictionary[M3U8_BASE_URL];
 }
 
-- (NSString *)m3u8URL {
-    NSURL *baseURL = [NSURL URLWithString:[self baseURL]];
-    return [[NSURL URLWithString:self.URI relativeToURL:baseURL] absoluteString];
+- (NSURL *)URL {
+    return self.dictionary[M3U8_URL];
+}
+
+- (NSURL *)m3u8URL {
+    if (self.URI.scheme) {
+        return self.URI;
+    }
+    
+    return [NSURL URLWithString:self.URI.absoluteString relativeToURL:[self baseURL]];
 }
 
 - (NSInteger)bandwidth {
@@ -90,8 +98,8 @@ MediaResoulution MediaResolutionMake(float width, float height) {
     return self.dictionary[M3U8_EXT_X_STREAM_INF_CLOSED_CAPTIONS];
 }
 
-- (NSString *)URI {
-    return self.dictionary[M3U8_EXT_X_STREAM_INF_URI];
+- (NSURL *)URI {
+    return [NSURL URLWithString:self.dictionary[M3U8_EXT_X_STREAM_INF_URI]];
 }
 
 - (NSString *)description {
@@ -119,7 +127,7 @@ MediaResoulution MediaResolutionMake(float width, float height) {
     if (rStr.length > 0) {
         [str appendString:[NSString stringWithFormat:@",RESOLUTION=%@", rStr]];
     }
-    [str appendString:[NSString stringWithFormat:@"\n%@", self.URI]];
+    [str appendString:[NSString stringWithFormat:@"\n%@", self.URI.absoluteString]];
     return str;
 }
 

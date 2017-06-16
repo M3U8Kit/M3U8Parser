@@ -26,10 +26,10 @@
 @interface M3U8SegmentInfo : NSObject
 
 @property (readonly, nonatomic) NSTimeInterval duration;
-@property (readonly, nonatomic) NSString *URI;
+@property (readonly, nonatomic, copy) NSURL *URI;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
-- (NSString *)mediaURL;
+- (NSURL *)mediaURL;
 
 @end

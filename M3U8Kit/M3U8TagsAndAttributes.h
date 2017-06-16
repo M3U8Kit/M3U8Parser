@@ -9,6 +9,10 @@
 
 // M3U8 Tags & Attributes definded in Draft Pantos Http Live Streaming 12 http://tools.ietf.org/html/draft-pantos-http-live-streaming-12
 
+#define M3U8_URL @"URL"
+
+#define M3U8_BASE_URL @"baseURL"
+
 
 ///------------------------------
 /// Standard Tags
