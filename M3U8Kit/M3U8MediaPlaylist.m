@@ -9,11 +9,13 @@
 #import "M3U8MediaPlaylist.h"
 #import "NSString+m3u8.h"
 #import "M3U8TagsAndAttributes.h"
+#import "NSURL+easy.h"
 
 @interface M3U8MediaPlaylist()
 
 @property (nonatomic, copy) NSString *originalText;
-@property (nonatomic, strong) NSString *baseURL;
+@property (nonatomic, copy) NSURL *baseURL;
+@property (nonatomic, copy) NSURL *originalURL;
 
 @property (nonatomic, strong) NSString *version;
 
@@ -23,10 +25,11 @@
 
 @implementation M3U8MediaPlaylist
 
-- (instancetype)initWithContent:(NSString *)string type:(M3U8MediaPlaylistType)type baseURL:(NSString *)baseURL {
+- (instancetype)initWithContent:(NSString *)string type:(M3U8MediaPlaylistType)type baseURL:(NSURL *)baseURL {
     if (NO == [string isMediaPlaylist]) {
         return nil;
     }
+    
     if (self = [super init]) {
         self.originalText = string;
         self.baseURL = baseURL;
@@ -40,15 +43,19 @@
     if (nil == URL) {
         return nil;
     }
+    
+    self.originalURL = URL;
+    
     NSString *string = [[NSString alloc] initWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:error];
-    return [self initWithContent:string type:type baseURL:URL.absoluteString];
+    
+    return [self initWithContent:string type:type baseURL:URL.realBaseURL];
 }
 
 - (NSArray *)allSegmentURLs {
     NSMutableArray *array = [NSMutableArray array];
     for (int i = 0; i < self.segmentList.count; i ++) {
         M3U8SegmentInfo *info = [self.segmentList segmentInfoAtIndex:i];
-        if (info.mediaURL.length > 0) {
+        if (info.mediaURL.absoluteString.length > 0) {
             if (NO == [array containsObject:info.mediaURL]) {
                 [array addObject:info.mediaURL];
             }
@@ -66,6 +73,10 @@
     
     while (NSNotFound != segmentRange.location) {
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+        if (self.originalURL) {
+            [params setObject:self.originalURL forKey:M3U8_URL];
+        }
+        
         if (self.baseURL) {
             [params setObject:self.baseURL forKey:M3U8_BASE_URL];
         }

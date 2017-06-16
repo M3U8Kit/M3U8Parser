@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012BA1491EF3D57200BA7DBA /* NSURL+easy.m in Sources */ = {isa = PBXBuildFile; fileRef = 012BA1481EF3D57200BA7DBA /* NSURL+easy.m */; };
 		016135281EF3BBB1007CD332 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0161350E1EF3BBB1007CD332 /* InfoPlist.strings */; };
 		016135291EF3BBB1007CD332 /* M3U8ExtXMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 016135111EF3BBB1007CD332 /* M3U8ExtXMedia.m */; };
 		0161352A1EF3BBB1007CD332 /* M3U8ExtXMediaList.m in Sources */ = {isa = PBXBuildFile; fileRef = 016135131EF3BBB1007CD332 /* M3U8ExtXMediaList.m */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		012BA1471EF3D57200BA7DBA /* NSURL+easy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+easy.h"; sourceTree = "<group>"; };
+		012BA1481EF3D57200BA7DBA /* NSURL+easy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+easy.m"; sourceTree = "<group>"; };
 		0161350F1EF3BBB1007CD332 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		016135101EF3BBB1007CD332 /* M3U8ExtXMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXMedia.h; sourceTree = "<group>"; };
 		016135111EF3BBB1007CD332 /* M3U8ExtXMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXMedia.m; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 				016135251EF3BBB1007CD332 /* M3U8TagsAndAttributes.h */,
 				016135261EF3BBB1007CD332 /* NSString+m3u8.h */,
 				016135271EF3BBB1007CD332 /* NSString+m3u8.m */,
+				012BA1471EF3D57200BA7DBA /* NSURL+easy.h */,
+				012BA1481EF3D57200BA7DBA /* NSURL+easy.m */,
 			);
 			name = M3U8Kit;
 			path = ../M3U8Kit;
@@ -337,6 +342,7 @@
 				016135291EF3BBB1007CD332 /* M3U8ExtXMedia.m in Sources */,
 				9D1BF8281906009800E38ABD /* main.m in Sources */,
 				016135311EF3BBB1007CD332 /* M3U8SegmentInfo.m in Sources */,
+				012BA1491EF3D57200BA7DBA /* NSURL+easy.m in Sources */,
 				0161352E1EF3BBB1007CD332 /* M3U8MasterPlaylist.m in Sources */,
 				0161352F1EF3BBB1007CD332 /* M3U8MediaPlaylist.m in Sources */,
 				0161352C1EF3BBB1007CD332 /* M3U8ExtXStreamInfList.m in Sources */,

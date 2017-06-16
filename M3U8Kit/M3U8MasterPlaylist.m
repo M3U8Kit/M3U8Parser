@@ -9,6 +9,7 @@
 #import "M3U8MasterPlaylist.h"
 #import "NSString+m3u8.h"
 #import "M3U8TagsAndAttributes.h"
+#import "NSURL+easy.h"
 
 // #define M3U8_EXT_X_STREAM_INF_CLOSED_CAPTIONS   @"CLOSED-CAPTIONS" // The value can be either a quoted-string or an enumerated-string with the value NONE.
 //    NSArray *quotedValueAttrs = @[@"URI", @"KEYFORMAT", @"KEYFORMATVERSIONS", @"GROUP-ID", @"LANGUAGE", @"ASSOC-LANGUAGE", @"NAME", @"INSTREAM-ID", @"CHARACTERISTICS", @"CODECS", @"AUDIO", @"VIDEO", @"SUBTITLES", @"BYTERANGE"];
@@ -16,7 +17,8 @@
 @interface M3U8MasterPlaylist ()
 
 @property (nonatomic, copy) NSString *originalText;
-@property (nonatomic, strong) NSString *baseURL;
+@property (nonatomic, copy) NSURL *baseURL;
+@property (nonatomic, copy) NSURL *originalURL;
 
 @property (nonatomic, strong) NSString *version;
 
@@ -27,7 +29,7 @@
 
 @implementation M3U8MasterPlaylist
 
-- (instancetype)initWithContent:(NSString *)string baseURL:(NSString *)baseURL {
+- (instancetype)initWithContent:(NSString *)string baseURL:(NSURL *)baseURL {
     if (NO == [string isMasterPlaylist]) {
         return nil;
     }
@@ -39,12 +41,15 @@
     return self;
 }
 
-- (instancetype)initWithContentOfURL:(NSString *)URL error:(NSError **)error {
+- (instancetype)initWithContentOfURL:(NSURL *)URL error:(NSError **)error {
     if (!URL) {
         return nil;
     }
-    NSString *string = [NSString stringWithContentsOfURL:[NSURL URLWithString:URL] encoding:NSUTF8StringEncoding error:error];
-    return [self initWithContent:string baseURL:URL];
+    
+    self.originalURL = URL;
+    
+    NSString *string = [NSString stringWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:error];
+    return [self initWithContent:string baseURL:URL.realBaseURL];
 }
 
 - (void)parseMasterPlaylist {
@@ -79,6 +84,10 @@
             
             NSString *nextLine = endOfLine ? remainingPart : [remainingPart substringToIndex:crRange.location]; // the URI
             attr[@"URI"] = nextLine;
+            if (self.originalURL) {
+                attr[M3U8_URL] = self.originalURL;
+            }
+            
             if (self.baseURL) {
                 attr[M3U8_BASE_URL] = self.baseURL;
             }
@@ -107,8 +116,12 @@
             NSRange range = [line rangeOfString:M3U8_EXT_X_MEDIA];
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
             NSMutableDictionary *attr = [self attributesFromString:attribute_list];
-            if (self.baseURL.length > 0) {
+            if (self.baseURL.absoluteString.length > 0) {
                 attr[M3U8_BASE_URL] = self.baseURL;
+            }
+            
+            if (self.originalURL.absoluteString.length > 0) {
+                attr[M3U8_URL] = self.originalURL;
             }
             M3U8ExtXMedia *media = [[M3U8ExtXMedia alloc] initWithDictionary:attr];
             [self.xMediaList addExtXMedia:media];
@@ -155,7 +168,7 @@
     NSMutableArray *array = [NSMutableArray array];
     for (int i = 0; i < self.xStreamList.count; i ++) {
         M3U8ExtXStreamInf *xsinf = [self.xStreamList xStreamInfAtIndex:i];
-        if (xsinf.m3u8URL.length > 0) {
+        if (xsinf.m3u8URL.absoluteString.length > 0) {
             if (NO == [array containsObject:xsinf.m3u8URL]) {
                 [array addObject:xsinf.m3u8URL];
             }

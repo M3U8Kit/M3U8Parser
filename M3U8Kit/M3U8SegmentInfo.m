@@ -22,21 +22,28 @@
     return self;
 }
 
-- (NSString *)baseURL {
+- (NSURL *)baseURL {
     return self.dictionary[M3U8_BASE_URL];
 }
 
-- (NSString *)mediaURL {
-    NSURL *baseURL = [NSURL URLWithString:self.baseURL];
-    return [[NSURL URLWithString:self.URI relativeToURL:baseURL] absoluteString];
+- (NSURL *)URL {
+    return self.dictionary[M3U8_URL];
+}
+
+- (NSURL *)mediaURL {
+    if (self.URI.scheme) {
+        return self.URI;
+    }
+    
+    return [NSURL URLWithString:self.URI.absoluteString relativeToURL:[self baseURL]];
 }
 
 - (NSTimeInterval)duration {
     return [self.dictionary[M3U8_EXTINF_DURATION] doubleValue];
 }
 
-- (NSString *)URI {
-    return self.dictionary[M3U8_EXTINF_URI];
+- (NSURL *)URI {
+    return [NSURL URLWithString:self.dictionary[M3U8_EXTINF_URI]];
 }
 
 - (NSString *)description {
