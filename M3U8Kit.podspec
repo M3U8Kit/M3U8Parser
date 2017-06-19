@@ -29,6 +29,6 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = '6.0'
   spec.requires_arc = true
 
-  spec.source_files = 'M3U8Kit/*'
+  spec.source_files = 'Source/*'
 
 end
