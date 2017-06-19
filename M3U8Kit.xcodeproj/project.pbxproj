@@ -33,6 +33,7 @@
 		9D05827318E52E9500A12776 /* NSString+m3u8.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D05825D18E52E9500A12776 /* NSString+m3u8.m */; };
 		9D59A11B1907680C00C1F7C6 /* M3U8ExtXMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D05824918E52E9500A12776 /* M3U8ExtXMedia.m */; };
 		9D59A11C1907681000C1F7C6 /* M3U8ExtXMediaList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D05824B18E52E9500A12776 /* M3U8ExtXMediaList.m */; };
+		9D79F1291EF77CE500D16AFD /* M3U8KitDynamic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D79F1271EF77CE500D16AFD /* M3U8KitDynamic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,9 @@
 		9D05825B18E52E9500A12776 /* M3U8TagsAndAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8TagsAndAttributes.h; sourceTree = "<group>"; };
 		9D05825C18E52E9500A12776 /* NSString+m3u8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+m3u8.h"; sourceTree = "<group>"; };
 		9D05825D18E52E9500A12776 /* NSString+m3u8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+m3u8.m"; sourceTree = "<group>"; };
+		9D79F1251EF77CE400D16AFD /* M3U8KitDynamic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = M3U8KitDynamic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D79F1271EF77CE500D16AFD /* M3U8KitDynamic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M3U8KitDynamic.h; sourceTree = "<group>"; };
+		9D79F1281EF77CE500D16AFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9D79F1211EF77CE400D16AFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -83,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				9D05821F18E52DF500A12776 /* M3U8Kit */,
+				9D79F1261EF77CE500D16AFD /* M3U8KitDynamic */,
 				9D05821C18E52DF500A12776 /* Frameworks */,
 				9D05821B18E52DF500A12776 /* Products */,
 			);
@@ -92,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				9D05821A18E52DF500A12776 /* M3U8Kit.framework */,
+				9D79F1251EF77CE400D16AFD /* M3U8KitDynamic.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,6 +183,15 @@
 			name = "Master Playlist";
 			sourceTree = "<group>";
 		};
+		9D79F1261EF77CE500D16AFD /* M3U8KitDynamic */ = {
+			isa = PBXGroup;
+			children = (
+				9D79F1271EF77CE500D16AFD /* M3U8KitDynamic.h */,
+				9D79F1281EF77CE500D16AFD /* Info.plist */,
+			);
+			path = M3U8KitDynamic;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -190,6 +212,14 @@
 				9D05826018E52E9500A12776 /* M3U8ExtXMediaList.h in Headers */,
 				012BA14C1EF3E46200BA7DBA /* NSURL+easy.h in Headers */,
 				9D05826B18E52E9500A12776 /* M3U8PlaylistModel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D79F1221EF77CE400D16AFD /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D79F1291EF77CE500D16AFD /* M3U8KitDynamic.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +244,24 @@
 			productReference = 9D05821A18E52DF500A12776 /* M3U8Kit.framework */;
 			productType = "com.apple.product-type.framework.static";
 		};
+		9D79F1241EF77CE400D16AFD /* M3U8KitDynamic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D79F12A1EF77CE500D16AFD /* Build configuration list for PBXNativeTarget "M3U8KitDynamic" */;
+			buildPhases = (
+				9D79F1201EF77CE400D16AFD /* Sources */,
+				9D79F1211EF77CE400D16AFD /* Frameworks */,
+				9D79F1221EF77CE400D16AFD /* Headers */,
+				9D79F1231EF77CE400D16AFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = M3U8KitDynamic;
+			productName = M3U8KitDynamic;
+			productReference = 9D79F1251EF77CE400D16AFD /* M3U8KitDynamic.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -222,6 +270,12 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Allen;
+				TargetAttributes = {
+					9D79F1241EF77CE400D16AFD = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 9D05821318E52DF500A12776 /* Build configuration list for PBXProject "M3U8Kit" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -236,6 +290,7 @@
 			projectRoot = "";
 			targets = (
 				9D05821918E52DF500A12776 /* M3U8Kit */,
+				9D79F1241EF77CE400D16AFD /* M3U8KitDynamic */,
 			);
 		};
 /* End PBXProject section */
@@ -246,6 +301,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D05822418E52DF500A12776 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D79F1231EF77CE400D16AFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +329,13 @@
 				9D05827318E52E9500A12776 /* NSString+m3u8.m in Sources */,
 				9D05827018E52E9500A12776 /* M3U8SegmentInfoList.m in Sources */,
 				9D05826C18E52E9500A12776 /* M3U8PlaylistModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9D79F1201EF77CE400D16AFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +457,74 @@
 			};
 			name = Release;
 		};
+		9D79F12B1EF77CE500D16AFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = M3U8KitDynamic/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexsun.M3U8KitDynamic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9D79F12C1EF77CE500D16AFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = M3U8KitDynamic/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexsun.M3U8KitDynamic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -408,6 +545,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		9D79F12A1EF77CE500D16AFD /* Build configuration list for PBXNativeTarget "M3U8KitDynamic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D79F12B1EF77CE500D16AFD /* Debug */,
+				9D79F12C1EF77CE500D16AFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
