@@ -1,0 +1,30 @@
+language: objective-c
+osx_image: xcode7.3
+xcode_project: M3U8Kit.xcodeproj
+# xcode_workspace: <WORKSPACE_PLACEHOLDER>
+xcode_scheme: M3U8Kit
+xcode_sdk: iphonesimulator9.3
+env:
+  global:
+    - FRAMEWORK_NAME=M3U8Kit
+before_install:
+  - brew update
+  - brew outdated carthage || brew upgrade carthage
+after_success:
+  - if [ "$FASTLANE_LANE" == "code_coverage" ]; then
+     bash <(curl -s https://codecov.io/bash);
+    fi
+after_failure:
+ - cat -n ~/Library/Logs/scan/*
+ - cat -n $TMPDIR/com.apple.dt.XCTest-status/Session*.log
+ - cat -n ~/Library/Logs/DiagnosticReports/xctest*.crash
+before_deploy:
+  - carthage build --no-skip-current
+  - carthage archive $FRAMEWORK_NAME
+# deploy:
+#   provider: script
+#   script: fastlane complete_framework_release --env deploy
+#   on:
+#     tags: true
+notifications:
+  email: false

@@ -1,0 +1,16 @@
+PODS:
+  - M3U8Kit (0.2.0)
+
+DEPENDENCIES:
+  - M3U8Kit (from `../`)
+
+EXTERNAL SOURCES:
+  M3U8Kit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  M3U8Kit: 1ce5dc07578b673cfbc3ef0b05013b9dbe8604c2
+
+PODFILE CHECKSUM: 3d693bfcc23ed0e4072f7a3bee2ff653e15d0f83
+
+COCOAPODS: 1.2.0.beta.3

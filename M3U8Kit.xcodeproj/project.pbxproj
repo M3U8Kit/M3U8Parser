@@ -363,7 +363,6 @@
 				GCC_PREFIX_HEADER = "M3U8Kit/M3U8Kit-Prefix.pch";
 				INFOPLIST_FILE = "M3U8Kit/M3U8Kit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-fembed-bitcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
