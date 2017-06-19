@@ -29,6 +29,7 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = '6.0'
   spec.requires_arc = true
 
-  spec.source_files = 'Source/*'
+  spec.source_files = 'Source/*.{h,m}', 'Source/**/*.{h,m}'
+  spec.public_header_files = 'Source/*.h', 'Source/**/*.h'
 
 end
