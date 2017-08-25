@@ -13,7 +13,7 @@
 - (NSURL *)realBaseURL {
     NSURL *baseURL = self.baseURL;
     if (!baseURL) {
-        NSString *string = [NSString stringWithFormat:@"%@://%@", self.scheme, self.host];
+        NSString *string = [self.absoluteString stringByReplacingOccurrencesOfString:self.lastPathComponent withString:@""];
         
         baseURL = [NSURL URLWithString:string];
     }
