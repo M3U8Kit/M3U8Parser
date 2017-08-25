@@ -1,0 +1,7 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+
+target 'M3U8KitDemo' do
+  pod "M3U8Kit", :path => "../"
+end
+

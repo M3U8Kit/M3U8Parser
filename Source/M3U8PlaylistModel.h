@@ -7,8 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "M3U8MasterPlaylist.h"
-#import "M3U8MediaPlaylist.h"
+#import "M3U8Kit.h"
 
 // 用来管理 m3u playlist, 根据 URL 或者 string 生成 master playlist, 从master playlist 生成指定的 media playlist
 // 生成 master playlist
