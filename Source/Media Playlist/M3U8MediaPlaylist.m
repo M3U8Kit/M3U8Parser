@@ -48,7 +48,7 @@
     
     NSString *string = [[NSString alloc] initWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:error];
     
-    return [self initWithContent:string type:type baseURL:URL.realBaseURL];
+    return [self initWithContent:string type:type baseURL:URL];
 }
 
 - (NSArray *)allSegmentURLs {
