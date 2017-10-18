@@ -68,10 +68,12 @@
     
     self.segmentList = [[M3U8SegmentInfoList alloc] init];
     
-    NSRange segmentRange = [self.originalText rangeOfString:M3U8_EXTINF];
-    NSString *remainingSegments = self.originalText;
+    NSArray *lines = [self.originalText componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    NSInteger lineIndex = 0;
     
-    while (NSNotFound != segmentRange.location) {
+    // while our line index didn't reach the end continue to parse.
+    while (lineIndex < lines.count)
+    {
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         if (self.originalURL) {
             [params setObject:self.originalURL forKey:M3U8_URL];
@@ -81,46 +83,24 @@
             [params setObject:self.baseURL forKey:M3U8_BASE_URL];
         }
         
-		// Read the EXTINF number between #EXTINF: and the comma
-		NSRange commaRange = [remainingSegments rangeOfString:@","];
-        NSRange valueRange = NSMakeRange(segmentRange.location + 8, commaRange.location - (segmentRange.location + 8));
-        if (commaRange.location == NSNotFound || valueRange.location > remainingSegments.length -1)
-            break;
+        NSString *currentLine = [lines objectAtIndex:lineIndex];
         
-		NSString *value = [remainingSegments substringWithRange:valueRange];
-		[params setValue:value forKey:M3U8_EXTINF_DURATION];
-        
-        // ignore the #EXTINF line
-        remainingSegments = [remainingSegments substringFromIndex:segmentRange.location];
-        NSRange extinfoLFRange = [remainingSegments rangeOfString:@"\n"];
-        remainingSegments = [remainingSegments substringFromIndex:extinfoLFRange.location + 1];
-        
-        // Read the segment link, and ignore line start with # && blank line
-        while (1) {
-            NSRange lfRange = [remainingSegments rangeOfString:@"\n"];
-            NSString *line = [remainingSegments substringWithRange:NSMakeRange(0, lfRange.location)];
-            line = [line stringByReplacingOccurrencesOfString:@" " withString:@""];
+        if ([currentLine hasPrefix:M3U8_EXTINF]) { // check EXTINF tag
+            currentLine = [currentLine stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
+            currentLine = [currentLine stringByReplacingOccurrencesOfString:@"," withString:@""];
+            [params setValue:currentLine forKey:M3U8_EXTINF_DURATION];
             
-            remainingSegments = [remainingSegments substringFromIndex:lfRange.location + 1];
+            // The URI is always one line below the tag, advance the index and fetch the next line.
+            lineIndex += 1;
+            NSString *nextLine = [lines objectAtIndex:lineIndex];
+            [params setValue:nextLine forKey:M3U8_EXTINF_URI];
             
-            if ([line characterAtIndex:0] != '#' && 0 != line.length) {
-                // remove the CR character '\r'
-                unichar lastChar = [line characterAtIndex:line.length - 1];
-                if (lastChar == '\r') {
-                    line = [line substringToIndex:line.length - 1];
-                }
-                
-                [params setValue:line forKey:M3U8_EXTINF_URI];
-                break;
+            M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params];
+            if (segment) {
+                [self.segmentList addSegementInfo:segment];
             }
         }
-        
-        M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params];
-        if (segment) {
-            [self.segmentList addSegementInfo:segment];
-        }
-        
-		segmentRange = [remainingSegments rangeOfString:M3U8_EXTINF];
+        lineIndex += 1;
     }
 }
 
