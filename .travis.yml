@@ -8,18 +8,16 @@ env:
 before_install:
   - brew update
   - brew outdated carthage || brew upgrade carthage
+  - gem install xcpretty
   
 script:
-  - xcodebuild -project $FRAMEWORK_NAME.xcodeproj -scheme $FRAMEWORK_NAME 
+  - xcodebuild -project $FRAMEWORK_NAME.xcodeproj -scheme $FRAMEWORK_NAME | xcpretty
   
 after_success:
   - if [ "$FASTLANE_LANE" == "code_coverage" ]; then
      bash <(curl -s https://codecov.io/bash);
     fi
-after_failure:
- - cat -n ~/Library/Logs/scan/*
- - cat -n $TMPDIR/com.apple.dt.XCTest-status/Session*.log
- - cat -n ~/Library/Logs/DiagnosticReports/xctest*.crash
+
 before_deploy:
   - carthage build --no-skip-current
   - carthage archive $FRAMEWORK_NAME
