@@ -8,6 +8,10 @@ env:
 before_install:
   - brew update
   - brew outdated carthage || brew upgrade carthage
+  
+script:
+  - xcodebuild -project $FRAMEWORK_NAME.xcodeproj -scheme $FRAMEWORK_NAME 
+  
 after_success:
   - if [ "$FASTLANE_LANE" == "code_coverage" ]; then
      bash <(curl -s https://codecov.io/bash);
