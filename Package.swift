@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Package.swift
 //  M3U8Kit
 //
 //  Created by Frank on 18/12/2017.
