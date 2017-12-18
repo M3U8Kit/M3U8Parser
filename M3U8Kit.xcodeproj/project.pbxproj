@@ -61,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0177A38E1FE7B31800477DF9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		9D05821A18E52DF500A12776 /* M3U8Kit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = M3U8Kit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D05821D18E52DF500A12776 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9D05822118E52DF500A12776 /* M3U8Kit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "M3U8Kit-Info.plist"; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 		9D05820F18E52DF500A12776 = {
 			isa = PBXGroup;
 			children = (
+				0177A38E1FE7B31800477DF9 /* Package.swift */,
 				9D79F12D1EF784E500D16AFD /* Source */,
 				9D05821F18E52DF500A12776 /* M3U8Kit */,
 				9D79F1261EF77CE500D16AFD /* M3U8KitDynamic */,

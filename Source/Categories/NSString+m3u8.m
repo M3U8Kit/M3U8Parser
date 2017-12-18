@@ -124,4 +124,9 @@
     return segmentInfoList;
 }
 
+- (NSString *)removeReturnCharacter {
+    NSString *newString = [self stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    return newString;
+}
+
 @end
