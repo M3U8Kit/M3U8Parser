@@ -18,4 +18,6 @@
 
 - (M3U8SegmentInfoList *)m3u8SegementInfoListValueRelativeToURL:(NSString *)baseURL;
 
+- (NSString *)removeReturnCharacter;
+
 @end

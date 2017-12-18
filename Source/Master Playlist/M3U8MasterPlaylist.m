@@ -83,7 +83,7 @@
             BOOL endOfLine = crRange.location == NSNotFound;
             
             NSString *nextLine = endOfLine ? remainingPart : [remainingPart substringToIndex:crRange.location]; // the URI
-            attr[@"URI"] = nextLine;
+            attr[@"URI"] = nextLine.removeReturnCharacter;
             if (self.originalURL) {
                 attr[M3U8_URL] = self.originalURL;
             }
