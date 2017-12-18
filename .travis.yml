@@ -3,7 +3,7 @@ osx_image: xcode9.2
 xcode_project: M3U8Kit.xcodeproj
 # xcode_workspace: <WORKSPACE_PLACEHOLDER>
 xcode_scheme: M3U8Kit
-xcode_sdk: iphonesimulator11.2
+xcode_sdk: iphonesimulator
 env:
   global:
     - FRAMEWORK_NAME=M3U8Kit
