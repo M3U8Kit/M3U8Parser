@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) M3U8SegmentInfoList *segmentList;
 
+@property (assign, nonatomic) BOOL isLive;
+
 @end
 
 @implementation M3U8MediaPlaylist
@@ -67,6 +69,8 @@
 - (void)parseMediaPlaylist {
     
     self.segmentList = [[M3U8SegmentInfoList alloc] init];
+    BOOL isLive = [self.originalText rangeOfString:M3U8_EXT_X_ENDLIST].location == NSNotFound;
+    self.isLive = isLive;
     
     NSRange segmentRange = [self.originalText rangeOfString:M3U8_EXTINF];
     NSString *remainingSegments = self.originalText;
