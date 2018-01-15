@@ -29,6 +29,9 @@ typedef enum {
 
 @property (readonly, nonatomic, strong) M3U8SegmentInfoList *segmentList;
 
+/** live or replay */
+@property (assign, readonly, nonatomic) BOOL isLive;
+
 @property (nonatomic) M3U8MediaPlaylistType type;   // -1 by default
 
 - (instancetype)initWithContent:(NSString *)string type:(M3U8MediaPlaylistType)type baseURL:(NSURL *)baseURL;
