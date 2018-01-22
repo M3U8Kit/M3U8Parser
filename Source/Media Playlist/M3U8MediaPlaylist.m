@@ -66,6 +66,51 @@
     return [array copy];
 }
 
+- (void)parseMediaPlaylist
+{
+    self.segmentList = [[M3U8SegmentInfoList alloc] init];
+    
+    NSArray *lines = [self.originalText componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
+    NSInteger count = 0;
+    
+    while (count < lines.count)
+    {
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+        if (self.originalURL) {
+            [params setObject:self.originalURL forKey:M3U8_URL];
+        }
+        
+        if (self.baseURL) {
+            [params setObject:self.baseURL forKey:M3U8_BASE_URL];
+        }
+        
+        NSString *line = [lines objectAtIndex:count];
+        [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        //check if it's #EXTINF:
+        if ([line hasPrefix:M3U8_EXTINF])
+        {
+            line = [line stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
+            line = [line stringByReplacingOccurrencesOfString:@"," withString:@""];
+            [params setValue:line forKey:M3U8_EXTINF_DURATION];
+            
+            //then get URI
+            count ++;
+            NSString *nextLine = [lines objectAtIndex:count];
+            nextLine = [nextLine stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            [params setValue:nextLine forKey:M3U8_EXTINF_URI];
+            
+            M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params];
+            if (segment) {
+                [self.segmentList addSegementInfo:segment];
+            }
+        }
+        count ++;
+    }
+}
+
+/*
 - (void)parseMediaPlaylist {
     
     self.segmentList = [[M3U8SegmentInfoList alloc] init];
@@ -127,5 +172,6 @@
 		segmentRange = [remainingSegments rangeOfString:M3U8_EXTINF];
     }
 }
+ */
 
 @end
