@@ -64,16 +64,32 @@
     return [array copy];
 }
 
-- (void)parseMediaPlaylist {
+- (NSString*)nextLineFrom:(NSArray<NSString*>*)lines at:(NSInteger*)index {
     
+    while (*index < lines.count) {
+        NSString* line = [lines[*index] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        (*index)++;
+        if (line.length > 0) {
+            return line;
+        }
+    }
+    return nil;
+}
+
+- (void)parseMediaPlaylist
+{
     self.segmentList = [[M3U8SegmentInfoList alloc] init];
     
     NSArray *lines = [self.originalText componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    NSInteger lineIndex = 0;
     
-    // while our line index didn't reach the end continue to parse.
-    while (lineIndex < lines.count)
-    {
+    NSInteger count = 0;
+    
+    while (true) {
+        NSString* line = [self nextLineFrom:lines at:&count];
+        if (!line) {
+            break;
+        }
+        
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         if (self.originalURL) {
             [params setObject:self.originalURL forKey:M3U8_URL];
@@ -83,16 +99,15 @@
             [params setObject:self.baseURL forKey:M3U8_BASE_URL];
         }
         
-        NSString *currentLine = [lines objectAtIndex:lineIndex];
-        
-        if ([currentLine hasPrefix:M3U8_EXTINF]) { // check EXTINF tag
-            currentLine = [currentLine stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
-            currentLine = [currentLine stringByReplacingOccurrencesOfString:@"," withString:@""];
-            [params setValue:currentLine forKey:M3U8_EXTINF_DURATION];
+        //check if it's #EXTINF:
+        if ([line hasPrefix:M3U8_EXTINF])
+        {
+            line = [line stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
+            line = [line stringByReplacingOccurrencesOfString:@"," withString:@""];
+            [params setValue:line forKey:M3U8_EXTINF_DURATION];
             
-            // The URI is always one line below the tag, advance the index and fetch the next line.
-            lineIndex += 1;
-            NSString *nextLine = [lines objectAtIndex:lineIndex];
+            //then get URI
+            NSString *nextLine = [self nextLineFrom:lines at:&count];
             [params setValue:nextLine forKey:M3U8_EXTINF_URI];
             
             M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params];
@@ -100,7 +115,6 @@
                 [self.segmentList addSegementInfo:segment];
             }
         }
-        lineIndex += 1;
     }
 }
 
