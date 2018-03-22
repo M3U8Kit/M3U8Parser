@@ -10,6 +10,7 @@
 #import "NSString+m3u8.h"
 #import "M3U8TagsAndAttributes.h"
 #import "NSURL+easy.h"
+#import "M3U8LineReader.h"
 
 @interface M3U8MediaPlaylist()
 
@@ -64,28 +65,15 @@
     return [array copy];
 }
 
-- (NSString*)nextLineFrom:(NSArray<NSString*>*)lines at:(NSInteger*)index {
-    
-    while (*index < lines.count) {
-        NSString* line = [lines[*index] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        (*index)++;
-        if (line.length > 0) {
-            return line;
-        }
-    }
-    return nil;
-}
-
 - (void)parseMediaPlaylist
 {
     self.segmentList = [[M3U8SegmentInfoList alloc] init];
     
-    NSArray *lines = [self.originalText componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    
-    NSInteger count = 0;
+    M3U8LineReader* lines = [[M3U8LineReader alloc] initWithText:self.originalText];
     
     while (true) {
-        NSString* line = [self nextLineFrom:lines at:&count];
+        
+        NSString* line = [lines next];
         if (!line) {
             break;
         }
@@ -107,7 +95,7 @@
             [params setValue:line forKey:M3U8_EXTINF_DURATION];
             
             //then get URI
-            NSString *nextLine = [self nextLineFrom:lines at:&count];
+            NSString *nextLine = [lines next];
             [params setValue:nextLine forKey:M3U8_EXTINF_URI];
             
             M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params];
@@ -119,3 +107,4 @@
 }
 
 @end
+
