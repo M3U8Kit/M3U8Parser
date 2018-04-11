@@ -10,6 +10,7 @@
 #import "NSString+m3u8.h"
 #import "M3U8TagsAndAttributes.h"
 #import "NSURL+easy.h"
+#import "M3U8LineReader.h"
 
 @interface M3U8MediaPlaylist()
 
@@ -66,16 +67,21 @@
     return [array copy];
 }
 
-- (void)parseMediaPlaylist {
-    
+- (void)parseMediaPlaylist
+{
     self.segmentList = [[M3U8SegmentInfoList alloc] init];
     BOOL isLive = [self.originalText rangeOfString:M3U8_EXT_X_ENDLIST].location == NSNotFound;
     self.isLive = isLive;
     
-    NSRange segmentRange = [self.originalText rangeOfString:M3U8_EXTINF];
-    NSString *remainingSegments = self.originalText;
+    M3U8LineReader* lines = [[M3U8LineReader alloc] initWithText:self.originalText];
     
-    while (NSNotFound != segmentRange.location) {
+    while (true) {
+        
+        NSString* line = [lines next];
+        if (!line) {
+            break;
+        }
+        
         NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
         if (self.originalURL) {
             [params setObject:self.originalURL forKey:M3U8_URL];
@@ -85,47 +91,24 @@
             [params setObject:self.baseURL forKey:M3U8_BASE_URL];
         }
         
-		// Read the EXTINF number between #EXTINF: and the comma
-		NSRange commaRange = [remainingSegments rangeOfString:@","];
-        NSRange valueRange = NSMakeRange(segmentRange.location + 8, commaRange.location - (segmentRange.location + 8));
-        if (commaRange.location == NSNotFound || valueRange.location > remainingSegments.length -1)
-            break;
-        
-		NSString *value = [remainingSegments substringWithRange:valueRange];
-		[params setValue:value forKey:M3U8_EXTINF_DURATION];
-        
-        // ignore the #EXTINF line
-        remainingSegments = [remainingSegments substringFromIndex:segmentRange.location];
-        NSRange extinfoLFRange = [remainingSegments rangeOfString:@"\n"];
-        remainingSegments = [remainingSegments substringFromIndex:extinfoLFRange.location + 1];
-        
-        // Read the segment link, and ignore line start with # && blank line
-        while (1) {
-            NSRange lfRange = [remainingSegments rangeOfString:@"\n"];
-            NSString *line = [remainingSegments substringWithRange:NSMakeRange(0, lfRange.location)];
-            line = [line stringByReplacingOccurrencesOfString:@" " withString:@""];
+        //check if it's #EXTINF:
+        if ([line hasPrefix:M3U8_EXTINF])
+        {
+            line = [line stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
+            line = [line stringByReplacingOccurrencesOfString:@"," withString:@""];
+            [params setValue:line forKey:M3U8_EXTINF_DURATION];
             
-            remainingSegments = [remainingSegments substringFromIndex:lfRange.location + 1];
+            //then get URI
+            NSString *nextLine = [lines next];
+            [params setValue:nextLine forKey:M3U8_EXTINF_URI];
             
-            if ([line characterAtIndex:0] != '#' && 0 != line.length) {
-                // remove the CR character '\r'
-                unichar lastChar = [line characterAtIndex:line.length - 1];
-                if (lastChar == '\r') {
-                    line = [line substringToIndex:line.length - 1];
-                }
-                
-                [params setValue:line forKey:M3U8_EXTINF_URI];
-                break;
+            M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params];
+            if (segment) {
+                [self.segmentList addSegementInfo:segment];
             }
         }
-        
-        M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params];
-        if (segment) {
-            [self.segmentList addSegementInfo:segment];
-        }
-        
-		segmentRange = [remainingSegments rangeOfString:M3U8_EXTINF];
     }
 }
 
 @end
+
