@@ -47,6 +47,16 @@ If you prefer not to use either of the above mentioned dependency managers, you 
 
 ## Usage
 
+- Asynchronous
+
+```objc
+[M3U8PlaylistModel loadAsynchronouslyWithURL:<#URL#>"]
+                                      completion:^(M3U8PlaylistModel *model, NSError *error) {
+                                      }];
+```
+
+- Synchronous
+
 ```objective-c
 NSError *error = nil;
 M3U8PlaylistModel *model = [[M3U8PlaylistModel alloc] 
