@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01B38E2C20EA2F8B00AC6443 /* M3U8KitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B38E2B20EA2F8B00AC6443 /* M3U8KitTests.m */; };
+		01B38E2E20EA2F8B00AC6443 /* M3U8KitDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D79F1251EF77CE400D16AFD /* M3U8KitDynamic.framework */; };
+		01B38E3420EA308F00AC6443 /* NSString+m3u8.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1301EF784E500D16AFD /* NSString+m3u8.m */; };
+		01B38E3520EA308F00AC6443 /* NSURL+easy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1321EF784E500D16AFD /* NSURL+easy.m */; };
+		01B38E3620EA308F00AC6443 /* M3U8PlaylistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1351EF784E500D16AFD /* M3U8PlaylistModel.m */; };
+		01B38E3720EA308F00AC6443 /* M3U8ExtXMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1391EF784E500D16AFD /* M3U8ExtXMedia.m */; };
+		01B38E3820EA308F00AC6443 /* M3U8ExtXMediaList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F13B1EF784E500D16AFD /* M3U8ExtXMediaList.m */; };
+		01B38E3920EA308F00AC6443 /* M3U8ExtXStreamInf.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F13D1EF784E500D16AFD /* M3U8ExtXStreamInf.m */; };
+		01B38E3A20EA308F00AC6443 /* M3U8ExtXStreamInfList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F13F1EF784E500D16AFD /* M3U8ExtXStreamInfList.m */; };
+		01B38E3B20EA308F00AC6443 /* M3U8MasterPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1411EF784E500D16AFD /* M3U8MasterPlaylist.m */; };
+		01B38E3C20EA308F00AC6443 /* M3U8MediaPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1441EF784E500D16AFD /* M3U8MediaPlaylist.m */; };
+		01B38E3D20EA308F00AC6443 /* M3U8SegmentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1461EF784E500D16AFD /* M3U8SegmentInfo.m */; };
+		01B38E3E20EA308F00AC6443 /* M3U8SegmentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1481EF784E500D16AFD /* M3U8SegmentInfoList.m */; };
+		01B38E4120EA30AB00AC6443 /* M3U8LineReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 01B38E3F20EA30AB00AC6443 /* M3U8LineReader.h */; };
+		01B38E4220EA30AB00AC6443 /* M3U8LineReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B38E4020EA30AB00AC6443 /* M3U8LineReader.m */; };
+		01B38E4320EA30AB00AC6443 /* M3U8LineReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B38E4020EA30AB00AC6443 /* M3U8LineReader.m */; };
+		01B38E4420EA30FD00AC6443 /* M3U8LineReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B38E4020EA30AB00AC6443 /* M3U8LineReader.m */; };
 		9D05821E18E52DF500A12776 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D05821D18E52DF500A12776 /* Foundation.framework */; };
 		9D05822418E52DF500A12776 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D05822218E52DF500A12776 /* InfoPlist.strings */; };
 		9D79F1291EF77CE500D16AFD /* M3U8KitDynamic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D79F1271EF77CE500D16AFD /* M3U8KitDynamic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -60,8 +77,23 @@
 		9D79F1781EF784E500D16AFD /* M3U8SegmentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1481EF784E500D16AFD /* M3U8SegmentInfoList.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		01B38E2F20EA2F8B00AC6443 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9D05821018E52DF500A12776 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D79F1241EF77CE400D16AFD;
+			remoteInfo = M3U8KitDynamic;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0177A38E1FE7B31800477DF9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		01B38E2920EA2F8A00AC6443 /* M3U8KitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = M3U8KitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		01B38E2B20EA2F8B00AC6443 /* M3U8KitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M3U8KitTests.m; sourceTree = "<group>"; };
+		01B38E2D20EA2F8B00AC6443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		01B38E3F20EA30AB00AC6443 /* M3U8LineReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8LineReader.h; sourceTree = "<group>"; };
+		01B38E4020EA30AB00AC6443 /* M3U8LineReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8LineReader.m; sourceTree = "<group>"; };
 		9D05821A18E52DF500A12776 /* M3U8Kit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework.static; includeInIndex = 0; path = M3U8Kit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D05821D18E52DF500A12776 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9D05822118E52DF500A12776 /* M3U8Kit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "M3U8Kit-Info.plist"; sourceTree = "<group>"; };
@@ -96,6 +128,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		01B38E2620EA2F8A00AC6443 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01B38E2E20EA2F8B00AC6443 /* M3U8KitDynamic.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9D05821518E52DF500A12776 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -114,6 +154,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01B38E2A20EA2F8B00AC6443 /* M3U8KitTests */ = {
+			isa = PBXGroup;
+			children = (
+				01B38E2B20EA2F8B00AC6443 /* M3U8KitTests.m */,
+				01B38E2D20EA2F8B00AC6443 /* Info.plist */,
+			);
+			path = M3U8KitTests;
+			sourceTree = "<group>";
+		};
 		9D05820F18E52DF500A12776 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +170,7 @@
 				9D79F12D1EF784E500D16AFD /* Source */,
 				9D05821F18E52DF500A12776 /* M3U8Kit */,
 				9D79F1261EF77CE500D16AFD /* M3U8KitDynamic */,
+				01B38E2A20EA2F8B00AC6443 /* M3U8KitTests */,
 				9D05821C18E52DF500A12776 /* Frameworks */,
 				9D05821B18E52DF500A12776 /* Products */,
 			);
@@ -131,6 +181,7 @@
 			children = (
 				9D05821A18E52DF500A12776 /* M3U8Kit.framework */,
 				9D79F1251EF77CE400D16AFD /* M3U8KitDynamic.framework */,
+				01B38E2920EA2F8A00AC6443 /* M3U8KitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,6 +257,8 @@
 		9D79F1421EF784E500D16AFD /* Media Playlist */ = {
 			isa = PBXGroup;
 			children = (
+				01B38E3F20EA30AB00AC6443 /* M3U8LineReader.h */,
+				01B38E4020EA30AB00AC6443 /* M3U8LineReader.m */,
 				9D79F1431EF784E500D16AFD /* M3U8MediaPlaylist.h */,
 				9D79F1441EF784E500D16AFD /* M3U8MediaPlaylist.m */,
 				9D79F1451EF784E500D16AFD /* M3U8SegmentInfo.h */,
@@ -223,6 +276,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01B38E4120EA30AB00AC6443 /* M3U8LineReader.h in Headers */,
 				9D79F16D1EF784E500D16AFD /* M3U8MediaPlaylist.h in Headers */,
 				9D79F1751EF784E500D16AFD /* M3U8SegmentInfoList.h in Headers */,
 				9D79F1591EF784E500D16AFD /* M3U8ExtXMedia.h in Headers */,
@@ -263,6 +317,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		01B38E2820EA2F8A00AC6443 /* M3U8KitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01B38E3320EA2F8B00AC6443 /* Build configuration list for PBXNativeTarget "M3U8KitTests" */;
+			buildPhases = (
+				01B38E2520EA2F8A00AC6443 /* Sources */,
+				01B38E2620EA2F8A00AC6443 /* Frameworks */,
+				01B38E2720EA2F8A00AC6443 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01B38E3020EA2F8B00AC6443 /* PBXTargetDependency */,
+			);
+			name = M3U8KitTests;
+			productName = M3U8KitTests;
+			productReference = 01B38E2920EA2F8A00AC6443 /* M3U8KitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		9D05821918E52DF500A12776 /* M3U8Kit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9D05824218E52DF500A12776 /* Build configuration list for PBXNativeTarget "M3U8Kit" */;
@@ -308,6 +380,10 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Allen;
 				TargetAttributes = {
+					01B38E2820EA2F8A00AC6443 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+					};
 					9D79F1241EF77CE400D16AFD = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
@@ -328,11 +404,19 @@
 			targets = (
 				9D05821918E52DF500A12776 /* M3U8Kit */,
 				9D79F1241EF77CE400D16AFD /* M3U8KitDynamic */,
+				01B38E2820EA2F8A00AC6443 /* M3U8KitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		01B38E2720EA2F8A00AC6443 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9D05821718E52DF500A12776 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -351,6 +435,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		01B38E2520EA2F8A00AC6443 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01B38E3E20EA308F00AC6443 /* M3U8SegmentInfoList.m in Sources */,
+				01B38E3820EA308F00AC6443 /* M3U8ExtXMediaList.m in Sources */,
+				01B38E3C20EA308F00AC6443 /* M3U8MediaPlaylist.m in Sources */,
+				01B38E3520EA308F00AC6443 /* NSURL+easy.m in Sources */,
+				01B38E3D20EA308F00AC6443 /* M3U8SegmentInfo.m in Sources */,
+				01B38E4320EA30AB00AC6443 /* M3U8LineReader.m in Sources */,
+				01B38E3B20EA308F00AC6443 /* M3U8MasterPlaylist.m in Sources */,
+				01B38E3720EA308F00AC6443 /* M3U8ExtXMedia.m in Sources */,
+				01B38E3920EA308F00AC6443 /* M3U8ExtXStreamInf.m in Sources */,
+				01B38E3420EA308F00AC6443 /* NSString+m3u8.m in Sources */,
+				01B38E3A20EA308F00AC6443 /* M3U8ExtXStreamInfList.m in Sources */,
+				01B38E3620EA308F00AC6443 /* M3U8PlaylistModel.m in Sources */,
+				01B38E2C20EA2F8B00AC6443 /* M3U8KitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9D05821418E52DF500A12776 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -366,6 +470,7 @@
 				9D79F16B1EF784E500D16AFD /* M3U8MasterPlaylist.m in Sources */,
 				9D79F1731EF784E500D16AFD /* M3U8SegmentInfo.m in Sources */,
 				9D79F1671EF784E500D16AFD /* M3U8ExtXStreamInfList.m in Sources */,
+				01B38E4220EA30AB00AC6443 /* M3U8LineReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,10 +489,19 @@
 				9D79F1641EF784E500D16AFD /* M3U8ExtXStreamInf.m in Sources */,
 				9D79F1561EF784E500D16AFD /* M3U8PlaylistModel.m in Sources */,
 				9D79F14C1EF784E500D16AFD /* NSString+m3u8.m in Sources */,
+				01B38E4420EA30FD00AC6443 /* M3U8LineReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		01B38E3020EA2F8B00AC6443 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9D79F1241EF77CE400D16AFD /* M3U8KitDynamic */;
+			targetProxy = 01B38E2F20EA2F8B00AC6443 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9D05822218E52DF500A12776 /* InfoPlist.strings */ = {
@@ -401,6 +515,80 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		01B38E3120EA2F8B00AC6443 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = M3U8KitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				PRODUCT_BUNDLE_IDENTIFIER = com.m3u8.M3U8KitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		01B38E3220EA2F8B00AC6443 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = M3U8KitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.m3u8.M3U8KitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		9D05824018E52DF500A12776 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -574,6 +762,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		01B38E3320EA2F8B00AC6443 /* Build configuration list for PBXNativeTarget "M3U8KitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01B38E3120EA2F8B00AC6443 /* Debug */,
+				01B38E3220EA2F8B00AC6443 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9D05821318E52DF500A12776 /* Build configuration list for PBXProject "M3U8Kit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

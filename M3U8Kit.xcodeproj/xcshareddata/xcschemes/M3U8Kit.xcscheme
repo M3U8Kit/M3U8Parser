@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "01B38E2820EA2F8A00AC6443"
+               BuildableName = "M3U8KitTests.xctest"
+               BlueprintName = "M3U8KitTests"
+               ReferencedContainer = "container:M3U8Kit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9D05821918E52DF500A12776"
+            BuildableName = "M3U8Kit.framework"
+            BlueprintName = "M3U8Kit"
+            ReferencedContainer = "container:M3U8Kit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
