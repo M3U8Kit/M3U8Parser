@@ -50,7 +50,7 @@ If you prefer not to use either of the above mentioned dependency managers, you 
 - Asynchronous
 
 ```objc
-[M3U8PlaylistModel loadAsynchronouslyWithURL:<#URL#>"]
+[M3U8PlaylistModel loadAsynchronouslyWithURL:<#URL#>]
                                       completion:^(M3U8PlaylistModel *model, NSError *error) {
                                       }];
 ```
