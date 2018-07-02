@@ -47,7 +47,22 @@
 @property (readonly, nonatomic, strong) M3U8MediaPlaylist *audioPl;
 //@property (readonly, nonatomic, strong) M3U8MediaPlaylist *subtitlePl;
 
-//
+/**
+ Load the specific url and get result model with completion block.
+ 
+ @param URL M3U8 URL
+ @param completion when the url resource loaded, completion block could get model and detail error;
+ */
++ (void)loadAsynchronouslyWithURL:(NSURL *)URL
+                       completion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion;
+
+/**
+ this method is synchronous. so may be **block your thread** that call this method.
+ 
+ @param URL M3U8 URL
+ @param error error pointer
+ @return playlist model
+ */
 - (id)initWithURL:(NSURL *)URL error:(NSError **)error;
 - (id)initWithString:(NSString *)string baseURL:(NSURL *)URL error:(NSError **)error;
 
