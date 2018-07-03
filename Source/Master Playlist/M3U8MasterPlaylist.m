@@ -9,7 +9,7 @@
 #import "M3U8MasterPlaylist.h"
 #import "NSString+m3u8.h"
 #import "M3U8TagsAndAttributes.h"
-#import "NSURL+easy.h"
+#import "NSURL+m3u8.h"
 
 // #define M3U8_EXT_X_STREAM_INF_CLOSED_CAPTIONS   @"CLOSED-CAPTIONS" // The value can be either a quoted-string or an enumerated-string with the value NONE.
 //    NSArray *quotedValueAttrs = @[@"URI", @"KEYFORMAT", @"KEYFORMATVERSIONS", @"GROUP-ID", @"LANGUAGE", @"ASSOC-LANGUAGE", @"NAME", @"INSTREAM-ID", @"CHARACTERISTICS", @"CODECS", @"AUDIO", @"VIDEO", @"SUBTITLES", @"BYTERANGE"];

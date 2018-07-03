@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "M3U8PlaylistModel.h"
+#import "NSURL+m3u8.h"
 
 @interface M3U8KitTests : XCTestCase
 
@@ -27,8 +27,8 @@
 
 - (void)testLoadURLAsynchronously {
     XCTestExpectation *expectation = [self expectationWithDescription:@"load URL failed!"];
-    [M3U8PlaylistModel loadAsynchronouslyWithURL:[NSURL URLWithString:@"https://hls.ted.com/talks/2639.m3u8"]
-                                      completion:^(M3U8PlaylistModel *model, NSError *error) {
+    NSURL *url = [NSURL URLWithString:@"https://hls.ted.com/talks/2639.m3u8"];
+    [url loadM3U8AsynchronouslyCompletion:^(M3U8PlaylistModel *model, NSError *error) {
                                           if (error) {
                                               return;
                                           }
