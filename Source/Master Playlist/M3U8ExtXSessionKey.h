@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
-NS_ASSUME_NONNULL_BEGIN
-
 @interface M3U8ExtXSessionKey : NSObject
 
-@end
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
-NS_ASSUME_NONNULL_END
+- (NSString *)method;
+- (NSString *)url;
+- (NSString *)keyFormat;
+
+@end

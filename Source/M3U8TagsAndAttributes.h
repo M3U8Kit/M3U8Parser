@@ -218,6 +218,15 @@
 
 
 
+/**
+ @format   #EXT-X-SESSION-KEY:<n>   where n is an integer indicating the protocol version.
+ */
+#define M3U8_EXT_X_SESSION_KEY                  @"#EXT-X-SESSION-KEY:"
+
+
+
+
+
 
 
 

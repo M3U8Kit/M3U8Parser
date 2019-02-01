@@ -27,13 +27,15 @@
         
         NSError *error;
         
-        M3U8PlaylistModel *model = [[M3U8PlaylistModel alloc] initWithURL:[NSURL URLWithString:@"https://hls.ted.com/talks/2639.m3u8?preroll=Thousands"] error:&error];
-        
+        //NSURL* url = [[NSBundle main] URLForResource:@"769" withExtension:@"m3u8"];
+        NSURL* url =  [NSURL URLWithString:@"https://hls.ted.com/talks/2639.m3u8?preroll=Thousands"]
+        M3U8PlaylistModel *model = [[M3U8PlaylistModel alloc] initWithURL:url error:&error];
+
         if (error) {
             NSLog(@"error: %@", error);
         }
         
-        
+        NSLog(@"Session Key %@", model.masterPlaylist.xSessionKey);
         
         NSLog(@"segments names: %@", [model segmentNamesForPlaylist:model.audioPl]);
         

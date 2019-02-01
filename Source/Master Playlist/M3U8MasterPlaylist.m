@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) NSString *version;
 
+@property (nonatomic, strong) M3U8ExtXSessionKey *xSessionKey;
+
 @property (nonatomic, strong) M3U8ExtXStreamInfList *xStreamList;
 @property (nonatomic, strong) M3U8ExtXMediaList *xMediaList;
 
@@ -70,6 +72,15 @@
         if ([line hasPrefix:M3U8_EXT_X_VERSION]) {
             NSRange r_version = [line rangeOfString:M3U8_EXT_X_VERSION];
             self.version = [line substringFromIndex:r_version.location + r_version.length];
+        }
+       
+        else if ([line hasPrefix:M3U8_EXT_X_SESSION_KEY]) {
+            NSRange range = [line rangeOfString:M3U8_EXT_X_SESSION_KEY];
+            NSString *attribute_list = [line substringFromIndex:range.location + range.length];
+            NSMutableDictionary *attr = [self attributesFromString:attribute_list];
+            
+            M3U8ExtXSessionKey *sessionKey = [[M3U8ExtXSessionKey alloc]initWithDictionary:attr];
+            self.xSessionKey = sessionKey;
         }
         
         // #EXT-X-STREAM-INF:AUDIO="600k",BANDWIDTH=915685,PROGRAM-ID=1,CODECS="avc1.42c01e,mp4a.40.2",RESOLUTION=640x360,SUBTITLES="subs"

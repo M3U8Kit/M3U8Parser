@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "M3U8ExtXStreamInfList.h"
+#import "M3U8ExtXSessionKey.h"
 #import "M3U8ExtXMediaList.h"
 
 @interface M3U8MasterPlaylist : NSObject
@@ -20,8 +21,11 @@
 @property (readonly, nonatomic, copy) NSURL *baseURL;
 @property (readonly, nonatomic, copy) NSURL *originalURL;
 
+@property (readonly, nonatomic, strong) M3U8ExtXSessionKey *xSessionKey;
+
 @property (readonly, nonatomic, strong) M3U8ExtXStreamInfList *xStreamList;
 @property (readonly, nonatomic, strong) M3U8ExtXMediaList *xMediaList;
+
 - (NSArray *)allStreamURLs;
 
 - (M3U8ExtXStreamInfList *)alternativeXStreamInfList;
