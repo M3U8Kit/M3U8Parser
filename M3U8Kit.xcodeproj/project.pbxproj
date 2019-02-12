@@ -75,6 +75,10 @@
 		9D79F1761EF784E500D16AFD /* M3U8SegmentInfoList.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D79F1471EF784E500D16AFD /* M3U8SegmentInfoList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D79F1771EF784E500D16AFD /* M3U8SegmentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1481EF784E500D16AFD /* M3U8SegmentInfoList.m */; };
 		9D79F1781EF784E500D16AFD /* M3U8SegmentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1481EF784E500D16AFD /* M3U8SegmentInfoList.m */; };
+		F97F1AAF2204979A006F5717 /* M3U8ExtXSessionKey.h in Headers */ = {isa = PBXBuildFile; fileRef = F97F1AAD2204979A006F5717 /* M3U8ExtXSessionKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F97F1AB02204979A006F5717 /* M3U8ExtXSessionKey.h in Headers */ = {isa = PBXBuildFile; fileRef = F97F1AAD2204979A006F5717 /* M3U8ExtXSessionKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F97F1AB12204979A006F5717 /* M3U8ExtXSessionKey.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F1AAE2204979A006F5717 /* M3U8ExtXSessionKey.m */; };
+		F97F1AB22204979A006F5717 /* M3U8ExtXSessionKey.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F1AAE2204979A006F5717 /* M3U8ExtXSessionKey.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +129,8 @@
 		9D79F1461EF784E500D16AFD /* M3U8SegmentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8SegmentInfo.m; sourceTree = "<group>"; };
 		9D79F1471EF784E500D16AFD /* M3U8SegmentInfoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8SegmentInfoList.h; sourceTree = "<group>"; };
 		9D79F1481EF784E500D16AFD /* M3U8SegmentInfoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8SegmentInfoList.m; sourceTree = "<group>"; };
+		F97F1AAD2204979A006F5717 /* M3U8ExtXSessionKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXSessionKey.h; sourceTree = "<group>"; };
+		F97F1AAE2204979A006F5717 /* M3U8ExtXSessionKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXSessionKey.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +248,8 @@
 			children = (
 				9D79F1381EF784E500D16AFD /* M3U8ExtXMedia.h */,
 				9D79F1391EF784E500D16AFD /* M3U8ExtXMedia.m */,
+				F97F1AAD2204979A006F5717 /* M3U8ExtXSessionKey.h */,
+				F97F1AAE2204979A006F5717 /* M3U8ExtXSessionKey.m */,
 				9D79F13A1EF784E500D16AFD /* M3U8ExtXMediaList.h */,
 				9D79F13B1EF784E500D16AFD /* M3U8ExtXMediaList.m */,
 				9D79F13C1EF784E500D16AFD /* M3U8ExtXStreamInf.h */,
@@ -288,6 +296,7 @@
 				9D79F1611EF784E500D16AFD /* M3U8ExtXStreamInf.h in Headers */,
 				9D79F1491EF784E500D16AFD /* NSString+m3u8.h in Headers */,
 				9D79F1651EF784E500D16AFD /* M3U8ExtXStreamInfList.h in Headers */,
+				F97F1AAF2204979A006F5717 /* M3U8ExtXSessionKey.h in Headers */,
 				9D79F14D1EF784E500D16AFD /* NSURL+m3u8.h in Headers */,
 				9D79F1691EF784E500D16AFD /* M3U8MasterPlaylist.h in Headers */,
 			);
@@ -310,6 +319,7 @@
 				9D79F1621EF784E500D16AFD /* M3U8ExtXStreamInf.h in Headers */,
 				9D79F14E1EF784E500D16AFD /* NSURL+m3u8.h in Headers */,
 				9D79F16A1EF784E500D16AFD /* M3U8MasterPlaylist.h in Headers */,
+				F97F1AB02204979A006F5717 /* M3U8ExtXSessionKey.h in Headers */,
 				9D79F15A1EF784E500D16AFD /* M3U8ExtXMedia.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +481,7 @@
 				9D79F1731EF784E500D16AFD /* M3U8SegmentInfo.m in Sources */,
 				9D79F1671EF784E500D16AFD /* M3U8ExtXStreamInfList.m in Sources */,
 				01B38E4220EA30AB00AC6443 /* M3U8LineReader.m in Sources */,
+				F97F1AB12204979A006F5717 /* M3U8ExtXSessionKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +501,7 @@
 				9D79F1561EF784E500D16AFD /* M3U8PlaylistModel.m in Sources */,
 				9D79F14C1EF784E500D16AFD /* NSString+m3u8.m in Sources */,
 				01B38E4420EA30FD00AC6443 /* M3U8LineReader.m in Sources */,
+				F97F1AB22204979A006F5717 /* M3U8ExtXSessionKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
