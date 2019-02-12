@@ -52,8 +52,6 @@
  */
 #define M3U8_EXT_X_MEDIA_SEQUENCE           @"#EXT-X-MEDIA-SEQUENCE:"
 
-
-
 /// EXT-X-KEY
 /**
  @format  #EXT-X-KEY:<attribute-list>     ps: We may need download the key file at URI.
@@ -66,6 +64,81 @@
 #define M3U8_EXT_X_KEY_IV                   @"IV"   // The value is a hexadecimal-integer that specifies the Initialization Vector to be used with the key.
 #define M3U8_EXT_X_KEY_KEYFORMAT            @"KEYFORMAT"    // The value is a quoted-string that specifies how the key is represented in the resource identified by the URI
 #define M3U8_EXT_X_KEY_KEYFORMATVERSIONS    @"KEYFORMATVERSIONS" // The value is a quoted-string containing one or more positive integers separated by the "/" character (for example, "1/3").
+
+/// M3U8_EXT_X_SESSION_KEY
+/**
+ Preload EXT-X-KEY infomations
+ 
+ @format   #EXT-X-SESSION-KEY:<attribute list>
+ 
+ All attributes defined for the EXT-X-KEY tag (Section 4.3.2.4) are
+ also defined for the EXT-X-SESSION-KEY, except that the value of the
+ METHOD attribute MUST NOT be NONE.  If an EXT-X-SESSION-KEY is used,
+ the values of the METHOD, KEYFORMAT and KEYFORMATVERSIONS attributes
+ MUST match any EXT-X-KEY with the same URI value.
+ 
+ EXT-X-SESSION-KEY tags SHOULD be added if multiple Variant Streams or
+ Renditions use the same encryption keys and formats.  A EXT-X
+ -SESSION-KEY tag is not associated with any particular Media
+ Playlist.
+ 
+ A Master Playlist MUST NOT contain more than one EXT-X-SESSION-KEY
+ tag with the same METHOD, URI, IV, KEYFORMAT, and KEYFORMATVERSIONS
+ attribute values.
+ 
+ The EXT-X-SESSION-KEY tag is optional..
+ */
+#define M3U8_EXT_X_SESSION_KEY                    @"#EXT-X-SESSION-KEY:"
+
+/// M3U8_EXT_X_SESSION_DATA
+/**
+ Some customized data between Server & Client
+ The EXT-X-SESSION-DATA tag allows arbitrary session data to be
+ carried in a Master Playlist.
+ 
+ @format   #EXT-X-SESSION-DATA:<attribute list>  .
+ @example  #EXT-X-SESSION-DATA:DATA-ID="com.example.lyrics",URI="lyrics.json"
+ @example  #EXT-X-SESSION-DATA:DATA-ID="com.example.title",LANGUAGE="en",VALUE="This is an example"
+ 
+ 
+ The following attributes are defined:
+ 
+ DATA-ID
+ 
+ The value of DATA-ID is a quoted-string which identifies that data
+ value.  The DATA-ID SHOULD conform to a reverse DNS naming
+ convention, such as "com.example.movie.title"; however, there is
+ no central registration authority, so Playlist authors SHOULD take
+ care to choose a value which is unlikely to collide with others.
+ This attribute is REQUIRED.
+ 
+ VALUE
+ 
+ VALUE is a quoted-string.  It contains the data identified by
+ DATA-ID.  If the LANGUAGE is specified, VALUE SHOULD contain a
+ human-readable string written in the specified language.
+ 
+ URI
+ 
+ The value is a quoted-string containing a URI.  The resource
+ identified by the URI MUST be formatted as JSON [RFC7159];
+ otherwise, clients may fail to interpret the resource.
+ 
+ LANGUAGE
+ 
+ The value is a quoted-string containing a language tag [RFC5646]
+ that identifies the language of the VALUE.  This attribute is
+ OPTIONAL.
+ 
+ Each EXT-X-SESSION-DATA tag MUST contain either a VALUE or URI
+ attribute, but not both.
+ 
+ A Playlist MAY contain multiple EXT-X-SESSION-DATA tags with the same
+ DATA-ID attribute.  A Playlist MUST NOT contain more than one EXT-X
+ -SESSION-DATA tag with the same DATA-ID attribute and the same
+ LANGUAGE attribute.
+ */
+#define M3U8_EXT_X_SESSION_DATA                 @"EXT-X-SESSION-DATA:"
 
 
 /**
@@ -222,14 +295,6 @@
  @format   #EXT-X-SESSION-KEY:<n>   where n is an integer indicating the protocol version.
  */
 #define M3U8_EXT_X_SESSION_KEY                  @"#EXT-X-SESSION-KEY:"
-
-
-
-
-
-
-
-
 
 
 

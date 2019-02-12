@@ -33,4 +33,9 @@
 - (NSString *)keyFormat {
     return self.dictionary[M3U8_EXT_X_KEY_KEYFORMAT];
 }
+
+- (NSString *)iV {
+    return self.dictionary[M3U8_EXT_X_KEY_IV];
+}
+
 @end

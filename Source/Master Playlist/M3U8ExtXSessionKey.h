@@ -14,5 +14,6 @@
 - (NSString *)method;
 - (NSString *)url;
 - (NSString *)keyFormat;
+- (NSString *)iV;
 
 @end
