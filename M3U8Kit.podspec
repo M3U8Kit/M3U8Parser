@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint MaxLeap.podspec' to ensure this is a
+# Be sure to run `pod lib lint M3U8Kit.podspec' to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -20,10 +20,10 @@ Pod::Spec.new do |spec|
   # spec.description      = <<-DESC
   #                      DESC
 
-  spec.homepage = "https://github.com/alexsun/M3U8Paser.git"
+  spec.homepage = "https://github.com/alexsun/M3U8Parser.git"
   spec.license = 'MIT'
   spec.author = "alexsun"
-  spec.source = { :git => "https://github.com/alexsun/M3U8Paser.git", :tag => spec.version }
+  spec.source = { :git => "https://github.com/alexsun/M3U8Parser.git", :tag => spec.version }
   # spec.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   spec.ios.deployment_target = '6.0'
