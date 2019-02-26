@@ -8,16 +8,29 @@
 
 #import "M3U8SegmentInfo.h"
 #import "M3U8TagsAndAttributes.h"
+#import "M3U8ExtXKey.h"
 
 @interface M3U8SegmentInfo()
 @property (nonatomic, strong) NSDictionary *dictionary;
+
 @end
 
 @implementation M3U8SegmentInfo
 
+@synthesize xKey = _xKey;
+
+- (instancetype)init {
+    return [self initWithDictionary:nil xKey:nil];
+}
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    return [self initWithDictionary:dictionary xKey:nil];
+}
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary xKey:(M3U8ExtXKey *)key {
     if (self = [super init]) {
         self.dictionary = dictionary;
+        _xKey = key;
     }
     return self;
 }
@@ -47,7 +60,9 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithString:self.dictionary.description];
+    NSMutableDictionary *dict = [self.dictionary mutableCopy];
+    [dict addEntriesFromDictionary:[self.xKey valueForKey:@"dictionary"]];
+    return dict.description;
 }
 
 @end

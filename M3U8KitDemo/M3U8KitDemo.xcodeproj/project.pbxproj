@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011F54FB222F78AA00966918 /* M3U8KitDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 011F54E5222F771C00966918 /* M3U8KitDynamic.framework */; };
 		9D1BF81C1906009800E38ABD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1BF81B1906009800E38ABD /* Foundation.framework */; };
 		9D1BF81E1906009800E38ABD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1BF81D1906009800E38ABD /* CoreGraphics.framework */; };
 		9D1BF8201906009800E38ABD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1BF81F1906009800E38ABD /* UIKit.framework */; };
@@ -17,28 +18,35 @@
 		9D1BF8321906009800E38ABD /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D1BF8301906009800E38ABD /* Main_iPad.storyboard */; };
 		9D1BF8351906009800E38ABD /* ILSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1BF8341906009800E38ABD /* ILSViewController.m */; };
 		9D1BF8371906009800E38ABD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D1BF8361906009800E38ABD /* Images.xcassets */; };
-		9D1BF83E1906009800E38ABD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1BF83D1906009800E38ABD /* XCTest.framework */; };
-		9D1BF83F1906009800E38ABD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1BF81B1906009800E38ABD /* Foundation.framework */; };
-		9D1BF8401906009800E38ABD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1BF81F1906009800E38ABD /* UIKit.framework */; };
-		9D1BF8481906009800E38ABD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9D1BF8461906009800E38ABD /* InfoPlist.strings */; };
-		9D1BF84A1906009800E38ABD /* M3U8KitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1BF8491906009800E38ABD /* M3U8KitDemoTests.m */; };
 		9D1BF8541906010B00E38ABD /* 769.m3u8 in Resources */ = {isa = PBXBuildFile; fileRef = 9D1BF8531906010B00E38ABD /* 769.m3u8 */; };
-		A4C2068C931E595DCC87B1B7 /* libPods-M3U8KitDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5282B237416BD68A28D0A3 /* libPods-M3U8KitDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9D1BF8411906009800E38ABD /* PBXContainerItemProxy */ = {
+		011F54E2222F771C00966918 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9D1BF8101906009800E38ABD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 9D1BF8171906009800E38ABD;
-			remoteInfo = M3U8KitDemo;
+			containerPortal = 011F54DC222F771C00966918 /* M3U8Kit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D05821A18E52DF500A12776;
+			remoteInfo = M3U8Kit;
+		};
+		011F54E4222F771C00966918 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 011F54DC222F771C00966918 /* M3U8Kit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D79F1251EF77CE400D16AFD;
+			remoteInfo = M3U8KitDynamic;
+		};
+		011F54E6222F771C00966918 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 011F54DC222F771C00966918 /* M3U8Kit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 01B38E2920EA2F8A00AC6443;
+			remoteInfo = M3U8KitTests;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		134A214AFDFF562290E57F1C /* Pods-M3U8KitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-M3U8KitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-M3U8KitDemo/Pods-M3U8KitDemo.release.xcconfig"; sourceTree = "<group>"; };
-		2B08E7802D6C45B9D4A05099 /* Pods-M3U8KitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-M3U8KitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-M3U8KitDemo/Pods-M3U8KitDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		011F54DC222F771C00966918 /* M3U8Kit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = M3U8Kit.xcodeproj; path = ../M3U8Kit.xcodeproj; sourceTree = "<group>"; };
 		9D1BF8181906009800E38ABD /* M3U8KitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = M3U8KitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D1BF81B1906009800E38ABD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9D1BF81D1906009800E38ABD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -54,13 +62,7 @@
 		9D1BF8331906009800E38ABD /* ILSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILSViewController.h; sourceTree = "<group>"; };
 		9D1BF8341906009800E38ABD /* ILSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ILSViewController.m; sourceTree = "<group>"; };
 		9D1BF8361906009800E38ABD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9D1BF83C1906009800E38ABD /* M3U8KitDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = M3U8KitDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D1BF83D1906009800E38ABD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		9D1BF8451906009800E38ABD /* M3U8KitDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "M3U8KitDemoTests-Info.plist"; sourceTree = "<group>"; };
-		9D1BF8471906009800E38ABD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9D1BF8491906009800E38ABD /* M3U8KitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M3U8KitDemoTests.m; sourceTree = "<group>"; };
 		9D1BF8531906010B00E38ABD /* 769.m3u8 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 769.m3u8; sourceTree = "<group>"; };
-		AD5282B237416BD68A28D0A3 /* libPods-M3U8KitDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-M3U8KitDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,34 +70,33 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				011F54FB222F78AA00966918 /* M3U8KitDynamic.framework in Frameworks */,
 				9D1BF81E1906009800E38ABD /* CoreGraphics.framework in Frameworks */,
 				9D1BF8201906009800E38ABD /* UIKit.framework in Frameworks */,
 				9D1BF81C1906009800E38ABD /* Foundation.framework in Frameworks */,
-				A4C2068C931E595DCC87B1B7 /* libPods-M3U8KitDemo.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		9D1BF8391906009800E38ABD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9D1BF83E1906009800E38ABD /* XCTest.framework in Frameworks */,
-				9D1BF8401906009800E38ABD /* UIKit.framework in Frameworks */,
-				9D1BF83F1906009800E38ABD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		011F54DD222F771C00966918 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				011F54E3222F771C00966918 /* M3U8Kit.framework */,
+				011F54E5222F771C00966918 /* M3U8KitDynamic.framework */,
+				011F54E7222F771C00966918 /* M3U8KitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9D1BF80F1906009800E38ABD = {
 			isa = PBXGroup;
 			children = (
+				011F54DC222F771C00966918 /* M3U8Kit.xcodeproj */,
 				9D1BF8211906009800E38ABD /* M3U8KitDemo */,
-				9D1BF8431906009800E38ABD /* M3U8KitDemoTests */,
 				9D1BF81A1906009800E38ABD /* Frameworks */,
 				9D1BF8191906009800E38ABD /* Products */,
-				B6A6B3E8AF92B17B43FEA95B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				9D1BF8181906009800E38ABD /* M3U8KitDemo.app */,
-				9D1BF83C1906009800E38ABD /* M3U8KitDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,8 +114,6 @@
 				9D1BF81B1906009800E38ABD /* Foundation.framework */,
 				9D1BF81D1906009800E38ABD /* CoreGraphics.framework */,
 				9D1BF81F1906009800E38ABD /* UIKit.framework */,
-				9D1BF83D1906009800E38ABD /* XCTest.framework */,
-				AD5282B237416BD68A28D0A3 /* libPods-M3U8KitDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -147,33 +145,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9D1BF8431906009800E38ABD /* M3U8KitDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				9D1BF8491906009800E38ABD /* M3U8KitDemoTests.m */,
-				9D1BF8441906009800E38ABD /* Supporting Files */,
-			);
-			path = M3U8KitDemoTests;
-			sourceTree = "<group>";
-		};
-		9D1BF8441906009800E38ABD /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				9D1BF8451906009800E38ABD /* M3U8KitDemoTests-Info.plist */,
-				9D1BF8461906009800E38ABD /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B6A6B3E8AF92B17B43FEA95B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				2B08E7802D6C45B9D4A05099 /* Pods-M3U8KitDemo.debug.xcconfig */,
-				134A214AFDFF562290E57F1C /* Pods-M3U8KitDemo.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -181,7 +152,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9D1BF84D1906009800E38ABD /* Build configuration list for PBXNativeTarget "M3U8KitDemo" */;
 			buildPhases = (
-				702B7C09958A3F7A4AFF7E02 /* [CP] Check Pods Manifest.lock */,
 				9D1BF8141906009800E38ABD /* Sources */,
 				9D1BF8151906009800E38ABD /* Frameworks */,
 				9D1BF8161906009800E38ABD /* Resources */,
@@ -195,24 +165,6 @@
 			productReference = 9D1BF8181906009800E38ABD /* M3U8KitDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9D1BF83B1906009800E38ABD /* M3U8KitDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9D1BF8501906009800E38ABD /* Build configuration list for PBXNativeTarget "M3U8KitDemoTests" */;
-			buildPhases = (
-				9D1BF8381906009800E38ABD /* Sources */,
-				9D1BF8391906009800E38ABD /* Frameworks */,
-				9D1BF83A1906009800E38ABD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9D1BF8421906009800E38ABD /* PBXTargetDependency */,
-			);
-			name = M3U8KitDemoTests;
-			productName = M3U8KitDemoTests;
-			productReference = 9D1BF83C1906009800E38ABD /* M3U8KitDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -220,15 +172,11 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ILS;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = iLegendsoft;
 				TargetAttributes = {
 					9D1BF8171906009800E38ABD = {
-						DevelopmentTeam = E5P758W4PT;
-						ProvisioningStyle = Manual;
-					};
-					9D1BF83B1906009800E38ABD = {
-						TestTargetID = 9D1BF8171906009800E38ABD;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -243,13 +191,42 @@
 			mainGroup = 9D1BF80F1906009800E38ABD;
 			productRefGroup = 9D1BF8191906009800E38ABD /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 011F54DD222F771C00966918 /* Products */;
+					ProjectRef = 011F54DC222F771C00966918 /* M3U8Kit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9D1BF8171906009800E38ABD /* M3U8KitDemo */,
-				9D1BF83B1906009800E38ABD /* M3U8KitDemoTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		011F54E3222F771C00966918 /* M3U8Kit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework.static;
+			path = M3U8Kit.framework;
+			remoteRef = 011F54E2222F771C00966918 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		011F54E5222F771C00966918 /* M3U8KitDynamic.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = M3U8KitDynamic.framework;
+			remoteRef = 011F54E4222F771C00966918 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		011F54E7222F771C00966918 /* M3U8KitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = M3U8KitTests.xctest;
+			remoteRef = 011F54E6222F771C00966918 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9D1BF8161906009800E38ABD /* Resources */ = {
@@ -264,36 +241,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9D1BF83A1906009800E38ABD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9D1BF8481906009800E38ABD /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		702B7C09958A3F7A4AFF7E02 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-M3U8KitDemo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9D1BF8141906009800E38ABD /* Sources */ = {
@@ -306,23 +254,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9D1BF8381906009800E38ABD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9D1BF84A1906009800E38ABD /* M3U8KitDemoTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		9D1BF8421906009800E38ABD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 9D1BF8171906009800E38ABD /* M3U8KitDemo */;
-			targetProxy = 9D1BF8411906009800E38ABD /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9D1BF8241906009800E38ABD /* InfoPlist.strings */ = {
@@ -349,14 +281,6 @@
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
-		9D1BF8461906009800E38ABD /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9D1BF8471906009800E38ABD /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -368,14 +292,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -398,7 +330,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -413,14 +344,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -436,7 +375,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -445,78 +383,41 @@
 		};
 		9D1BF84E1906009800E38ABD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B08E7802D6C45B9D4A05099 /* Pods-M3U8KitDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				DEVELOPMENT_TEAM = E5P758W4PT;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "M3U8KitDemo/M3U8KitDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "M3U8KitDemo/M3U8KitDemo-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexsun.M3U8KitDemo;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.M3U8Kit.M3U8KitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "XC Ad Hoc: *";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		9D1BF84F1906009800E38ABD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 134A214AFDFF562290E57F1C /* Pods-M3U8KitDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "M3U8KitDemo/M3U8KitDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "M3U8KitDemo/M3U8KitDemo-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexsun.M3U8KitDemo;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.M3U8Kit.M3U8KitDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		9D1BF8511906009800E38ABD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/M3U8KitDemo.app/M3U8KitDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "M3U8KitDemo/M3U8KitDemo-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "M3U8KitDemoTests/M3U8KitDemoTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ilegendsoft.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		9D1BF8521906009800E38ABD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/M3U8KitDemo.app/M3U8KitDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "M3U8KitDemo/M3U8KitDemo-Prefix.pch";
-				INFOPLIST_FILE = "M3U8KitDemoTests/M3U8KitDemoTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ilegendsoft.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -537,15 +438,6 @@
 			buildConfigurations = (
 				9D1BF84E1906009800E38ABD /* Debug */,
 				9D1BF84F1906009800E38ABD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		9D1BF8501906009800E38ABD /* Build configuration list for PBXNativeTarget "M3U8KitDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9D1BF8511906009800E38ABD /* Debug */,
-				9D1BF8521906009800E38ABD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

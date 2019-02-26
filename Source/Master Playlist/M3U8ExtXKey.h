@@ -1,5 +1,5 @@
 //
-//  M3U8ExtXSessionKey.h
+//  M3U8ExtXKey.h
 //  M3U8Kit
 //
 //  Created by Pierre Perrin on 01/02/2019.
@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@interface M3U8ExtXSessionKey : NSObject
+@interface M3U8ExtXKey : NSObject
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

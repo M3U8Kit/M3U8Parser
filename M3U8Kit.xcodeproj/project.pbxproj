@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		011F5487222E73BA00966918 /* StringExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 011F5486222E73BA00966918 /* StringExample.m */; };
 		01B38E2C20EA2F8B00AC6443 /* M3U8KitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B38E2B20EA2F8B00AC6443 /* M3U8KitTests.m */; };
 		01B38E2E20EA2F8B00AC6443 /* M3U8KitDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D79F1251EF77CE400D16AFD /* M3U8KitDynamic.framework */; };
 		01B38E3420EA308F00AC6443 /* NSString+m3u8.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1301EF784E500D16AFD /* NSString+m3u8.m */; };
@@ -75,10 +76,10 @@
 		9D79F1761EF784E500D16AFD /* M3U8SegmentInfoList.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D79F1471EF784E500D16AFD /* M3U8SegmentInfoList.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D79F1771EF784E500D16AFD /* M3U8SegmentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1481EF784E500D16AFD /* M3U8SegmentInfoList.m */; };
 		9D79F1781EF784E500D16AFD /* M3U8SegmentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1481EF784E500D16AFD /* M3U8SegmentInfoList.m */; };
-		F97F1AAF2204979A006F5717 /* M3U8ExtXSessionKey.h in Headers */ = {isa = PBXBuildFile; fileRef = F97F1AAD2204979A006F5717 /* M3U8ExtXSessionKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F97F1AB02204979A006F5717 /* M3U8ExtXSessionKey.h in Headers */ = {isa = PBXBuildFile; fileRef = F97F1AAD2204979A006F5717 /* M3U8ExtXSessionKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F97F1AB12204979A006F5717 /* M3U8ExtXSessionKey.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F1AAE2204979A006F5717 /* M3U8ExtXSessionKey.m */; };
-		F97F1AB22204979A006F5717 /* M3U8ExtXSessionKey.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F1AAE2204979A006F5717 /* M3U8ExtXSessionKey.m */; };
+		F97F1AAF2204979A006F5717 /* M3U8ExtXKey.h in Headers */ = {isa = PBXBuildFile; fileRef = F97F1AAD2204979A006F5717 /* M3U8ExtXKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F97F1AB02204979A006F5717 /* M3U8ExtXKey.h in Headers */ = {isa = PBXBuildFile; fileRef = F97F1AAD2204979A006F5717 /* M3U8ExtXKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F97F1AB12204979A006F5717 /* M3U8ExtXKey.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F1AAE2204979A006F5717 /* M3U8ExtXKey.m */; };
+		F97F1AB22204979A006F5717 /* M3U8ExtXKey.m in Sources */ = {isa = PBXBuildFile; fileRef = F97F1AAE2204979A006F5717 /* M3U8ExtXKey.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		011F5485222E73BA00966918 /* StringExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringExample.h; sourceTree = "<group>"; };
+		011F5486222E73BA00966918 /* StringExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringExample.m; sourceTree = "<group>"; };
 		0177A38E1FE7B31800477DF9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		01B38E2920EA2F8A00AC6443 /* M3U8KitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = M3U8KitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B38E2B20EA2F8B00AC6443 /* M3U8KitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M3U8KitTests.m; sourceTree = "<group>"; };
@@ -129,8 +132,8 @@
 		9D79F1461EF784E500D16AFD /* M3U8SegmentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8SegmentInfo.m; sourceTree = "<group>"; };
 		9D79F1471EF784E500D16AFD /* M3U8SegmentInfoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8SegmentInfoList.h; sourceTree = "<group>"; };
 		9D79F1481EF784E500D16AFD /* M3U8SegmentInfoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8SegmentInfoList.m; sourceTree = "<group>"; };
-		F97F1AAD2204979A006F5717 /* M3U8ExtXSessionKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXSessionKey.h; sourceTree = "<group>"; };
-		F97F1AAE2204979A006F5717 /* M3U8ExtXSessionKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXSessionKey.m; sourceTree = "<group>"; };
+		F97F1AAD2204979A006F5717 /* M3U8ExtXKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXKey.h; sourceTree = "<group>"; };
+		F97F1AAE2204979A006F5717 /* M3U8ExtXKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXKey.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 			children = (
 				01B38E2B20EA2F8B00AC6443 /* M3U8KitTests.m */,
 				01B38E2D20EA2F8B00AC6443 /* Info.plist */,
+				011F5485222E73BA00966918 /* StringExample.h */,
+				011F5486222E73BA00966918 /* StringExample.m */,
 			);
 			path = M3U8KitTests;
 			sourceTree = "<group>";
@@ -248,8 +253,8 @@
 			children = (
 				9D79F1381EF784E500D16AFD /* M3U8ExtXMedia.h */,
 				9D79F1391EF784E500D16AFD /* M3U8ExtXMedia.m */,
-				F97F1AAD2204979A006F5717 /* M3U8ExtXSessionKey.h */,
-				F97F1AAE2204979A006F5717 /* M3U8ExtXSessionKey.m */,
+				F97F1AAD2204979A006F5717 /* M3U8ExtXKey.h */,
+				F97F1AAE2204979A006F5717 /* M3U8ExtXKey.m */,
 				9D79F13A1EF784E500D16AFD /* M3U8ExtXMediaList.h */,
 				9D79F13B1EF784E500D16AFD /* M3U8ExtXMediaList.m */,
 				9D79F13C1EF784E500D16AFD /* M3U8ExtXStreamInf.h */,
@@ -296,7 +301,7 @@
 				9D79F1611EF784E500D16AFD /* M3U8ExtXStreamInf.h in Headers */,
 				9D79F1491EF784E500D16AFD /* NSString+m3u8.h in Headers */,
 				9D79F1651EF784E500D16AFD /* M3U8ExtXStreamInfList.h in Headers */,
-				F97F1AAF2204979A006F5717 /* M3U8ExtXSessionKey.h in Headers */,
+				F97F1AAF2204979A006F5717 /* M3U8ExtXKey.h in Headers */,
 				9D79F14D1EF784E500D16AFD /* NSURL+m3u8.h in Headers */,
 				9D79F1691EF784E500D16AFD /* M3U8MasterPlaylist.h in Headers */,
 			);
@@ -319,7 +324,7 @@
 				9D79F1621EF784E500D16AFD /* M3U8ExtXStreamInf.h in Headers */,
 				9D79F14E1EF784E500D16AFD /* NSURL+m3u8.h in Headers */,
 				9D79F16A1EF784E500D16AFD /* M3U8MasterPlaylist.h in Headers */,
-				F97F1AB02204979A006F5717 /* M3U8ExtXSessionKey.h in Headers */,
+				F97F1AB02204979A006F5717 /* M3U8ExtXKey.h in Headers */,
 				9D79F15A1EF784E500D16AFD /* M3U8ExtXMedia.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,7 +392,7 @@
 		9D05821018E52DF500A12776 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Allen;
 				TargetAttributes = {
 					01B38E2820EA2F8A00AC6443 = {
@@ -454,6 +459,7 @@
 				01B38E3C20EA308F00AC6443 /* M3U8MediaPlaylist.m in Sources */,
 				01B38E3520EA308F00AC6443 /* NSURL+m3u8.m in Sources */,
 				01B38E3D20EA308F00AC6443 /* M3U8SegmentInfo.m in Sources */,
+				011F5487222E73BA00966918 /* StringExample.m in Sources */,
 				01B38E4320EA30AB00AC6443 /* M3U8LineReader.m in Sources */,
 				01B38E3B20EA308F00AC6443 /* M3U8MasterPlaylist.m in Sources */,
 				01B38E3720EA308F00AC6443 /* M3U8ExtXMedia.m in Sources */,
@@ -481,7 +487,7 @@
 				9D79F1731EF784E500D16AFD /* M3U8SegmentInfo.m in Sources */,
 				9D79F1671EF784E500D16AFD /* M3U8ExtXStreamInfList.m in Sources */,
 				01B38E4220EA30AB00AC6443 /* M3U8LineReader.m in Sources */,
-				F97F1AB12204979A006F5717 /* M3U8ExtXSessionKey.m in Sources */,
+				F97F1AB12204979A006F5717 /* M3U8ExtXKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,7 +507,7 @@
 				9D79F1561EF784E500D16AFD /* M3U8PlaylistModel.m in Sources */,
 				9D79F14C1EF784E500D16AFD /* NSString+m3u8.m in Sources */,
 				01B38E4420EA30FD00AC6443 /* M3U8LineReader.m in Sources */,
-				F97F1AB22204979A006F5717 /* M3U8ExtXSessionKey.m in Sources */,
+				F97F1AB22204979A006F5717 /* M3U8ExtXKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,17 +615,31 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -632,7 +652,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -646,24 +666,37 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -672,14 +705,14 @@
 		9D05824318E52DF500A12776 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "M3U8Kit/M3U8Kit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-fembed-bitcode";
+				PRODUCT_BUNDLE_IDENTIFIER = com.M3U8Kit.M3U8Kit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
@@ -689,14 +722,14 @@
 		9D05824418E52DF500A12776 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				INFOPLIST_FILE = "M3U8Kit/M3U8Kit-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-fembed-bitcode";
+				PRODUCT_BUNDLE_IDENTIFIER = com.M3U8Kit.M3U8Kit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
@@ -728,7 +761,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexsun.M3U8KitDynamic;
+				PRODUCT_BUNDLE_IDENTIFIER = com.M3U8Kit.M3U8KitDynamic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -762,7 +795,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexsun.M3U8KitDynamic;
+				PRODUCT_BUNDLE_IDENTIFIER = com.M3U8Kit.M3U8KitDynamic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";

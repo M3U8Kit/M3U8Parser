@@ -8,7 +8,8 @@
 
 #import "ILSViewController.h"
 
-#import "M3U8Kit.h"
+//#import "M3U8Kit.h"
+@import M3U8KitDynamic;
 
 @interface ILSViewController ()
 
@@ -28,7 +29,7 @@
         NSError *error;
         
         //NSURL* url = [[NSBundle main] URLForResource:@"769" withExtension:@"m3u8"];
-        NSURL* url =  [NSURL URLWithString:@"https://hls.ted.com/talks/2639.m3u8?preroll=Thousands"]
+        NSURL* url =  [NSURL URLWithString:@"https://hls.ted.com/talks/2639.m3u8?preroll=Thousands"];
         M3U8PlaylistModel *model = [[M3U8PlaylistModel alloc] initWithURL:url error:&error];
 
         if (error) {

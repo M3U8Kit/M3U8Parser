@@ -124,9 +124,34 @@
     return segmentInfoList;
 }
 
-- (NSString *)removeReturnCharacter {
-    NSString *newString = [self stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-    return newString;
+- (NSString *)stringByRemoveReturnCharacter {
+    NSString *string = [self stringByTrimmingCharactersInSet:NSCharacterSet.newlineCharacterSet];
+    return string;
+}
+
+- (NSString *)stringByRemovingEdgeQuoteMark {
+    NSCharacterSet *quoteMarkCharactersSet = [NSCharacterSet characterSetWithCharactersInString:@"\"'"];
+    NSString *string = [self stringByTrimmingCharactersInSet:quoteMarkCharactersSet];
+    return string;
+}
+
+- (NSMutableDictionary *)attributesFromAssignment {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    NSArray<NSString *> *keyValues = [self componentsSeparatedByString:@","];
+    // keyValue is "key=value"
+    for (NSString *keyValue in keyValues) {
+        NSRange equalMarkRange = [keyValue rangeOfString:@"="];
+        if (equalMarkRange.location == NSNotFound) {
+            continue;
+        }
+        NSString *key = [keyValue substringToIndex:equalMarkRange.location].stringByRemovingEdgeQuoteMark;
+        NSString *value = [keyValue substringFromIndex:equalMarkRange.location + 1].stringByRemovingEdgeQuoteMark;
+        
+        dict[key] = value;
+    }
+    
+    return dict;
 }
 
 @end

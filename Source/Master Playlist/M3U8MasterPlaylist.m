@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) NSString *version;
 
-@property (nonatomic, strong) M3U8ExtXSessionKey *xSessionKey;
+@property (nonatomic, strong) M3U8ExtXKey *xSessionKey;
 
 @property (nonatomic, strong) M3U8ExtXStreamInfList *xStreamList;
 @property (nonatomic, strong) M3U8ExtXMediaList *xMediaList;
@@ -77,9 +77,9 @@
         else if ([line hasPrefix:M3U8_EXT_X_SESSION_KEY]) {
             NSRange range = [line rangeOfString:M3U8_EXT_X_SESSION_KEY];
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
-            NSMutableDictionary *attr = [self attributesFromString:attribute_list];
+            NSMutableDictionary *attr = attribute_list.attributesFromAssignment;
             
-            M3U8ExtXSessionKey *sessionKey = [[M3U8ExtXSessionKey alloc]initWithDictionary:attr];
+            M3U8ExtXKey *sessionKey = [[M3U8ExtXKey alloc] initWithDictionary:attr];
             self.xSessionKey = sessionKey;
         }
         
@@ -88,13 +88,13 @@
         else if ([line hasPrefix:M3U8_EXT_X_STREAM_INF]) {
             NSRange range = [line rangeOfString:M3U8_EXT_X_STREAM_INF];
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
-            NSMutableDictionary *attr = [self attributesFromString:attribute_list];
+            NSMutableDictionary *attr = attribute_list.attributesFromAssignment;
             
             // parse URI
             BOOL endOfLine = crRange.location == NSNotFound;
             
             NSString *nextLine = endOfLine ? remainingPart : [remainingPart substringToIndex:crRange.location]; // the URI
-            attr[@"URI"] = nextLine.removeReturnCharacter;
+            attr[@"URI"] = nextLine.stringByRemoveReturnCharacter;
             if (self.originalURL) {
                 attr[M3U8_URL] = self.originalURL;
             }
@@ -126,7 +126,7 @@
         else if ([line hasPrefix:M3U8_EXT_X_MEDIA]) {
             NSRange range = [line rangeOfString:M3U8_EXT_X_MEDIA];
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
-            NSMutableDictionary *attr = [self attributesFromString:attribute_list];
+            NSMutableDictionary *attr = attribute_list.attributesFromAssignment;
             if (self.baseURL.absoluteString.length > 0) {
                 attr[M3U8_BASE_URL] = self.baseURL;
             }
@@ -138,41 +138,6 @@
             [self.xMediaList addExtXMedia:media];
         }
     }
-}
-
-- (NSMutableDictionary *)attributesFromString:(NSString *)attribute_list {
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    
-    NSRange equalMarkRange = [attribute_list rangeOfString:@"="];
-    
-    while (NSNotFound != equalMarkRange.location) {
-        NSString *key = [attribute_list substringToIndex:equalMarkRange.location];
-        attribute_list = [attribute_list substringFromIndex:equalMarkRange.location +1];
-        NSString *value = @"";
-        
-        if ([attribute_list hasPrefix:@"\""]) {
-            attribute_list = [attribute_list substringFromIndex:1];
-            NSRange quoteRange = [attribute_list rangeOfString:@"\""];
-            value = [attribute_list substringToIndex:quoteRange.location];
-            attribute_list = [attribute_list substringFromIndex:quoteRange.location +1];
-        } else {
-            NSRange commaRange = [attribute_list rangeOfString:@","];
-            if (NSNotFound == commaRange.location) {
-                value = attribute_list;
-            } else {
-                value = [attribute_list substringToIndex:commaRange.location];
-                attribute_list = [attribute_list substringFromIndex:commaRange.location +1];
-            }
-        }
-        if ([attribute_list hasPrefix:@","]) {
-            attribute_list = [attribute_list substringFromIndex:1];
-        }
-        equalMarkRange = [attribute_list rangeOfString:@"="];
-        
-        dict[key] = value;
-    }
-    return dict;
 }
 
 - (NSArray *)allStreamURLs {

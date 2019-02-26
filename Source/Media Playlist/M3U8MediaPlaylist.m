@@ -74,6 +74,7 @@
     self.isLive = isLive;
     
     M3U8LineReader* lines = [[M3U8LineReader alloc] initWithText:self.originalText];
+    M3U8ExtXKey *key = nil;
     
     while (true) {
         
@@ -91,6 +92,11 @@
             [params setObject:self.baseURL forKey:M3U8_BASE_URL];
         }
         
+        if ([line hasPrefix:M3U8_EXT_X_KEY]) {
+            line = [line stringByReplacingOccurrencesOfString:M3U8_EXT_X_KEY withString:@""];
+            key = [[M3U8ExtXKey alloc] initWithDictionary:line.attributesFromAssignment];
+        }
+        
         //check if it's #EXTINF:
         if ([line hasPrefix:M3U8_EXTINF])
         {
@@ -102,7 +108,7 @@
             NSString *nextLine = [lines next];
             [params setValue:nextLine forKey:M3U8_EXTINF_URI];
             
-            M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params];
+            M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params xKey:key];
             if (segment) {
                 [self.segmentList addSegementInfo:segment];
             }

@@ -1,11 +1,12 @@
 # M3U8Kit
 
-[![Build Status](https://travis-ci.org/alexsun/M3U8Parser.svg?branch=master)](https://travis-ci.org/alexsun/M3U8Parser)
+[![Build Status](https://travis-ci.org/M3U8Kit/M3U8Parser.svg?branch=master)](https://travis-ci.org/M3U8Kit/M3U8Parser)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/M3U8Kit.svg)](https://img.shields.io/cocoapods/v/M3U8Kit.svg)
 [![Platform](https://img.shields.io/cocoapods/p/M3U8Kit.svg?style=flat)](http://cocoadocs.org/docsets/M3U8Kit)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 <a id="installation"></a>
+
 ## Installation
 
 ### [Cocoapods](https://cocoapods.org/)
@@ -15,12 +16,7 @@
 To integrate M3U8Kit into your Xcode project using CocoaPods, specify it in your Podfile:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '7.0'
-
-target 'TargetName' do
-    pod 'M3U8Kit'
-end
+pod 'M3U8Kit'
 ```
 
 Then, run the following command:
@@ -36,14 +32,14 @@ $ pod install
 To integrate MLSOAppDelegate into your Xcode project using Carthage, specify it in your `Carfile`:
 
 ```ogdl
-github "alexsun/M3U8Parser" ~> 0.2.1 
+github "M3U8Kit/M3U8Parser" ~> 0.2.1 
 ```
 
 Run `carthage` to build the framework and drag the built `M3U8Kit.framework` into your Xcode project.
 
 ### Manually
 
-If you prefer not to use either of the above mentioned dependency managers, you can integrate `M3U8Kit` into your project manually by adding the files contained in the [Source](https://github.com/alexsun/M3U8Parser/tree/master/Source) folder to your project.
+If you prefer not to use either of the above mentioned dependency managers, you can integrate `M3U8Kit` into your project manually by adding the files contained in the [Source](https://github.com/M3U8Kit/M3U8Parser/tree/master/Source) folder to your project.
 
 ## Usage
 

@@ -8,8 +8,11 @@
 
 #import <XCTest/XCTest.h>
 #import "NSURL+m3u8.h"
+#import "StringExample.h"
 
 @interface M3U8KitTests : XCTestCase
+
+@property (nonatomic) StringExample *example;
 
 @end
 
@@ -18,6 +21,8 @@
 - (void)setUp {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    _example = [[StringExample alloc] init];
 }
 
 - (void)tearDown {
@@ -35,6 +40,28 @@
                                           [expectation fulfill];
                                       }];
     [self waitForExpectationsWithTimeout:5 handler:nil];
+}
+
+- (void)testMasterM3U {
+    NSURL *baseURL = [NSURL URLWithString:@"https://hls.ted.com"];
+    NSError *error = nil;
+    M3U8PlaylistModel *playList = [[M3U8PlaylistModel alloc]
+                                   initWithString:_example.m3u8Master
+                                   baseURL:baseURL
+                                   error:&error];
+    NSLog(@"%@", playList);
+    XCTAssertNil(error);
+}
+
+- (void)testPlaylistM3U {
+    NSURL *baseURL = [NSURL URLWithString:@"https://example.m3u8kit/9764a7a5vodtransgzp1252524126/953e2ef85285890782612785655/drm/"];
+    NSError *error = nil;
+    M3U8PlaylistModel *playList = [[M3U8PlaylistModel alloc]
+                                   initWithString:_example.m3u8Playlist
+                                   baseURL:baseURL
+                                   error:&error];
+    NSLog(@"%@", playList);
+    XCTAssertNil(error);
 }
 
 - (void)testPerformanceExample {

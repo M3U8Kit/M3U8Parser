@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name = "M3U8Kit"
-  spec.version = "0.2.6"
+  spec.version = "0.3.0"
   spec.summary = "A light weight m3u8 parser."
 
 
@@ -20,13 +20,12 @@ Pod::Spec.new do |spec|
   # spec.description      = <<-DESC
   #                      DESC
 
-  spec.homepage = "https://github.com/alexsun/M3U8Parser.git"
+  spec.homepage = "https://github.com/M3U8Kit/M3U8Parser.git"
   spec.license = 'MIT'
-  spec.author = "alexsun"
-  spec.source = { :git => "https://github.com/alexsun/M3U8Parser.git", :tag => spec.version }
-  # spec.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  spec.author = "M3U8Kit"
+  spec.source = { :git => "https://github.com/M3U8Kit/M3U8Parser.git", :tag => spec.version }
 
-  spec.ios.deployment_target = '6.0'
+  spec.ios.deployment_target = '8.0'
   spec.requires_arc = true
 
   spec.source_files = 'Source/*.{h,m}', 'Source/**/*.{h,m}'
