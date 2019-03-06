@@ -7,9 +7,16 @@
 
 <a id="installation"></a>
 
+## TODO
+- [ ] Rewrite with Swift
+- [ ] SPM support
+
+## New Features
+- Add X-Key parser support that is now for each ts resource.
+
 ## Installation
 
-### [Cocoapods](https://cocoapods.org/)
+### [Cocoapods](https://cocoapods.org/pods/M3U8Kit)
 
 #### Podfile
 
