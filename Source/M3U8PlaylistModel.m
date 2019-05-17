@@ -89,7 +89,7 @@
             }
             
         } else if ([string isMediaPlaylist]) {
-            self.mainMediaPl = [[M3U8MediaPlaylist alloc] initWithContent:string type:M3U8MediaPlaylistTypeMedia baseURL:self.baseURL];
+            self.mainMediaPl = [[M3U8MediaPlaylist alloc] initWithContent:string type:M3U8MediaPlaylistTypeMedia baseURL:baseURL];
             self.mainMediaPl.name = INDEX_PLAYLIST_NAME;
         }
     }
