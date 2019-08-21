@@ -11,7 +11,8 @@
 @interface NSURL (m3u8)
 
 /**
- 如果baseURL存在, 则正常返回, 若为nil, 则返回scheme和host拼接的URL
+ return baseURL if exists.
+ if baseURL is nil, return [scheme://host]
 
  @return URL
  */

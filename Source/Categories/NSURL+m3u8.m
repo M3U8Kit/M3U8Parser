@@ -26,21 +26,19 @@
         NSString *str = [[NSString alloc] initWithContentsOfURL:self
                                                        encoding:NSUTF8StringEncoding error:&err];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (err) {
-                completion(nil, err);
-                return;
-            }
-            NSError *err2 = nil;
-            M3U8PlaylistModel *listModel = [[M3U8PlaylistModel alloc] initWithString:str
-                                                                         originalURL:self baseURL:self.realBaseURL error:&err2];
-            if (err) {
-                completion(nil, err);
-                return;
-            }
-            
-            completion(listModel, nil);
-        });
+        if (err) {
+            completion(nil, err);
+            return;
+        }
+        
+        M3U8PlaylistModel *listModel = [[M3U8PlaylistModel alloc] initWithString:str
+                                                                     originalURL:self baseURL:self.realBaseURL error:&err];
+        if (err) {
+            completion(nil, err);
+            return;
+        }
+        
+        completion(listModel, nil);
     });
 }
 
