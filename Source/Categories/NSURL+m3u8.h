@@ -11,7 +11,8 @@
 @interface NSURL (m3u8)
 
 /**
- 如果baseURL存在, 则正常返回, 若为nil, 则返回scheme和host拼接的URL
+ return baseURL if exists.
+ if baseURL is nil, return [scheme://host]
 
  @return URL
  */
@@ -22,6 +23,6 @@
  
  @param completion when the url resource loaded, completion block could get model and detail error;
  */
-- (void)loadM3U8AsynchronouslyCompletion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion;
+- (void)loadM3U8AsyncCompletion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion;
 
 @end
