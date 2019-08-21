@@ -23,6 +23,6 @@
  
  @param completion when the url resource loaded, completion block could get model and detail error;
  */
-- (void)loadM3U8AsynchronouslyCompletion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion;
+- (void)loadM3U8AsyncCompletion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion;
 
 @end

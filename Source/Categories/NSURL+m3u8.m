@@ -20,7 +20,7 @@
     return baseURL;
 }
 
-- (void)loadM3U8AsynchronouslyCompletion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion {
+- (void)loadM3U8AsyncCompletion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion {
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
         NSError *err = nil;
         NSString *str = [[NSString alloc] initWithContentsOfURL:self
