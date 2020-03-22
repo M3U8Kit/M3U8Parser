@@ -67,6 +67,10 @@ MediaResoulution MediaResolutionMake(float width, float height) {
     return [self.dictionary[M3U8_EXT_X_STREAM_INF_BANDWIDTH] integerValue];
 }
 
+- (NSInteger)averageBandwidth {
+    return [self.dictionary[M3U8_EXT_X_STREAM_INF_AVERAGE_BANDWIDTH] integerValue];
+}
+
 - (NSInteger)programId {
     return [self.dictionary[M3U8_EXT_X_STREAM_INF_PROGRAM_ID] integerValue];
 }

@@ -203,6 +203,7 @@
 #define M3U8_EXT_X_STREAM_INF               @"#EXT-X-STREAM-INF:"
 // EXT-X-STREAM-INF Attributes
 #define M3U8_EXT_X_STREAM_INF_BANDWIDTH     @"BANDWIDTH" // The value is a decimal-integer of bits per second.
+#define M3U8_EXT_X_STREAM_INF_AVERAGE_BANDWIDTH @"AVERAGE-BANDWIDTH" // The value is a decimal-integer of bits per second. It represents the average segment bit rate of the Variant Stream.
 #define M3U8_EXT_X_STREAM_INF_PROGRAM_ID    @"PROGRAM-ID"   // The value is a decimal-integer that uniquely identifies a particular presentation within the scope of the Playlist file.
 #define M3U8_EXT_X_STREAM_INF_CODECS        @"CODECS" // The value is a quoted-string containing a comma-separated list of formats.
 #define M3U8_EXT_X_STREAM_INF_RESOLUTION    @"RESOLUTION" // The value is a decimal-resolution describing the approximate encoded horizontal and vertical resolution of video within the presentation.
