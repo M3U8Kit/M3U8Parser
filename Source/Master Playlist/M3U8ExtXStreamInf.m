@@ -111,7 +111,7 @@ MediaResoulution MediaResolutionMake(float width, float height) {
 }
 
 /*
- #EXT-X-STREAM-INF:AUDIO="600k",BANDWIDTH=1049794,PROGRAM-ID=1,CODECS="avc1.42c01e,mp4a.40.2",RESOLUTION=640x360,SUBTITLES="subs"
+ #EXT-X-STREAM-INF:AUDIO="600k",BANDWIDTH=1049794,AVERAGE-BANDWIDTH=1000000,PROGRAM-ID=1,CODECS="avc1.42c01e,mp4a.40.2",RESOLUTION=640x360,SUBTITLES="subs"
  main_media_0.m3u8
  */
 - (NSString *)m3u8PlanString {
@@ -122,6 +122,10 @@ MediaResoulution MediaResolutionMake(float width, float height) {
         [str appendString:[NSString stringWithFormat:@",BANDWIDTH=%ld", (long)self.bandwidth]];
     } else {
         [str appendString:[NSString stringWithFormat:@"BANDWIDTH=%ld", (long)self.bandwidth]];
+    }
+    
+    if (self.averageBandwidth > 0) {
+        [str appendString:[NSString stringWithFormat:@",AVERAGE-BANDWIDTH=%ld", (long)self.averageBandwidth]];
     }
     
     [str appendString:[NSString stringWithFormat:@",PROGRAM-ID=%ld", (long)self.programId]];
