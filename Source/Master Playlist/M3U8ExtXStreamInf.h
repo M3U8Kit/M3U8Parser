@@ -48,6 +48,7 @@ NSString * NSStringFromMediaResolution(MediaResoulution resolution);
 @interface M3U8ExtXStreamInf : NSObject
 
 @property (nonatomic, readonly, assign) NSInteger bandwidth;
+@property (nonatomic, readonly, assign) NSInteger averageBandwidth;
 @property (nonatomic, readonly, assign) NSInteger programId;        // removed by draft 12
 @property (nonatomic, readonly, copy) NSArray *codecs;
 @property (nonatomic, readonly) MediaResoulution resolution;
