@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name = "M3U8Kit"
-  spec.version = "0.3.2"
+  spec.version = "0.4.0"
   spec.summary = "A light weight m3u8 parser."
 
 
@@ -26,6 +26,9 @@ Pod::Spec.new do |spec|
   spec.source = { :git => "https://github.com/M3U8Kit/M3U8Parser.git", :tag => spec.version }
 
   spec.ios.deployment_target = '8.0'
+  spec.osx.deployment_target = '10.10'
+  spec.tvos.deployment_target = '9.0'
+  spec.watchos.deployment_target = '2.0'
   spec.requires_arc = true
 
   spec.source_files = 'Source/*.{h,m}', 'Source/**/*.{h,m}'
