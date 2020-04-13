@@ -6,6 +6,7 @@
 //
 
 #import "NSURL+m3u8.h"
+#import "M3U8PlaylistModel.h"
 
 @implementation NSURL (m3u8)
 
