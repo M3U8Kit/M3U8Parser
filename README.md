@@ -15,6 +15,7 @@
 - Add X-Key parser support that is now for each ts resource.
 - Add support for AVERAGE-BANDWIDTH property
 - Add tvOS/watchOS/macOS support
+- Add support for Swift Package Manager
 
 ## Installation
 
