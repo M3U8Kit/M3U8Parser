@@ -9,7 +9,7 @@
 
 ## TODO
 - [ ] Rewrite with Swift
-- [ ] SPM support
+- [x] SPM support
 
 ## New Features
 - Add X-Key parser support that is now for each ts resource.
