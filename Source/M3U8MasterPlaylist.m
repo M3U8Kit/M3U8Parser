@@ -10,6 +10,7 @@
 #import "NSString+m3u8.h"
 #import "M3U8TagsAndAttributes.h"
 #import "NSURL+m3u8.h"
+#import "M3U8LineReader.h"
 
 // #define M3U8_EXT_X_STREAM_INF_CLOSED_CAPTIONS   @"CLOSED-CAPTIONS" // The value can be either a quoted-string or an enumerated-string with the value NONE.
 //    NSArray *quotedValueAttrs = @[@"URI", @"KEYFORMAT", @"KEYFORMATVERSIONS", @"GROUP-ID", @"LANGUAGE", @"ASSOC-LANGUAGE", @"NAME", @"INSTREAM-ID", @"CHARACTERISTICS", @"CODECS", @"AUDIO", @"VIDEO", @"SUBTITLES", @"BYTERANGE"];
@@ -59,14 +60,14 @@
     self.xStreamList = [[M3U8ExtXStreamInfList alloc] init];
     self.xMediaList = [[M3U8ExtXMediaList alloc] init];
     
-    NSRange crRange = [self.originalText rangeOfString:@"\n"];
-    NSString *remainingPart = self.originalText;
+    M3U8LineReader* reader = [[M3U8LineReader alloc] initWithText:self.originalText];
     
-    while (NSNotFound != crRange.location) {
-        
-        NSString *line = [remainingPart substringWithRange:NSMakeRange(0, crRange.location)];
-        remainingPart = [remainingPart substringFromIndex:crRange.location +1];
-        crRange = [remainingPart rangeOfString:@"\n"];
+    while (true) {
+
+        NSString* line = [reader next];
+        if (!line) {
+            break;
+        }
         
         // #EXT-X-VERSION:4
         if ([line hasPrefix:M3U8_EXT_X_VERSION]) {
@@ -90,11 +91,8 @@
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
             NSMutableDictionary *attr = attribute_list.attributesFromAssignment;
             
-            // parse URI
-            BOOL endOfLine = crRange.location == NSNotFound;
-            
-            NSString *nextLine = endOfLine ? remainingPart : [remainingPart substringToIndex:crRange.location]; // the URI
-            attr[@"URI"] = nextLine.stringByRemoveReturnCharacter;
+            NSString *nextLine = [reader next];
+            attr[@"URI"] = nextLine;
             if (self.originalURL) {
                 attr[M3U8_URL] = self.originalURL;
             }
@@ -105,13 +103,6 @@
             
             M3U8ExtXStreamInf *xStreamInf = [[M3U8ExtXStreamInf alloc] initWithDictionary:attr];
             [self.xStreamList addExtXStreamInf:xStreamInf];
-            
-            if (endOfLine) {
-                break;
-            }
-            
-            remainingPart = [remainingPart substringFromIndex:crRange.location +1];
-            crRange = [remainingPart rangeOfString:@"\n"];
         }
         
         

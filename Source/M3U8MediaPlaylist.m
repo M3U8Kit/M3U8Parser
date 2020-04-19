@@ -74,12 +74,12 @@
     BOOL isLive = [self.originalText rangeOfString:M3U8_EXT_X_ENDLIST].location == NSNotFound;
     self.isLive = isLive;
     
-    M3U8LineReader* lines = [[M3U8LineReader alloc] initWithText:self.originalText];
+    M3U8LineReader* reader = [[M3U8LineReader alloc] initWithText:self.originalText];
     M3U8ExtXKey *key = nil;
     
     while (true) {
         
-        NSString* line = [lines next];
+        NSString* line = [reader next];
         if (!line) {
             break;
         }
@@ -99,14 +99,13 @@
         }
         
         //check if it's #EXTINF:
-        if ([line hasPrefix:M3U8_EXTINF])
-        {
+        if ([line hasPrefix:M3U8_EXTINF]) {
             line = [line stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
             line = [line stringByReplacingOccurrencesOfString:@"," withString:@""];
             [params setValue:line forKey:M3U8_EXTINF_DURATION];
             
             //then get URI
-            NSString *nextLine = [lines next];
+            NSString *nextLine = [reader next];
             [params setValue:nextLine forKey:M3U8_EXTINF_URI];
             
             M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params xKey:key];

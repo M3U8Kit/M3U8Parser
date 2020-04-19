@@ -124,11 +124,6 @@
     return segmentInfoList;
 }
 
-- (NSString *)stringByRemoveReturnCharacter {
-    NSString *string = [self stringByTrimmingCharactersInSet:NSCharacterSet.newlineCharacterSet];
-    return string;
-}
-
 - (NSString *)stringByRemovingEdgeQuoteMark {
     NSCharacterSet *quoteMarkCharactersSet = [NSCharacterSet characterSetWithCharactersInString:@"\"'"];
     NSString *string = [self stringByTrimmingCharactersInSet:quoteMarkCharactersSet];
