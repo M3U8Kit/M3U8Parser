@@ -106,7 +106,7 @@
         }
         
         
-        // Simply ignore the following tag
+        // Ignore the following tag, which is not implemented yet.
         // #EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=65531,PROGRAM-ID=1,CODECS="avc1.42c00c",RESOLUTION=320x180,URI="/talks/769/video/64k_iframe.m3u8?sponsor=Ripple"
         else if ([line hasPrefix:M3U8_EXT_X_I_FRAME_STREAM_INF]) {
             
@@ -162,7 +162,7 @@
         }
     }
     
-    // For the time being, it is only used when the resolution is selected.
+    // It is only used when the resolution is selected.
     //    M3U8ExtXMediaList *xmlist = self.masterPlaylist.xMediaList.videoList;
     //    for (int i = 0; i < xmlist.count; i ++) {
     //        M3U8ExtXMedia *media = [xmlist extXMediaAtIndex:i];

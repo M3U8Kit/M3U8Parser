@@ -40,7 +40,7 @@
                                           }
                                           [expectation fulfill];
                                       }];
-    [self waitForExpectationsWithTimeout:5 handler:nil];
+    [self waitForExpectationsWithTimeout:15 handler:nil];
 }
 
 - (void)testMasterM3U {
