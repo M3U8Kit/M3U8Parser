@@ -18,8 +18,6 @@
 
 - (M3U8SegmentInfoList *)m3u8SegementInfoListValueRelativeToURL:(NSString *)baseURL;
 
-- (NSString *)stringByRemoveReturnCharacter;
-
 /**
  @return "key=value" transform to dictionary
  */
