@@ -23,7 +23,7 @@
 
 #### Podfile
 
-To integrate M3U8Kit into your Xcode project using CocoaPods, specify it in your Podfile:
+Specify it in your Podfile:
 
 ```ruby
 pod 'M3U8Kit'
@@ -35,18 +35,18 @@ Then, run the following command:
 $ pod install
 ```
 
-### SPM ⚠️
+### [SPM ⚠️](https://github.com/apple/swift-package-manager)
 
-Only test on `master` branch. No release yet.
+Released from [`0.4.1`](https://github.com/M3U8Kit/M3U8Parser/releases/tag/0.4.1)
 
-### Carthage
+### [Carthage](https://github.com/Carthage/Carthage)
 
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+#### Cartfile
 
-To integrate MLSOAppDelegate into your Xcode project using Carthage, specify it in your `Carfile`:
+Specify it in your `Cartfile`:
 
 ```ogdl
-github "M3U8Kit/M3U8Parser" ~> 0.2.1 
+github "M3U8Kit/M3U8Parser" ~> 0.4.1 
 ```
 
 Run `carthage` to build the framework and drag the built `M3U8Kit.framework` into your Xcode project.
