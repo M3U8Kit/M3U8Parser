@@ -2,20 +2,17 @@
 
 [![Build Status](https://travis-ci.org/M3U8Kit/M3U8Parser.svg?branch=master)](https://travis-ci.org/M3U8Kit/M3U8Parser)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/M3U8Kit.svg)](https://img.shields.io/cocoapods/v/M3U8Kit.svg)
-[![Platform](https://img.shields.io/cocoapods/p/M3U8Kit.svg?style=flat)](http://cocoadocs.org/docsets/M3U8Kit)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-
-<a id="installation"></a>
+[![SPM supported](https://img.shields.io/badge/SPM-supported-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
+![Platform](https://img.shields.io/cocoapods/p/M3U8Kit.svg?style=flat)
+[![MIT license](https://img.shields.io/cocoapods/l/M3U8Kit.svg?style=flat)](https://raw.githubusercontent.com/M3U8Kit/M3U8Parser/master/LICENSE)
 
 ## TODO
 - [ ] Rewrite with Swift
-- [x] SPM support
 
 ## New Features
 - Add X-Key parser support that is now for each ts resource.
 - Add support for AVERAGE-BANDWIDTH property
-- Add tvOS/watchOS/macOS support
-- Add support for Swift Package Manager
 
 ## Installation
 
