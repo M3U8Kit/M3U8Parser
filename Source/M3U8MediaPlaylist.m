@@ -101,8 +101,16 @@
         //check if it's #EXTINF:
         if ([line hasPrefix:M3U8_EXTINF]) {
             line = [line stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
-            line = [line stringByReplacingOccurrencesOfString:@"," withString:@""];
-            [params setValue:line forKey:M3U8_EXTINF_DURATION];
+            
+            NSArray <NSString *> *components = [line componentsSeparatedByString:@","];
+            if(components.count >= 2){
+                [params setValue:components.firstObject forKey:M3U8_EXTINF_DURATION];
+                [params setValue:components.lastObject forKey:M3U8_EXTINF_TITLE];
+            }
+            else{
+                line = [line stringByReplacingOccurrencesOfString:@"," withString:@""];
+                [params setValue:line forKey:M3U8_EXTINF_DURATION];
+            }
             
             //then get URI
             NSString *nextLine = [reader next];

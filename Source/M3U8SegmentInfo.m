@@ -55,6 +55,10 @@
     return [self.dictionary[M3U8_EXTINF_DURATION] doubleValue];
 }
 
+- (NSString *)title {
+    return self.dictionary[M3U8_EXTINF_TITLE];
+}
+
 - (NSURL *)URI {
     return [NSURL URLWithString:self.dictionary[M3U8_EXTINF_URI]];
 }
