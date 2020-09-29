@@ -103,13 +103,12 @@
             line = [line stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
             
             NSArray <NSString *> *components = [line componentsSeparatedByString:@","];
-            if(components.count >= 2){
-                [params setValue:components.firstObject forKey:M3U8_EXTINF_DURATION];
-                [params setValue:components.lastObject forKey:M3U8_EXTINF_TITLE];
+            NSString *duration = components.first;
+            if (duration) {
+                params[M3U8_EXTINF_DURATION] = duration;
             }
-            else{
-                line = [line stringByReplacingOccurrencesOfString:@"," withString:@""];
-                [params setValue:line forKey:M3U8_EXTINF_DURATION];
+            if (components.count > 1) {
+                params[M3U8_EXTINF_TITLE] = components[1];
             }
             
             //then get URI
