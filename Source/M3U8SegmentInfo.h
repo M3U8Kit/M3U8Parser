@@ -27,6 +27,7 @@
 @interface M3U8SegmentInfo : NSObject
 
 @property (readonly, nonatomic) NSTimeInterval duration;
+@property (readonly, nonatomic, copy) NSString *title;
 @property (readonly, nonatomic, copy) NSURL *URI;
 /** Key for media data decrytion. may be for this segment or next if no key. */
 @property (readonly, readonly, nonatomic) M3U8ExtXKey *xKey;
