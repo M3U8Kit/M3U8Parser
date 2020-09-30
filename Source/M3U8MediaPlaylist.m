@@ -102,8 +102,8 @@
         if ([line hasPrefix:M3U8_EXTINF]) {
             line = [line stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
             
-            NSArray <NSString *> *components = [line componentsSeparatedByString:@","];
-            NSString *duration = components.first;
+            NSArray<NSString *> *components = [line componentsSeparatedByString:@","];
+            NSString *duration = components.firstObject;
             if (duration) {
                 params[M3U8_EXTINF_DURATION] = duration;
             }
