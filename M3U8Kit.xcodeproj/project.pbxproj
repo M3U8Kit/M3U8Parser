@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		011F5487222E73BA00966918 /* StringExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 011F5486222E73BA00966918 /* StringExample.m */; };
+		012455B325257F2900AF62C3 /* M3U8ExtXByteRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 012455B125257F2900AF62C3 /* M3U8ExtXByteRange.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		012455B425257F2900AF62C3 /* M3U8ExtXByteRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 012455B225257F2900AF62C3 /* M3U8ExtXByteRange.m */; };
+		012455BB2525ABA600AF62C3 /* M3U8ExtXByteRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 012455B125257F2900AF62C3 /* M3U8ExtXByteRange.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		012455C22525ABF700AF62C3 /* M3U8ExtXByteRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 012455B225257F2900AF62C3 /* M3U8ExtXByteRange.m */; };
+		012455C62525ABFD00AF62C3 /* M3U8ExtXByteRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 012455B225257F2900AF62C3 /* M3U8ExtXByteRange.m */; };
+		012455D42525B8EC00AF62C3 /* M3U8LineReader.h in Headers */ = {isa = PBXBuildFile; fileRef = 01B38E3F20EA30AB00AC6443 /* M3U8LineReader.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		01B38E2C20EA2F8B00AC6443 /* M3U8KitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B38E2B20EA2F8B00AC6443 /* M3U8KitTests.m */; };
 		01B38E2E20EA2F8B00AC6443 /* M3U8KitDynamic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D79F1251EF77CE400D16AFD /* M3U8KitDynamic.framework */; };
 		01B38E3420EA308F00AC6443 /* NSString+m3u8.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1301EF784E500D16AFD /* NSString+m3u8.m */; };
@@ -96,6 +102,8 @@
 		011650B024483537001E4A35 /* M3U8Parser.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = M3U8Parser.modulemap; sourceTree = "<group>"; };
 		011F5485222E73BA00966918 /* StringExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringExample.h; sourceTree = "<group>"; };
 		011F5486222E73BA00966918 /* StringExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringExample.m; sourceTree = "<group>"; };
+		012455B125257F2900AF62C3 /* M3U8ExtXByteRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXByteRange.h; sourceTree = "<group>"; };
+		012455B225257F2900AF62C3 /* M3U8ExtXByteRange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXByteRange.m; sourceTree = "<group>"; };
 		0177A38E1FE7B31800477DF9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		01B38E2920EA2F8A00AC6443 /* M3U8KitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = M3U8KitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		01B38E2B20EA2F8B00AC6443 /* M3U8KitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M3U8KitTests.m; sourceTree = "<group>"; };
@@ -257,6 +265,8 @@
 				9D79F1391EF784E500D16AFD /* M3U8ExtXMedia.m */,
 				F97F1AAD2204979A006F5717 /* M3U8ExtXKey.h */,
 				F97F1AAE2204979A006F5717 /* M3U8ExtXKey.m */,
+				012455B125257F2900AF62C3 /* M3U8ExtXByteRange.h */,
+				012455B225257F2900AF62C3 /* M3U8ExtXByteRange.m */,
 				9D79F13A1EF784E500D16AFD /* M3U8ExtXMediaList.h */,
 				9D79F13B1EF784E500D16AFD /* M3U8ExtXMediaList.m */,
 				9D79F13C1EF784E500D16AFD /* M3U8ExtXStreamInf.h */,
@@ -304,6 +314,7 @@
 				9D79F1491EF784E500D16AFD /* NSString+m3u8.h in Headers */,
 				9D79F1651EF784E500D16AFD /* M3U8ExtXStreamInfList.h in Headers */,
 				F97F1AAF2204979A006F5717 /* M3U8ExtXKey.h in Headers */,
+				012455B325257F2900AF62C3 /* M3U8ExtXByteRange.h in Headers */,
 				9D79F14D1EF784E500D16AFD /* NSURL+m3u8.h in Headers */,
 				9D79F1691EF784E500D16AFD /* M3U8MasterPlaylist.h in Headers */,
 			);
@@ -328,6 +339,8 @@
 				9D79F16A1EF784E500D16AFD /* M3U8MasterPlaylist.h in Headers */,
 				F97F1AB02204979A006F5717 /* M3U8ExtXKey.h in Headers */,
 				9D79F15A1EF784E500D16AFD /* M3U8ExtXMedia.h in Headers */,
+				012455BB2525ABA600AF62C3 /* M3U8ExtXByteRange.h in Headers */,
+				012455D42525B8EC00AF62C3 /* M3U8LineReader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,8 +407,9 @@
 		9D05821018E52DF500A12776 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = M3U8;
 				LastUpgradeCheck = 1010;
-				ORGANIZATIONNAME = Allen;
+				ORGANIZATIONNAME = M3U8Kit;
 				TargetAttributes = {
 					01B38E2820EA2F8A00AC6443 = {
 						CreatedOnToolsVersion = 10.0;
@@ -468,6 +482,7 @@
 				01B38E3720EA308F00AC6443 /* M3U8ExtXMedia.m in Sources */,
 				01B38E3920EA308F00AC6443 /* M3U8ExtXStreamInf.m in Sources */,
 				01B38E3420EA308F00AC6443 /* NSString+m3u8.m in Sources */,
+				012455C62525ABFD00AF62C3 /* M3U8ExtXByteRange.m in Sources */,
 				01B38E3A20EA308F00AC6443 /* M3U8ExtXStreamInfList.m in Sources */,
 				01B38E3620EA308F00AC6443 /* M3U8PlaylistModel.m in Sources */,
 				01B38E2C20EA2F8B00AC6443 /* M3U8KitTests.m in Sources */,
@@ -485,6 +500,7 @@
 				9D79F15B1EF784E500D16AFD /* M3U8ExtXMedia.m in Sources */,
 				9D79F1551EF784E500D16AFD /* M3U8PlaylistModel.m in Sources */,
 				9D79F1631EF784E500D16AFD /* M3U8ExtXStreamInf.m in Sources */,
+				012455B425257F2900AF62C3 /* M3U8ExtXByteRange.m in Sources */,
 				9D79F14B1EF784E500D16AFD /* NSString+m3u8.m in Sources */,
 				9D79F16B1EF784E500D16AFD /* M3U8MasterPlaylist.m in Sources */,
 				9D79F1731EF784E500D16AFD /* M3U8SegmentInfo.m in Sources */,
@@ -505,6 +521,7 @@
 				9D79F1741EF784E500D16AFD /* M3U8SegmentInfo.m in Sources */,
 				9D79F1681EF784E500D16AFD /* M3U8ExtXStreamInfList.m in Sources */,
 				9D79F1781EF784E500D16AFD /* M3U8SegmentInfoList.m in Sources */,
+				012455C22525ABF700AF62C3 /* M3U8ExtXByteRange.m in Sources */,
 				9D79F1601EF784E500D16AFD /* M3U8ExtXMediaList.m in Sources */,
 				9D79F1641EF784E500D16AFD /* M3U8ExtXStreamInf.m in Sources */,
 				9D79F1561EF784E500D16AFD /* M3U8PlaylistModel.m in Sources */,

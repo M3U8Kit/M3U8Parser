@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class M3U8ExtXKey;
+@class M3U8ExtXKey, M3U8ExtXByteRange;
 /*!
  @class M3U8SegmentInfo
  @abstract This is the class indicates #EXTINF:<duration>,<title> + media in m3u8 file
@@ -29,12 +29,15 @@
 @property (readonly, nonatomic) NSTimeInterval duration;
 @property (readonly, nonatomic, copy) NSString *title;
 @property (readonly, nonatomic, copy) NSURL *URI;
+@property (readonly, nonatomic, strong) M3U8ExtXByteRange *byteRange;
 /** Key for media data decrytion. may be for this segment or next if no key. */
-@property (readonly, readonly, nonatomic) M3U8ExtXKey *xKey;
+@property (readonly, nonatomic, strong) M3U8ExtXKey *xKey;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary xKey:(M3U8ExtXKey *)key NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary xKey:(M3U8ExtXKey *)key;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary xKey:(M3U8ExtXKey *)key byteRange:(M3U8ExtXByteRange *)byteRange NS_DESIGNATED_INITIALIZER;
 
 - (NSURL *)mediaURL;
 

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |spec|
   spec.name = "M3U8Kit"
-  spec.version = "0.4.1"
+  spec.version = "0.5.0"
   spec.summary = "A light weight m3u8 parser."
 
 
