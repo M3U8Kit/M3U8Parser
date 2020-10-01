@@ -12,6 +12,7 @@
 #import "NSURL+m3u8.h"
 #import "M3U8LineReader.h"
 #import "M3U8ExtXKey.h"
+#import "M3U8ExtXByteRange.h"
 
 @interface M3U8MediaPlaylist()
 
@@ -111,11 +112,22 @@
                 params[M3U8_EXTINF_TITLE] = components[1];
             }
             
+            line = reader.next;
+            // read ByteRange. only for version 4
+            M3U8ExtXByteRange *byteRange = nil;
+            if ([line hasPrefix:M3U8_EXT_X_BYTERANGE]) {
+                line = [line stringByReplacingOccurrencesOfString:M3U8_EXT_X_BYTERANGE withString:@""];
+                byteRange = [[M3U8ExtXByteRange alloc] initWithAtString:line];
+                line = reader.next;
+            }
+            //ignore other # message
+            while ([line hasPrefix:@"#"]) {
+                line = reader.next;
+            }
             //then get URI
-            NSString *nextLine = [reader next];
-            [params setValue:nextLine forKey:M3U8_EXTINF_URI];
+            params[M3U8_EXTINF_URI] = line;
             
-            M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params xKey:key];
+            M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params xKey:key byteRange:byteRange];
             if (segment) {
                 [self.segmentList addSegementInfo:segment];
             }

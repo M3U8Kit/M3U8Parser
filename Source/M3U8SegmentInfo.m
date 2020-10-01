@@ -9,6 +9,7 @@
 #import "M3U8SegmentInfo.h"
 #import "M3U8TagsAndAttributes.h"
 #import "M3U8ExtXKey.h"
+#import "M3U8ExtXByteRange.h"
 
 @interface M3U8SegmentInfo()
 @property (nonatomic, strong) NSDictionary *dictionary;
@@ -28,9 +29,14 @@
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary xKey:(M3U8ExtXKey *)key {
+    return [self initWithDictionary:dictionary xKey:key byteRange:nil];
+}
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary xKey:(M3U8ExtXKey *)key byteRange:(M3U8ExtXByteRange *)byteRange{
     if (self = [super init]) {
-        self.dictionary = dictionary;
+        _dictionary = dictionary;
         _xKey = key;
+        _byteRange = byteRange;
     }
     return self;
 }
