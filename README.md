@@ -6,7 +6,7 @@
 [![SPM supported](https://img.shields.io/badge/SPM-supported-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
 ![Platform](https://img.shields.io/cocoapods/p/M3U8Kit.svg?style=flat)
 [![MIT license](https://img.shields.io/cocoapods/l/M3U8Kit.svg?style=flat)](https://raw.githubusercontent.com/M3U8Kit/M3U8Parser/master/LICENSE)
-[![Compatiable with EXT-X-VERSION:4](https://img.shields.io/badge/EXT X Version:4-supported-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
+![Compatiable with EXT-X-VERSION:4](https://img.shields.io/badge/EXT_X_Version:4-supported-4BC51D.svg?style=flat)
 
 ## TODO
 - [ ] Rewrite with Swift
