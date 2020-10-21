@@ -62,6 +62,6 @@ NSString * NSStringFromMediaResolution(MediaResoulution resolution);
 
 - (NSURL *)m3u8URL; // the absolute url
 
-- (NSString *)m3u8PlanString;
+- (NSString *)m3u8PlainString;
 
 @end

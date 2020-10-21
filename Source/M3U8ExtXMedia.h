@@ -49,6 +49,6 @@
 - (NSInteger)bandwidth;
 
 - (NSURL *)m3u8URL;   // the absolute url of media playlist file
-- (NSString *)m3u8PlanString;
+- (NSString *)m3u8PlainString;
 
 @end
