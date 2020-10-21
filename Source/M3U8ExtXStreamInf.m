@@ -114,7 +114,7 @@ MediaResoulution MediaResolutionMake(float width, float height) {
  #EXT-X-STREAM-INF:AUDIO="600k",BANDWIDTH=1049794,AVERAGE-BANDWIDTH=1000000,PROGRAM-ID=1,CODECS="avc1.42c01e,mp4a.40.2",RESOLUTION=640x360,SUBTITLES="subs"
  main_media_0.m3u8
  */
-- (NSString *)m3u8PlanString {
+- (NSString *)m3u8PlainString {
     NSMutableString *str = [NSMutableString string];
     [str appendString:M3U8_EXT_X_STREAM_INF];
     if (self.audio.length > 0) {

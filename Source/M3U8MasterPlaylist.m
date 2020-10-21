@@ -171,7 +171,7 @@
     return list;
 }
 
-- (NSString *)m3u8PlanString {
+- (NSString *)m3u8PlainString {
     NSMutableString *str = [NSMutableString string];
     [str appendString:M3U8_EXTM3U];
     [str appendString:@"\n"];
@@ -181,7 +181,7 @@
     }
     for (NSInteger index = 0; index < self.xStreamList.count; index ++) {
         M3U8ExtXStreamInf *xsinf = [self.xStreamList xStreamInfAtIndex:index];
-        [str appendString:xsinf.m3u8PlanString];
+        [str appendString:xsinf.m3u8PlainString];
         [str appendString:@"\n"];
     }
     
@@ -189,7 +189,7 @@
     for (NSInteger i = 0; i < audioList.count; i ++) {
         NSLog(@"ext x media %ld", (long)i);
         M3U8ExtXMedia *media = [audioList xMediaAtIndex:i];
-        [str appendString:media.m3u8PlanString];
+        [str appendString:media.m3u8PlainString];
         [str appendString:@"\n"];
     }
     

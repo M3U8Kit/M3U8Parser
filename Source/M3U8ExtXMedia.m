@@ -93,7 +93,7 @@
 /*
  #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="600k",LANGUAGE="eng",NAME="Audio",AUTOSELECT=YES,DEFAULT=YES,URI="main_media_7.m3u8",BANDWIDTH=614400
  */
-- (NSString *)m3u8PlanString {
+- (NSString *)m3u8PlainString {
     NSMutableString *str = [NSMutableString string];
     [str appendString:M3U8_EXT_X_MEDIA];
     [str appendString:[NSString stringWithFormat:@"TYPE=%@", self.type]];

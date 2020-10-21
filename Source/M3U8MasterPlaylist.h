@@ -33,6 +33,6 @@
 - (instancetype)initWithContent:(NSString *)string baseURL:(NSURL *)baseURL;
 - (instancetype)initWithContentOfURL:(NSURL *)URL error:(NSError **)error;
 
-- (NSString *)m3u8PlanString;
+- (NSString *)m3u8PlainString;
 
 @end
