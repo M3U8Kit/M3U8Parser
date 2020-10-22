@@ -8,7 +8,7 @@ on:
 
 jobs:
   validation:
-    name: Build and Test default scheme using any available iPhone simulator
+    name: Build and Test. Validation with CocoaPods and Carthage
     runs-on: macos-latest
 
     steps:
