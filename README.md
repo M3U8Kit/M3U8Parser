@@ -1,6 +1,6 @@
 # M3U8Kit
 
-[![Build Status](https://travis-ci.org/M3U8Kit/M3U8Parser.svg?branch=master)](https://travis-ci.org/M3U8Kit/M3U8Parser)
+[![Build Status](https://github.com/M3U8Kit/M3U8Parser/workflows/Validation/badge.svg?branch=master&event=push)](https://github.com/M3U8Kit/M3U8Parser/actions)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/M3U8Kit.svg)](https://img.shields.io/cocoapods/v/M3U8Kit.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![SPM supported](https://img.shields.io/badge/SPM-supported-4BC51D.svg?style=flat)](https://github.com/apple/swift-package-manager)
