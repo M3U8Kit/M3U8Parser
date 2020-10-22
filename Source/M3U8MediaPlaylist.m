@@ -31,7 +31,7 @@
 @implementation M3U8MediaPlaylist
 
 - (instancetype)initWithContent:(NSString *)string type:(M3U8MediaPlaylistType)type baseURL:(NSURL *)baseURL {
-    if (NO == [string isMediaPlaylist]) {
+    if (!string.m3u_isMediaPlaylist) {
         return nil;
     }
     
@@ -53,7 +53,7 @@
     
     NSString *string = [[NSString alloc] initWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:error];
     
-    return [self initWithContent:string type:type baseURL:URL.realBaseURL];
+    return [self initWithContent:string type:type baseURL:URL.m3u_realBaseURL];
 }
 
 - (NSArray *)allSegmentURLs {
@@ -96,7 +96,7 @@
         
         if ([line hasPrefix:M3U8_EXT_X_KEY]) {
             line = [line stringByReplacingOccurrencesOfString:M3U8_EXT_X_KEY withString:@""];
-            key = [[M3U8ExtXKey alloc] initWithDictionary:line.attributesFromAssignment];
+            key = [[M3U8ExtXKey alloc] initWithDictionary:line.m3u_attributesFromAssignment];
         }
         
         //check if it's #EXTINF:

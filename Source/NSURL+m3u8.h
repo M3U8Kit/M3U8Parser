@@ -16,13 +16,13 @@
 
  @return URL
  */
-- (NSURL *)realBaseURL;
+- (NSURL *)m3u_realBaseURL;
 
 /**
  Load the specific url and get result model with completion block.
  
  @param completion when the url resource loaded, completion block could get model and detail error;
  */
-- (void)loadM3U8AsyncCompletion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion;
+- (void)m3u_loadAsyncCompletion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion;
 
 @end

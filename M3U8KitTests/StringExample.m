@@ -111,15 +111,15 @@
     #EXT-X-STREAM-INF:AUDIO=\"600k\",BANDWIDTH=67880,PROGRAM-ID=1,CODECS=\"mp4a.40.2\",SUBTITLES=\"subs\"\n\
     /talks/769/audio/600k.m3u8?sponsor=Ripple\n\
     \n\
-    #EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=65531,PROGRAM-ID=1,CODECS=\"avc1.42c00c\",RESOLUTION=320x180,URI=\"http://hls.ted.com/talks/769/video/64k_iframe.m3u8?sponsor=Ripple\"\n\
+    #EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=65531,PROGRAM-ID=1,CODECS=\"avc1.42c00c\",RESOLUTION=320x180,URI=\"64k_iframe.m3u8?sponsor=Ripple\"\n\
     #EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=137561,PROGRAM-ID=1,CODECS=\"avc1.42c015\",RESOLUTION=512x288,URI=\"/talks/769/video/180k_iframe.m3u8?sponsor=Ripple\"\n\
     #EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=188000,PROGRAM-ID=1,CODECS=\"avc1.42c015\",RESOLUTION=512x288,URI=\"/talks/769/video/320k_iframe.m3u8?sponsor=Ripple\"\n\
     #EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=216827,PROGRAM-ID=1,CODECS=\"avc1.42c015\",RESOLUTION=512x288,URI=\"/talks/769/video/450k_iframe.m3u8?sponsor=Ripple\"\n\
     #EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=276987,PROGRAM-ID=1,CODECS=\"avc1.42c01e\",RESOLUTION=640x360,URI=\"/talks/769/video/600k_iframe.m3u8?sponsor=Ripple\"\n\
     #EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=413600,PROGRAM-ID=1,CODECS=\"avc1.4d401f\",RESOLUTION=853x480,URI=\"http://hls.ted.com/talks/769/video/950k_iframe.m3u8?sponsor=Ripple\"\n\
-    #EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=495067,PROGRAM-ID=1,CODECS=\"avc1.64001f\",RESOLUTION=853x480,URI=\"/talks/769/video/1500k_iframe.m3u8?sponsor=Ripple\"\n\
+    #EXT-X-I-FRAME-STREAM-INF:BANDWIDTH=495067,PROGRAM-ID=1,CODECS=\"avc1.64001f,m4a.40.2\",RESOLUTION=853x480,URI=\"/talks/769/video/1500k_iframe.m3u8?sponsor=Ripple\"\n\
     \n\
-    #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"600k\",LANGUAGE=\"eng\",NAME=\"Audio\",AUTOSELECT=YES,DEFAULT=YES,URI=\"http://hls.ted.com/talks/769/audio/600k.m3u8?sponsor=Ripple\",BANDWIDTH=614400\n\
+    #EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID=\"600k\",LANGUAGE=\"eng\",NAME=\"Audio\",AUTOSELECT=YES,DEFAULT=YES,URI=\"600k.m3u8?sponsor=Ripple\",BANDWIDTH=614400\n\
     #EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"subs\",LANGUAGE=\"ar\",NAME=\"Arabic\",AUTOSELECT=YES,DEFAULT=NO,FORCED=NO,URI=\"/talks/769/subtitles/ar.m3u8?sponsor=Ripple\"\n\
     #EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"subs\",LANGUAGE=\"bs\",NAME=\"Bosnian\",AUTOSELECT=YES,DEFAULT=NO,FORCED=NO,URI=\"/talks/769/subtitles/bs.m3u8?sponsor=Ripple\"\n\
     #EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID=\"subs\",LANGUAGE=\"bg\",NAME=\"Bulgarian\",AUTOSELECT=YES,DEFAULT=NO,FORCED=NO,URI=\"/talks/769/subtitles/bg.m3u8?sponsor=Ripple\"\n\

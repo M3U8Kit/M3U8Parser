@@ -61,7 +61,7 @@ If you prefer not to use either of the above mentioned dependency managers, you 
 ```objc
 #import "NSURL+m3u8.h"
 
-[<#URL#> loadM3U8AsyncCompletion:^(M3U8PlaylistModel *model, NSError *error) {
+[<#URL#> m3u_loadAsyncCompletion:^(M3U8PlaylistModel *model, NSError *error) {
                                       }];
 ```
 

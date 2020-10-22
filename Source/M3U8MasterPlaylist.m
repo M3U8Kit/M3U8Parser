@@ -33,7 +33,7 @@
 @implementation M3U8MasterPlaylist
 
 - (instancetype)initWithContent:(NSString *)string baseURL:(NSURL *)baseURL {
-    if (NO == [string isMasterPlaylist]) {
+    if (!string.m3u_isMasterPlaylist) {
         return nil;
     }
     if (self = [super init]) {
@@ -52,7 +52,7 @@
     self.originalURL = URL;
     
     NSString *string = [NSString stringWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:error];
-    return [self initWithContent:string baseURL:URL.realBaseURL];
+    return [self initWithContent:string baseURL:URL.m3u_realBaseURL];
 }
 
 - (void)parseMasterPlaylist {
@@ -78,7 +78,7 @@
         else if ([line hasPrefix:M3U8_EXT_X_SESSION_KEY]) {
             NSRange range = [line rangeOfString:M3U8_EXT_X_SESSION_KEY];
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
-            NSMutableDictionary *attr = attribute_list.attributesFromAssignment;
+            NSMutableDictionary *attr = attribute_list.m3u_attributesFromAssignment;
             
             M3U8ExtXKey *sessionKey = [[M3U8ExtXKey alloc] initWithDictionary:attr];
             self.xSessionKey = sessionKey;
@@ -89,7 +89,7 @@
         else if ([line hasPrefix:M3U8_EXT_X_STREAM_INF]) {
             NSRange range = [line rangeOfString:M3U8_EXT_X_STREAM_INF];
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
-            NSMutableDictionary *attr = attribute_list.attributesFromAssignment;
+            NSMutableDictionary *attr = attribute_list.m3u_attributesFromAssignment;
             
             NSString *nextLine = [reader next];
             attr[@"URI"] = nextLine;
@@ -117,7 +117,7 @@
         else if ([line hasPrefix:M3U8_EXT_X_MEDIA]) {
             NSRange range = [line rangeOfString:M3U8_EXT_X_MEDIA];
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
-            NSMutableDictionary *attr = attribute_list.attributesFromAssignment;
+            NSMutableDictionary *attr = attribute_list.m3u_attributesFromAssignment;
             if (self.baseURL.absoluteString.length > 0) {
                 attr[M3U8_BASE_URL] = self.baseURL;
             }

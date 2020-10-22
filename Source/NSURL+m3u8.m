@@ -10,7 +10,7 @@
 
 @implementation NSURL (m3u8)
 
-- (NSURL *)realBaseURL {
+- (NSURL *)m3u_realBaseURL {
     NSURL *baseURL = self.baseURL;
     if (!baseURL) {
         NSString *string = [self.absoluteString stringByReplacingOccurrencesOfString:self.lastPathComponent withString:@""];
@@ -21,7 +21,7 @@
     return baseURL;
 }
 
-- (void)loadM3U8AsyncCompletion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion {
+- (void)m3u_loadAsyncCompletion:(void (^)(M3U8PlaylistModel *model, NSError *error))completion {
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
         NSError *err = nil;
         NSString *str = [[NSString alloc] initWithContentsOfURL:self
@@ -33,7 +33,7 @@
         }
         
         M3U8PlaylistModel *listModel = [[M3U8PlaylistModel alloc] initWithString:str
-                                                                     originalURL:self baseURL:self.realBaseURL error:&err];
+                                                                     originalURL:self baseURL:self.m3u_realBaseURL error:&err];
         if (err) {
             completion(nil, err);
             return;

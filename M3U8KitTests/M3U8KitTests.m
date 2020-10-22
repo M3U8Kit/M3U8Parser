@@ -34,7 +34,7 @@
 - (void)testLoadURLAsynchronously {
     XCTestExpectation *expectation = [self expectationWithDescription:@"load URL failed!"];
     NSURL *url = [NSURL URLWithString:@"https://hls.ted.com/talks/2639.m3u8"];
-    [url loadM3U8AsyncCompletion:^(M3U8PlaylistModel *model, NSError *error) {
+    [url m3u_loadAsyncCompletion:^(M3U8PlaylistModel *model, NSError *error) {
                                           if (error) {
                                               return;
                                           }
@@ -51,6 +51,9 @@
                                    baseURL:baseURL
                                    error:&error];
     NSLog(@"%@", playList);
+    NSArray *codecs = [playList.masterPlaylist.xStreamList xStreamInfAtIndex:0].codecs;
+    XCTAssert([codecs[0] isEqualToString:@"avc1.42c01e"]);
+    XCTAssert([codecs[1] isEqualToString:@"mp4a.40.2"]);
     XCTAssertNil(error);
 }
 

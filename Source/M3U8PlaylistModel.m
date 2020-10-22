@@ -42,7 +42,7 @@
     
     self.originalURL = URL;
     
-    return [self initWithString:str baseURL:URL.realBaseURL error:error];
+    return [self initWithString:str baseURL:URL.m3u_realBaseURL error:error];
 }
 
 - (id)initWithString:(NSString *)string baseURL:(NSURL *)baseURL error:(NSError **)error {
@@ -52,13 +52,13 @@
 - (id)initWithString:(NSString *)string originalURL:(NSURL *)originalURL
              baseURL:(NSURL *)baseURL error:(NSError * *)error {
 
-    if (NO == [string isExtendedM3Ufile]) {
+    if (!string.m3u_isExtendedM3Ufile) {
         *error = [NSError errorWithDomain:@"M3U8PlaylistModel" code:-998 userInfo:@{NSLocalizedDescriptionKey:@"The content is not a m3u8 playlist"}];
         return nil;
     }
     
     if (self = [super init]) {
-        if ([string isMasterPlaylist]) {
+        if (string.m3u_isMasterPlaylist) {
             self.originalURL = originalURL;
             self.baseURL = baseURL;
             self.masterPlaylist = [[M3U8MasterPlaylist alloc] initWithContent:string baseURL:baseURL];
@@ -88,7 +88,7 @@
                 }
             }
             
-        } else if ([string isMediaPlaylist]) {
+        } else if (string.m3u_isMediaPlaylist) {
             self.mainMediaPl = [[M3U8MediaPlaylist alloc] initWithContent:string type:M3U8MediaPlaylistTypeMedia baseURL:baseURL];
             self.mainMediaPl.name = INDEX_PLAYLIST_NAME;
         }
