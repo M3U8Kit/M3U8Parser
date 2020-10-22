@@ -23,12 +23,12 @@
  
  reference url:http://tools.ietf.org/html/draft-pantos-http-live-streaming-00
  */
-- (BOOL)isExtendedM3Ufile {
+- (BOOL)m3u_isExtendedM3Ufile {
     return [self hasPrefix:M3U8_EXTM3U];
 }
 
-- (BOOL)isMasterPlaylist {
-    BOOL isM3U = [self isExtendedM3Ufile];
+- (BOOL)m3u_isMasterPlaylist {
+    BOOL isM3U = [self m3u_isExtendedM3Ufile];
     if (isM3U) {
         NSRange r1 = [self rangeOfString:M3U8_EXT_X_STREAM_INF];
         NSRange r2 = [self rangeOfString:M3U8_EXT_X_I_FRAME_STREAM_INF];
@@ -39,8 +39,8 @@
     return NO;
 }
 
-- (BOOL)isMediaPlaylist {
-    BOOL isM3U = [self isExtendedM3Ufile];
+- (BOOL)m3u_isMediaPlaylist {
+    BOOL isM3U = [self m3u_isExtendedM3Ufile];
     if (isM3U) {
         NSRange r = [self rangeOfString:M3U8_EXTINF];
         if (r.location != NSNotFound) {
@@ -50,7 +50,7 @@
     return NO;
 }
 
-- (M3U8SegmentInfoList *)m3u8SegementInfoListValueRelativeToURL:(NSString *)baseURL {
+- (M3U8SegmentInfoList *)m3u_segementInfoListValueRelativeToURL:(NSString *)baseURL {
     // self == @""
     if (0 == self.length)
         return nil;
@@ -124,26 +124,33 @@
     return segmentInfoList;
 }
 
-- (NSString *)stringByRemovingEdgeQuoteMark {
-    NSCharacterSet *quoteMarkCharactersSet = [NSCharacterSet characterSetWithCharactersInString:@"\"'"];
+- (NSString *)m3u_stringByTrimmingQuoteMark {
+    NSCharacterSet *quoteMarkCharactersSet = [NSCharacterSet characterSetWithCharactersInString:@"\"' "];
     NSString *string = [self stringByTrimmingCharactersInSet:quoteMarkCharactersSet];
     return string;
 }
 
-- (NSMutableDictionary *)attributesFromAssignment {
+- (NSMutableDictionary *)m3u_attributesFromAssignment {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     NSArray<NSString *> *keyValues = [self componentsSeparatedByString:@","];
     // keyValue is "key=value"
+    NSString *lastkey = nil;
     for (NSString *keyValue in keyValues) {
         NSRange equalMarkRange = [keyValue rangeOfString:@"="];
+        // if equal mark is not found, it means this value is previous value left. eg: CODECS=\"avc1.42c01e,mp4a.40.2\"
         if (equalMarkRange.location == NSNotFound) {
+            if (!lastkey) continue;
+            NSString *lastValue = dict[lastkey];
+            NSString *supplement = [lastValue stringByAppendingFormat:@",%@", keyValue.m3u_stringByTrimmingQuoteMark];
+            dict[lastkey] = supplement;
             continue;
         }
-        NSString *key = [keyValue substringToIndex:equalMarkRange.location].stringByRemovingEdgeQuoteMark;
-        NSString *value = [keyValue substringFromIndex:equalMarkRange.location + 1].stringByRemovingEdgeQuoteMark;
+        NSString *key = [keyValue substringToIndex:equalMarkRange.location].m3u_stringByTrimmingQuoteMark;
+        NSString *value = [keyValue substringFromIndex:equalMarkRange.location + 1].m3u_stringByTrimmingQuoteMark;
         
         dict[key] = value;
+        lastkey = key;
     }
     
     return dict;
