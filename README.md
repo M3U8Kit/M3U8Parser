@@ -45,7 +45,7 @@ Released from [`0.4.1`](https://github.com/M3U8Kit/M3U8Parser/releases/tag/0.4.1
 Specify it in your `Cartfile`:
 
 ```ogdl
-github "M3U8Kit/M3U8Parser" ~> 0.4.1 
+github "M3U8Kit/M3U8Parser" ~> 1.0.0 
 ```
 
 Run `carthage` to build the framework and drag the built `M3U8Kit.framework` into your Xcode project.
