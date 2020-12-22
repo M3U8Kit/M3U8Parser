@@ -29,7 +29,6 @@ let package = Package(
                 "Source/M3U8SegmentInfo.m",
                 "Source/M3U8SegmentInfoList.m",
                 "Source/M3U8ExtXByteRange.m",
-                
             ],
             publicHeadersPath: "include",
             cxxSettings: [
