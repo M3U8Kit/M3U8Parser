@@ -15,4 +15,4 @@ jobs:
         uses: actions/checkout@v2
       - name: push trunk
         run: |
-          pod trunk push
+          pod trunk push;pod trunk me clean-sessions --all
