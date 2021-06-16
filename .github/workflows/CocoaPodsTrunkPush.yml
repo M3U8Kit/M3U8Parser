@@ -14,5 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: push trunk
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
         run: |
           pod trunk push;pod trunk me clean-sessions --all
