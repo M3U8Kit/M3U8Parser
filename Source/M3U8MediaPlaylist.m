@@ -1,139 +1,83 @@
 //
-//  M3U8MediaPlaylist.m
+//  M3U8SegmentInfo.m
 //  M3U8Kit
 //
-//  Created by Sun Jin on 3/26/14.
-//  Copyright (c) 2014 Jin Sun. All rights reserved.
+//  Created by Oneday on 13-1-11.
+//  Copyright (c) 2013年 0day. All rights reserved.
 //
 
-#import "M3U8MediaPlaylist.h"
-#import "NSString+m3u8.h"
+#import "M3U8SegmentInfo.h"
 #import "M3U8TagsAndAttributes.h"
-#import "NSURL+m3u8.h"
-#import "M3U8LineReader.h"
 #import "M3U8ExtXKey.h"
 #import "M3U8ExtXByteRange.h"
 
-@interface M3U8MediaPlaylist()
-
-@property (nonatomic, copy) NSString *originalText;
-@property (nonatomic, copy) NSURL *baseURL;
-@property (nonatomic, copy) NSURL *originalURL;
-
-@property (nonatomic, strong) NSString *version;
-
-@property (nonatomic, strong) M3U8SegmentInfoList *segmentList;
-
-@property (assign, nonatomic) BOOL isLive;
+@interface M3U8SegmentInfo()
+@property (nonatomic, strong) NSDictionary *dictionary;
 
 @end
 
-@implementation M3U8MediaPlaylist
+@implementation M3U8SegmentInfo
 
-- (instancetype)initWithContent:(NSString *)string type:(M3U8MediaPlaylistType)type baseURL:(NSURL *)baseURL {
-    if (!string.m3u_isMediaPlaylist) {
-        return nil;
-    }
-    
+@synthesize xKey = _xKey;
+
+- (instancetype)init {
+    return [self initWithDictionary:nil xKey:nil];
+}
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
+    return [self initWithDictionary:dictionary xKey:nil];
+}
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary xKey:(M3U8ExtXKey *)key {
+    return [self initWithDictionary:dictionary xKey:key byteRange:nil];
+}
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary xKey:(M3U8ExtXKey *)key byteRange:(M3U8ExtXByteRange *)byteRange{
     if (self = [super init]) {
-        self.originalText = string;
-        self.baseURL = baseURL;
-        self.type = type;
-        [self parseMediaPlaylist];
+        _dictionary = dictionary;
+        _xKey = key;
+        _byteRange = byteRange;
     }
     return self;
 }
 
-- (instancetype)initWithContentOfURL:(NSURL *)URL type:(M3U8MediaPlaylistType)type error:(NSError **)error {
-    if (nil == URL) {
-        return nil;
-    }
-    
-    self.originalURL = URL;
-    
-    NSString *string = [[NSString alloc] initWithContentsOfURL:URL encoding:NSUTF8StringEncoding error:error];
-    
-    return [self initWithContent:string type:type baseURL:URL.m3u_realBaseURL];
+- (NSURL *)baseURL {
+    return self.dictionary[M3U8_BASE_URL];
 }
 
-- (NSArray *)allSegmentURLs {
-    NSMutableArray *array = [NSMutableArray array];
-    for (int i = 0; i < self.segmentList.count; i ++) {
-        M3U8SegmentInfo *info = [self.segmentList segmentInfoAtIndex:i];
-        if (info.mediaURL.absoluteString.length > 0) {
-            if (NO == [array containsObject:info.mediaURL]) {
-                [array addObject:info.mediaURL];
-            }
-        }
-    }
-    return [array copy];
+- (NSURL *)URL {
+    return self.dictionary[M3U8_URL];
 }
 
-- (void)parseMediaPlaylist
-{
-    self.segmentList = [[M3U8SegmentInfoList alloc] init];
-    BOOL isLive = [self.originalText rangeOfString:M3U8_EXT_X_ENDLIST].location == NSNotFound;
-    self.isLive = isLive;
-    
-    M3U8LineReader* reader = [[M3U8LineReader alloc] initWithText:self.originalText];
-    M3U8ExtXKey *key = nil;
-    
-    while (true) {
-        
-        NSString* line = [reader next];
-        if (!line) {
-            break;
-        }
-        
-        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-        if (self.originalURL) {
-            [params setObject:self.originalURL forKey:M3U8_URL];
-        }
-        
-        if (self.baseURL) {
-            [params setObject:self.baseURL forKey:M3U8_BASE_URL];
-        }
-        
-        if ([line hasPrefix:M3U8_EXT_X_KEY]) {
-            line = [line stringByReplacingOccurrencesOfString:M3U8_EXT_X_KEY withString:@""];
-            key = [[M3U8ExtXKey alloc] initWithDictionary:line.m3u_attributesFromAssignment];
-        }
-        
-        //check if it's #EXTINF:
-        if ([line hasPrefix:M3U8_EXTINF]) {
-            line = [line stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
-            
-            NSArray<NSString *> *components = [line componentsSeparatedByString:@","];
-            NSString *duration = components.firstObject;
-            if (duration) {
-                params[M3U8_EXTINF_DURATION] = duration;
-            }
-            if (components.count > 1) {
-                params[M3U8_EXTINF_TITLE] = components[1];
-            }
-            
-            line = reader.next;
-            // read ByteRange. only for version 4
-            M3U8ExtXByteRange *byteRange = nil;
-            if ([line hasPrefix:M3U8_EXT_X_BYTERANGE]) {
-                line = [line stringByReplacingOccurrencesOfString:M3U8_EXT_X_BYTERANGE withString:@""];
-                byteRange = [[M3U8ExtXByteRange alloc] initWithAtString:line];
-                line = reader.next;
-            }
-            //ignore other # message
-            while ([line hasPrefix:@"#"]) {
-                line = reader.next;
-            }
-            //then get URI
-            params[M3U8_EXTINF_URI] = line;
-            
-            M3U8SegmentInfo *segment = [[M3U8SegmentInfo alloc] initWithDictionary:params xKey:key byteRange:byteRange];
-            if (segment) {
-                [self.segmentList addSegementInfo:segment];
-            }
-        }
+- (NSURL *)mediaURL {
+    if (self.URI.scheme) {
+        return self.URI;
     }
+    
+    return [NSURL URLWithString:self.URI.absoluteString relativeToURL:[self baseURL]];
+}
+
+- (NSTimeInterval)duration {
+    return [self.dictionary[M3U8_EXTINF_DURATION] doubleValue];
+}
+
+- (NSString *)title {
+    return self.dictionary[M3U8_EXTINF_TITLE];
+}
+
+- (NSString *)logo {
+    return self.dictionary[M3U8_EXTINF_LOGO];
+}
+
+
+- (NSURL *)URI {
+    return [NSURL URLWithString:self.dictionary[M3U8_EXTINF_URI]];
+}
+
+- (NSString *)description {
+    NSMutableDictionary *dict = [self.dictionary mutableCopy];
+    [dict addEntriesFromDictionary:[self.xKey valueForKey:@"dictionary"]];
+    return dict.description;
 }
 
 @end
-
