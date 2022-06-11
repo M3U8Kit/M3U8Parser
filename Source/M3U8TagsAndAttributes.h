@@ -26,6 +26,7 @@
 #define M3U8_EXTINF                         @"#EXTINF:"
 #define M3U8_EXTINF_DURATION                @"DURATION"
 #define M3U8_EXTINF_TITLE                   @"TITLE"
+#define M3U8_EXTINF_LOGO                    @"LOGO"
 #define M3U8_EXTINF_URI                     @"URI"
 
 
