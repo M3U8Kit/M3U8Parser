@@ -20,6 +20,7 @@
  
 #define M3U8_EXTINF_DURATION                @"DURATION"
 #define M3U8_EXTINF_TITLE                   @"TITLE"
+#define M3U8_EXTINF_LOGO                     @"LOGO"
 #define M3U8_EXTINF_URI                     @"URI"
 #define M3U8_EXT_X_KEY                      @"#EXT-X-KEY:"
 
@@ -28,6 +29,7 @@
 
 @property (readonly, nonatomic) NSTimeInterval duration;
 @property (readonly, nonatomic, copy) NSString *title;
+@property (readonly, nonatomic, copy) NSString *logo;
 @property (readonly, nonatomic, copy) NSURL *URI;
 @property (readonly, nonatomic, strong) M3U8ExtXByteRange *byteRange;
 /** Key for media data decrytion. may be for this segment or next if no key. */
