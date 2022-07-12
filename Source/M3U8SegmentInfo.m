@@ -69,6 +69,10 @@
     return [NSURL URLWithString:self.dictionary[M3U8_EXTINF_URI]];
 }
 
+- (NSDictionary<NSString *,NSString *> *)additionalParameters {
+    return self.dictionary[M3U8_EXTINF_ADDITIONAL_PARAMETERS];
+}
+
 - (NSString *)description {
     NSMutableDictionary *dict = [self.dictionary mutableCopy];
     [dict addEntriesFromDictionary:[self.xKey valueForKey:@"dictionary"]];

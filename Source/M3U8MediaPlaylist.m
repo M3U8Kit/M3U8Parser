@@ -96,7 +96,7 @@
         
         if ([line hasPrefix:M3U8_EXT_X_KEY]) {
             line = [line stringByReplacingOccurrencesOfString:M3U8_EXT_X_KEY withString:@""];
-            key = [[M3U8ExtXKey alloc] initWithDictionary:line.m3u_attributesFromAssignment];
+            key = [[M3U8ExtXKey alloc] initWithDictionary:line.m3u_attributesFromAssignmentByComma];
         }
         
         //check if it's #EXTINF:
@@ -104,9 +104,19 @@
             line = [line stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
             
             NSArray<NSString *> *components = [line componentsSeparatedByString:@","];
-            NSString *duration = components.firstObject;
-            if (duration) {
-                params[M3U8_EXTINF_DURATION] = duration;
+            NSString *info = components.firstObject;
+            if (info) {
+                NSArray<NSString *> *additions = [info componentsSeparatedByString:@" "];
+                // get duration
+                if (additions.count == 1) {
+                    NSString *duration = additions.firstObject;
+                    params[M3U8_EXTINF_DURATION] = duration;
+                // get additional parameters from Extended M3U https://en.wikipedia.org/wiki/M3U#Extended_M3U
+                } else {
+                    NSString *extraInfo = [info stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@ ", additions.firstObject] withString:@""];
+                    
+                    params[M3U8_EXTINF_ADDITIONAL_PARAMETERS] = extraInfo.m3u_attributesFromAssignmentByBlank;
+                }
             }
             if (components.count > 1) {
                 params[M3U8_EXTINF_TITLE] = components[1];

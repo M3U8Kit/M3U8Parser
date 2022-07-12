@@ -21,6 +21,10 @@
 /**
  @return "key=value" transform to dictionary
  */
-- (NSMutableDictionary *)m3u_attributesFromAssignment;
+- (NSMutableDictionary *)m3u_attributesFromAssignmentByMark:(NSString *)mark;
+- (NSMutableDictionary *)m3u_attributesFromAssignmentByComma;
+- (NSMutableDictionary *)m3u_attributesFromAssignmentByBlank;
+
+- (NSString *)m3u_stringByTrimmingQuoteMark;
 
 @end
