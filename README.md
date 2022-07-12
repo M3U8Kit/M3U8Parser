@@ -52,7 +52,7 @@ Run `carthage` to build the framework and drag the built `M3U8Kit.framework` int
 
 ### Manually
 
-If you prefer not to use either of the above mentioned dependency managers, you can integrate `M3U8Kit` into your project manually by adding the files contained in the [Source](https://github.com/M3U8Kit/M3U8Parser/tree/master/Source) folder to your project.
+If you prefer not to use either of the above mentioned dependency managers, you can integrate `M3U8Parser` into your project manually by adding the files contained in the [Source](https://github.com/M3U8Kit/M3U8Parser/tree/master/Source) folder to your project.
 
 ## Usage
 
