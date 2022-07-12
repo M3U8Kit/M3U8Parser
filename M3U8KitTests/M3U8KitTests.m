@@ -63,7 +63,12 @@
                                    initWithString:_example.m3u8Playlist
                                    baseURL:baseURL
                                    error:&error];
-    NSLog(@"%@", playList);
+    M3U8SegmentInfoList *segments = playList.mainMediaPl.segmentList;
+    XCTAssertEqual(segments.count, 23);
+    
+    NSDictionary *additionalParamaters = [segments segmentInfoAtIndex:0].additionalParameters;
+    XCTAssertEqual(additionalParamaters.count, 5);
+    
     XCTAssertNil(error);
 }
 

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9D79F1241EF77CE400D16AFD"
-               BuildableName = "M3U8Kit.framework"
+               BuildableName = "M3U8Parser.framework"
                BlueprintName = "M3U8Parser"
                ReferencedContainer = "container:M3U8Kit.xcodeproj">
             </BuildableReference>
@@ -54,7 +54,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9D79F1241EF77CE400D16AFD"
-            BuildableName = "M3U8Kit.framework"
+            BuildableName = "M3U8Parser.framework"
             BlueprintName = "M3U8Parser"
             ReferencedContainer = "container:M3U8Kit.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9D79F1241EF77CE400D16AFD"
-            BuildableName = "M3U8Kit.framework"
+            BuildableName = "M3U8Parser.framework"
             BlueprintName = "M3U8Parser"
             ReferencedContainer = "container:M3U8Kit.xcodeproj">
          </BuildableReference>
