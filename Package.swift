@@ -13,27 +13,10 @@ let package = Package(
         .target(
             name: "M3U8Parser",
             dependencies: [],
-            path: ".",
-            sources: [
-                "Source/NSString+m3u8.m",
-                "Source/NSURL+m3u8.m",
-                "Source/M3U8PlaylistModel.m",
-                "Source/M3U8ExtXMedia.m",
-                "Source/M3U8ExtXKey.m",
-                "Source/M3U8ExtXMediaList.m",
-                "Source/M3U8ExtXStreamInf.m",
-                "Source/M3U8ExtXStreamInfList.m",
-                "Source/M3U8MasterPlaylist.m",
-                "Source/M3U8LineReader.m",
-                "Source/M3U8MediaPlaylist.m",
-                "Source/M3U8SegmentInfo.m",
-                "Source/M3U8SegmentInfoList.m",
-                "Source/M3U8ExtXByteRange.m",
-            ],
-            publicHeadersPath: "include",
+            path: "Source",
+            publicHeadersPath: ".",
             cxxSettings: [
-                .headerSearchPath("Source")
-                
+                .headerSearchPath(".")
             ]
         ),
         .testTarget(name: "M3U8ParserTests",
