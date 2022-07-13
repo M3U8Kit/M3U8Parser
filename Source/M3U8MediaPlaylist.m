@@ -108,13 +108,14 @@
             NSString *info = components.firstObject;
             if (info) {
                 NSString *blankMark = @" ";
-                NSMutableArray<NSString *> *additions = [[info componentsSeparatedByString:blankMark] mutableCopy];
+                NSArray<NSString *> *additions = [info componentsSeparatedByString:blankMark];
                 // get duration
                 NSString *duration = additions.firstObject;
                 params[M3U8_EXTINF_DURATION] = duration;
                 
                 // get additional parameters from Extended M3U https://en.wikipedia.org/wiki/M3U#Extended_M3U
                 if (additions.count > 1) {
+                    // no need remove duration(first element). `m3u_attributesFromAssignmentByMark` function will skip first non-equation value.
                     params[M3U8_EXTINF_ADDITIONAL_PARAMETERS] = [additions m3u_attributesFromAssignmentByMark:blankMark];
                 }
             }
