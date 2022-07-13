@@ -11,6 +11,10 @@
 
 @implementation NSArray (m3u8)
 
+- (NSMutableDictionary *)m3u_attributesFromAssignment {
+    return [self m3u_attributesFromAssignmentByMark:nil];
+}
+
 - (NSMutableDictionary *)m3u_attributesFromAssignmentByMark:(NSString *)mark {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
@@ -19,6 +23,7 @@
         NSRange equalMarkRange = [keyValue rangeOfString:@"="];
         // if equal mark is not found, it means this value is previous value left. eg: CODECS=\"avc1.42c01e,mp4a.40.2\"
         if (equalMarkRange.location == NSNotFound) {
+            if (!mark) continue;
             if (!lastkey) continue;
             NSString *lastValue = dict[lastkey];
             NSString *supplement = [lastValue stringByAppendingFormat:@"%@%@", mark, keyValue.m3u_stringByTrimmingQuoteMark];

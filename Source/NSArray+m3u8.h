@@ -13,7 +13,15 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSArray (m3u8)
 
 /** @return "key=value" transform to dictionary */
-- (NSMutableDictionary *)m3u_attributesFromAssignmentByMark:(NSString *)mark;
+- (NSMutableDictionary *)m3u_attributesFromAssignment;
+
+/**
+ If check by invalid value, value will append to last element with specific mark.
+ 
+ @param mark attribute will be ignored if it is invalid.
+ @return "key=value" transform to dictionary
+ */
+- (NSMutableDictionary *)m3u_attributesFromAssignmentByMark:(nullable NSString *)mark;
 
 @end
 

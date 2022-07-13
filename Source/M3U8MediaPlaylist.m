@@ -13,6 +13,7 @@
 #import "M3U8LineReader.h"
 #import "M3U8ExtXKey.h"
 #import "M3U8ExtXByteRange.h"
+#import "NSArray+m3u8.h"
 
 @interface M3U8MediaPlaylist()
 
@@ -106,16 +107,15 @@
             NSArray<NSString *> *components = [line componentsSeparatedByString:@","];
             NSString *info = components.firstObject;
             if (info) {
-                NSArray<NSString *> *additions = [info componentsSeparatedByString:@" "];
+                NSString *blankMark = @" ";
+                NSMutableArray<NSString *> *additions = [[info componentsSeparatedByString:blankMark] mutableCopy];
                 // get duration
-                if (additions.count == 1) {
-                    NSString *duration = additions.firstObject;
-                    params[M3U8_EXTINF_DURATION] = duration;
+                NSString *duration = additions.firstObject;
+                params[M3U8_EXTINF_DURATION] = duration;
+                
                 // get additional parameters from Extended M3U https://en.wikipedia.org/wiki/M3U#Extended_M3U
-                } else {
-                    NSString *extraInfo = [info stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@ ", additions.firstObject] withString:@""];
-                    
-                    params[M3U8_EXTINF_ADDITIONAL_PARAMETERS] = extraInfo.m3u_attributesFromAssignmentByBlank;
+                if (additions.count > 1) {
+                    params[M3U8_EXTINF_ADDITIONAL_PARAMETERS] = [additions m3u_attributesFromAssignmentByMark:blankMark];
                 }
             }
             if (components.count > 1) {

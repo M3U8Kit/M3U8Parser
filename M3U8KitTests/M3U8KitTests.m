@@ -66,8 +66,13 @@
     M3U8SegmentInfoList *segments = playList.mainMediaPl.segmentList;
     XCTAssertEqual(segments.count, 23);
     
-    NSDictionary *additionalParamaters = [segments segmentInfoAtIndex:0].additionalParameters;
-    XCTAssertEqual(additionalParamaters.count, 5);
+    M3U8SegmentInfo *segment0 = [segments segmentInfoAtIndex:0];
+    XCTAssertEqual(segment0.additionalParameters.count, 5);
+    XCTAssertEqual(segment0.duration, 2.0);
+    
+    M3U8SegmentInfo *segment1 = [segments segmentInfoAtIndex:1];
+    XCTAssertNil(segment1.additionalParameters);
+    XCTAssertEqual(segment1.duration, 2.0);
     
     XCTAssertNil(error);
 }
