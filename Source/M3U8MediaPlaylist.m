@@ -13,6 +13,7 @@
 #import "M3U8LineReader.h"
 #import "M3U8ExtXKey.h"
 #import "M3U8ExtXByteRange.h"
+#import "NSArray+m3u8.h"
 
 @interface M3U8MediaPlaylist()
 
@@ -96,7 +97,7 @@
         
         if ([line hasPrefix:M3U8_EXT_X_KEY]) {
             line = [line stringByReplacingOccurrencesOfString:M3U8_EXT_X_KEY withString:@""];
-            key = [[M3U8ExtXKey alloc] initWithDictionary:line.m3u_attributesFromAssignment];
+            key = [[M3U8ExtXKey alloc] initWithDictionary:line.m3u_attributesFromAssignmentByComma];
         }
         
         //check if it's #EXTINF:
@@ -104,9 +105,19 @@
             line = [line stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
             
             NSArray<NSString *> *components = [line componentsSeparatedByString:@","];
-            NSString *duration = components.firstObject;
-            if (duration) {
+            NSString *info = components.firstObject;
+            if (info) {
+                NSString *blankMark = @" ";
+                NSArray<NSString *> *additions = [info componentsSeparatedByString:blankMark];
+                // get duration
+                NSString *duration = additions.firstObject;
                 params[M3U8_EXTINF_DURATION] = duration;
+                
+                // get additional parameters from Extended M3U https://en.wikipedia.org/wiki/M3U#Extended_M3U
+                if (additions.count > 1) {
+                    // no need remove duration(first element). `m3u_attributesFromAssignmentByMark` function will skip first non-equation value.
+                    params[M3U8_EXTINF_ADDITIONAL_PARAMETERS] = [additions m3u_attributesFromAssignmentByMark:blankMark];
+                }
             }
             if (components.count > 1) {
                 params[M3U8_EXTINF_TITLE] = components[1];

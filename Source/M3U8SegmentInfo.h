@@ -32,6 +32,7 @@
 @property (readonly, nonatomic, strong) M3U8ExtXByteRange *byteRange;
 /** Key for media data decrytion. may be for this segment or next if no key. */
 @property (readonly, nonatomic, strong) M3U8ExtXKey *xKey;
+@property (readonly, nonatomic, strong) NSDictionary<NSString *, NSString *> *additionalParameters;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

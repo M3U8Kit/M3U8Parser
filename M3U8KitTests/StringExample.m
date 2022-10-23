@@ -17,7 +17,7 @@
     #EXT-X-TARGETDURATION:11\n\
     #EXT-X-MEDIA-SEQUENCE:0\n\
     #EXT-X-KEY:METHOD=AES-128,URI=\"https://example.m3u8kit/get_video_key.php?edk=CiA61uBk9j6jp9V5Rs1LFLMDZmfgnepZhtsOyA1VJc8%2FwxCO08TAChiaoOvUBCokYjRhNjFiNTgtMmVhNy00OWYxLgwZGMtZTE0NTIyODc5YWIy&fileId=5285890782612785655&keySource=VodBuildInKMS\",IV=0x00000000000000000000000000000000\n\
-    #EXTINF:2.000000,\n\
+    #EXTINF:2.000000 logo=\"someURI/target.png\" tvg-id=\"Rotana Cinema\" tvg-country=\"SA\" tvg-language=\"Arabic\" tvg-logo=\"tvgURI/logo.png\",\n\
     #EXT-X-BYTERANGE:3008@940\n\
     f0.ts?start=0&end=279759&type=mpegts&t=5c7e38d0&us=838110&sign=48b2231ae4a5830973c838838d722c7d\n\
     #EXT-X-KEY:METHOD=AES-128,URI=\"https://example.m3u8kit/get_video_key.php?edk=CiA61uBk9j6jp9V5Rs1LFLMDZmfgnepZhtsOyA1VJc8%2FwxCO08TAChiaoOvUBCokYjRhNjFiNTgtMmVhNy00OWYxLgwZGMtZTE0NTIyODc5YWIy&fileId=5285890782612785655&keySource=VodBuildInKMS\",IV=0x00000000000000000000000000000000\n\

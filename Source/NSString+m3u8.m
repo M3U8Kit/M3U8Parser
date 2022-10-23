@@ -13,6 +13,7 @@
 #import "M3U8ExtXStreamInfList.h"
 
 #import "M3U8TagsAndAttributes.h"
+#import "NSArray+m3u8.h"
 
 @implementation NSString (m3u8)
 
@@ -130,30 +131,18 @@
     return string;
 }
 
-- (NSMutableDictionary *)m3u_attributesFromAssignment {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+- (NSMutableDictionary *)m3u_attributesFromAssignmentByComma {
+    return [self m3u_attributesFromAssignmentByMark:@","];
+}
+
+- (NSMutableDictionary *)m3u_attributesFromAssignmentByBlank {
+    return [self m3u_attributesFromAssignmentByMark:@" "];
+}
+
+- (NSMutableDictionary *)m3u_attributesFromAssignmentByMark:(NSString *)mark {
+    NSArray<NSString *> *keyValues = [self componentsSeparatedByString:mark];
     
-    NSArray<NSString *> *keyValues = [self componentsSeparatedByString:@","];
-    // keyValue is "key=value"
-    NSString *lastkey = nil;
-    for (NSString *keyValue in keyValues) {
-        NSRange equalMarkRange = [keyValue rangeOfString:@"="];
-        // if equal mark is not found, it means this value is previous value left. eg: CODECS=\"avc1.42c01e,mp4a.40.2\"
-        if (equalMarkRange.location == NSNotFound) {
-            if (!lastkey) continue;
-            NSString *lastValue = dict[lastkey];
-            NSString *supplement = [lastValue stringByAppendingFormat:@",%@", keyValue.m3u_stringByTrimmingQuoteMark];
-            dict[lastkey] = supplement;
-            continue;
-        }
-        NSString *key = [keyValue substringToIndex:equalMarkRange.location].m3u_stringByTrimmingQuoteMark;
-        NSString *value = [keyValue substringFromIndex:equalMarkRange.location + 1].m3u_stringByTrimmingQuoteMark;
-        
-        dict[key] = value;
-        lastkey = key;
-    }
-    
-    return dict;
+    return [keyValues m3u_attributesFromAssignmentByMark:mark];
 }
 
 @end

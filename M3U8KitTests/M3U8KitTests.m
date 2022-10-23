@@ -7,10 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "NSURL+m3u8.h"
-#import "M3U8PlaylistModel.h"
 #import "StringExample.h"
 
+@import M3U8Parser;
 @interface M3U8KitTests : XCTestCase
 
 @property (nonatomic) StringExample *example;
@@ -35,11 +34,11 @@
     XCTestExpectation *expectation = [self expectationWithDescription:@"load URL failed!"];
     NSURL *url = [NSURL URLWithString:@"https://hls.ted.com/talks/2639.m3u8"];
     [url m3u_loadAsyncCompletion:^(M3U8PlaylistModel *model, NSError *error) {
-                                          if (error) {
-                                              return;
-                                          }
-                                          [expectation fulfill];
-                                      }];
+        if (error) {
+            return;
+        }
+        [expectation fulfill];
+    }];
     [self waitForExpectationsWithTimeout:15 handler:nil];
 }
 
@@ -64,7 +63,17 @@
                                    initWithString:_example.m3u8Playlist
                                    baseURL:baseURL
                                    error:&error];
-    NSLog(@"%@", playList);
+    M3U8SegmentInfoList *segments = playList.mainMediaPl.segmentList;
+    XCTAssertEqual(segments.count, 23);
+    
+    M3U8SegmentInfo *segment0 = [segments segmentInfoAtIndex:0];
+    XCTAssertEqual(segment0.additionalParameters.count, 5);
+    XCTAssertEqual(segment0.duration, 2.0);
+    
+    M3U8SegmentInfo *segment1 = [segments segmentInfoAtIndex:1];
+    XCTAssertNil(segment1.additionalParameters);
+    XCTAssertEqual(segment1.duration, 2.0);
+    
     XCTAssertNil(error);
 }
 

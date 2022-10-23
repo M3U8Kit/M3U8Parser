@@ -78,7 +78,7 @@
         else if ([line hasPrefix:M3U8_EXT_X_SESSION_KEY]) {
             NSRange range = [line rangeOfString:M3U8_EXT_X_SESSION_KEY];
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
-            NSMutableDictionary *attr = attribute_list.m3u_attributesFromAssignment;
+            NSMutableDictionary *attr = attribute_list.m3u_attributesFromAssignmentByComma;
             
             M3U8ExtXKey *sessionKey = [[M3U8ExtXKey alloc] initWithDictionary:attr];
             self.xSessionKey = sessionKey;
@@ -89,7 +89,7 @@
         else if ([line hasPrefix:M3U8_EXT_X_STREAM_INF]) {
             NSRange range = [line rangeOfString:M3U8_EXT_X_STREAM_INF];
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
-            NSMutableDictionary *attr = attribute_list.m3u_attributesFromAssignment;
+            NSMutableDictionary *attr = attribute_list.m3u_attributesFromAssignmentByComma;
             
             NSString *nextLine = [reader next];
             attr[@"URI"] = nextLine;
@@ -117,7 +117,7 @@
         else if ([line hasPrefix:M3U8_EXT_X_MEDIA]) {
             NSRange range = [line rangeOfString:M3U8_EXT_X_MEDIA];
             NSString *attribute_list = [line substringFromIndex:range.location + range.length];
-            NSMutableDictionary *attr = attribute_list.m3u_attributesFromAssignment;
+            NSMutableDictionary *attr = attribute_list.m3u_attributesFromAssignmentByComma;
             if (self.baseURL.absoluteString.length > 0) {
                 attr[M3U8_BASE_URL] = self.baseURL;
             }

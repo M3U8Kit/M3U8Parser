@@ -21,12 +21,13 @@
 #define M3U8_EXTM3U                         @"#EXTM3U"
 
 /**
- @format  #EXTINF:<duration>,<title>
+ @format  #EXTINF:<duration> <additional parameters> ...,<title>
  */
 #define M3U8_EXTINF                         @"#EXTINF:"
 #define M3U8_EXTINF_DURATION                @"DURATION"
 #define M3U8_EXTINF_TITLE                   @"TITLE"
 #define M3U8_EXTINF_URI                     @"URI"
+#define M3U8_EXTINF_ADDITIONAL_PARAMETERS   @"ADDITIONAL_PARAMETERS"
 
 
 /// NEW TAGS
