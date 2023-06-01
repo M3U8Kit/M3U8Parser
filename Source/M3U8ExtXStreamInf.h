@@ -38,6 +38,7 @@ NSString * NSStringFromMediaResolution(MediaResoulution resolution);
 #define M3U8_EXT_X_STREAM_INF_PROGRAM_ID    @"PROGRAM-ID"   // The value is a decimal-integer that uniquely identifies a particular presentation within the scope of the Playlist file.
 #define M3U8_EXT_X_STREAM_INF_CODECS        @"CODECS" // The value is a quoted-string containing a comma-separated list of formats.
 #define M3U8_EXT_X_STREAM_INF_RESOLUTION    @"RESOLUTION" // The value is a decimal-resolution describing the approximate encoded horizontal and vertical resolution of video within the presentation.
+#define M3U8_EXT_X_STREAM_INF_FRAME_RATE    @"FRAME-RATE"   // The value is a decimal-floating-point describing the maximum frame rate for all the video in the Variant Stream, rounded to three decimal places.
 #define M3U8_EXT_X_STREAM_INF_AUDIO         @"AUDIO" // The value is a quoted-string.
 #define M3U8_EXT_X_STREAM_INF_VIDEO         @"VIDEO" // The value is a quoted-string.
 #define M3U8_EXT_X_STREAM_INF_SUBTITLES     @"SUBTITLES" // The value is a quoted-string.
@@ -52,6 +53,7 @@ NSString * NSStringFromMediaResolution(MediaResoulution resolution);
 @property (nonatomic, readonly, assign) NSInteger programId;        // removed by draft 12
 @property (nonatomic, readonly, copy) NSArray *codecs;
 @property (nonatomic, readonly) MediaResoulution resolution;
+@property (nonatomic, readonly, assign) float frameRate;
 @property (nonatomic, readonly, copy) NSString *audio;
 @property (nonatomic, readonly, copy) NSString *video;
 @property (nonatomic, readonly, copy) NSString *subtitles;

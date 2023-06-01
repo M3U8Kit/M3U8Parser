@@ -86,6 +86,11 @@ MediaResoulution MediaResolutionMake(float width, float height) {
     return resolution;
 }
 
+- (float)frameRate
+{
+    return [self.dictionary[M3U8_EXT_X_STREAM_INF_FRAME_RATE] floatValue];
+}
+
 - (NSString *)audio {
     return self.dictionary[M3U8_EXT_X_STREAM_INF_AUDIO];
 }
