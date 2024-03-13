@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		011F5487222E73BA00966918 /* StringExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 011F5486222E73BA00966918 /* StringExample.m */; };
+		012254B82BA14A90007BD496 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 012254B72BA14A90007BD496 /* PrivacyInfo.xcprivacy */; };
 		012455BB2525ABA600AF62C3 /* M3U8ExtXByteRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 012455B125257F2900AF62C3 /* M3U8ExtXByteRange.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		012455C22525ABF700AF62C3 /* M3U8ExtXByteRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 012455B225257F2900AF62C3 /* M3U8ExtXByteRange.m */; };
 		012455C62525ABFD00AF62C3 /* M3U8ExtXByteRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 012455B225257F2900AF62C3 /* M3U8ExtXByteRange.m */; };
@@ -71,6 +72,7 @@
 		011650B024483537001E4A35 /* M3U8Parser.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = M3U8Parser.modulemap; sourceTree = "<group>"; };
 		011F5485222E73BA00966918 /* StringExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringExample.h; sourceTree = "<group>"; };
 		011F5486222E73BA00966918 /* StringExample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringExample.m; sourceTree = "<group>"; };
+		012254B72BA14A90007BD496 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		012455B125257F2900AF62C3 /* M3U8ExtXByteRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXByteRange.h; sourceTree = "<group>"; };
 		012455B225257F2900AF62C3 /* M3U8ExtXByteRange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXByteRange.m; sourceTree = "<group>"; };
 		0177A38E1FE7B31800477DF9 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				9D79F1361EF784E500D16AFD /* M3U8TagsAndAttributes.h */,
 				9D79F1371EF784E500D16AFD /* MasterPlaylist */,
 				9D79F1421EF784E500D16AFD /* MediaPlaylist */,
+				012254B72BA14A90007BD496 /* PrivacyInfo.xcprivacy */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				012254B82BA14A90007BD496 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
