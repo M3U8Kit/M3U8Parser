@@ -27,6 +27,8 @@
 
 @property (assign, nonatomic) BOOL isLive;
 
+@property (nonatomic, strong) M3U8ExtXMap *xMap;
+
 @end
 
 @implementation M3U8MediaPlaylist
@@ -98,6 +100,12 @@
         if ([line hasPrefix:M3U8_EXT_X_KEY]) {
             line = [line stringByReplacingOccurrencesOfString:M3U8_EXT_X_KEY withString:@""];
             key = [[M3U8ExtXKey alloc] initWithDictionary:line.m3u_attributesFromAssignmentByComma];
+        }
+        
+        // #EXT-X-MAP
+        if ([line hasPrefix:M3U8_EXT_X_MAP]) {
+            line = [line stringByReplacingOccurrencesOfString:M3U8_EXT_X_MAP withString:@""];
+            self.xMap = [[M3U8ExtXMap alloc] initWithDictionary:line.m3u_attributesFromAssignmentByComma];
         }
         
         //check if it's #EXTINF:

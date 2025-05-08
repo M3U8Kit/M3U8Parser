@@ -30,6 +30,9 @@
 		01B38E4420EA30FD00AC6443 /* M3U8LineReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B38E4020EA30AB00AC6443 /* M3U8LineReader.m */; };
 		01C15384287D0EFB009D0C01 /* NSArray+m3u8.h in Headers */ = {isa = PBXBuildFile; fileRef = 01C15382287D0EFB009D0C01 /* NSArray+m3u8.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		01C15385287D0EFB009D0C01 /* NSArray+m3u8.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C15383287D0EFB009D0C01 /* NSArray+m3u8.m */; };
+		62554C632DCCC6D700A30375 /* M3U8ExtXMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 62554C622DCCC6D700A30375 /* M3U8ExtXMap.m */; };
+		62554C642DCCC6D700A30375 /* M3U8ExtXMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 62554C612DCCC6D700A30375 /* M3U8ExtXMap.h */; };
+		62554C652DCCC6D700A30375 /* M3U8ExtXMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 62554C622DCCC6D700A30375 /* M3U8ExtXMap.m */; };
 		9D79F14A1EF784E500D16AFD /* NSString+m3u8.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D79F12F1EF784E500D16AFD /* NSString+m3u8.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D79F14C1EF784E500D16AFD /* NSString+m3u8.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1301EF784E500D16AFD /* NSString+m3u8.m */; };
 		9D79F14E1EF784E500D16AFD /* NSURL+m3u8.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D79F1311EF784E500D16AFD /* NSURL+m3u8.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -83,6 +86,8 @@
 		01B38E4020EA30AB00AC6443 /* M3U8LineReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M3U8LineReader.m; sourceTree = "<group>"; };
 		01C15382287D0EFB009D0C01 /* NSArray+m3u8.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+m3u8.h"; sourceTree = "<group>"; };
 		01C15383287D0EFB009D0C01 /* NSArray+m3u8.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+m3u8.m"; sourceTree = "<group>"; };
+		62554C612DCCC6D700A30375 /* M3U8ExtXMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = M3U8ExtXMap.h; sourceTree = "<group>"; };
+		62554C622DCCC6D700A30375 /* M3U8ExtXMap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = M3U8ExtXMap.m; sourceTree = "<group>"; };
 		9D05821D18E52DF500A12776 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9D79F1251EF77CE400D16AFD /* M3U8Parser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = M3U8Parser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D79F1281EF77CE500D16AFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -217,6 +222,8 @@
 				9D79F1391EF784E500D16AFD /* M3U8ExtXMedia.m */,
 				F97F1AAD2204979A006F5717 /* M3U8ExtXKey.h */,
 				F97F1AAE2204979A006F5717 /* M3U8ExtXKey.m */,
+				62554C612DCCC6D700A30375 /* M3U8ExtXMap.h */,
+				62554C622DCCC6D700A30375 /* M3U8ExtXMap.m */,
 				012455B125257F2900AF62C3 /* M3U8ExtXByteRange.h */,
 				012455B225257F2900AF62C3 /* M3U8ExtXByteRange.m */,
 				9D79F13A1EF784E500D16AFD /* M3U8ExtXMediaList.h */,
@@ -264,6 +271,7 @@
 				9D79F14A1EF784E500D16AFD /* NSString+m3u8.h in Headers */,
 				9D79F1621EF784E500D16AFD /* M3U8ExtXStreamInf.h in Headers */,
 				9D79F14E1EF784E500D16AFD /* NSURL+m3u8.h in Headers */,
+				62554C642DCCC6D700A30375 /* M3U8ExtXMap.h in Headers */,
 				9D79F16A1EF784E500D16AFD /* M3U8MasterPlaylist.h in Headers */,
 				F97F1AB02204979A006F5717 /* M3U8ExtXKey.h in Headers */,
 				9D79F15A1EF784E500D16AFD /* M3U8ExtXMedia.h in Headers */,
@@ -386,6 +394,7 @@
 				01B38E3920EA308F00AC6443 /* M3U8ExtXStreamInf.m in Sources */,
 				01B38E3420EA308F00AC6443 /* NSString+m3u8.m in Sources */,
 				012455C62525ABFD00AF62C3 /* M3U8ExtXByteRange.m in Sources */,
+				62554C652DCCC6D700A30375 /* M3U8ExtXMap.m in Sources */,
 				01B38E3A20EA308F00AC6443 /* M3U8ExtXStreamInfList.m in Sources */,
 				01B38E3620EA308F00AC6443 /* M3U8PlaylistModel.m in Sources */,
 				01B38E2C20EA2F8B00AC6443 /* M3U8KitTests.m in Sources */,
@@ -408,6 +417,7 @@
 				9D79F1641EF784E500D16AFD /* M3U8ExtXStreamInf.m in Sources */,
 				9D79F1561EF784E500D16AFD /* M3U8PlaylistModel.m in Sources */,
 				01C15385287D0EFB009D0C01 /* NSArray+m3u8.m in Sources */,
+				62554C632DCCC6D700A30375 /* M3U8ExtXMap.m in Sources */,
 				9D79F14C1EF784E500D16AFD /* NSString+m3u8.m in Sources */,
 				01B38E4420EA30FD00AC6443 /* M3U8LineReader.m in Sources */,
 				F97F1AB22204979A006F5717 /* M3U8ExtXKey.m in Sources */,
