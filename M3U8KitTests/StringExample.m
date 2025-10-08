@@ -16,6 +16,7 @@
     #EXT-X-VERSION:3\n\
     #EXT-X-TARGETDURATION:11\n\
     #EXT-X-MEDIA-SEQUENCE:0\n\
+    #EXT-X-MAP:URI=\"https://example.m3u8kit/xMap/init.mp4\",BYTERANGE=7355608@666\n\
     #EXT-X-KEY:METHOD=AES-128,URI=\"https://example.m3u8kit/get_video_key.php?edk=CiA61uBk9j6jp9V5Rs1LFLMDZmfgnepZhtsOyA1VJc8%2FwxCO08TAChiaoOvUBCokYjRhNjFiNTgtMmVhNy00OWYxLgwZGMtZTE0NTIyODc5YWIy&fileId=5285890782612785655&keySource=VodBuildInKMS\",IV=0x00000000000000000000000000000000\n\
     #EXTINF:2.000000 logo=\"someURI/target.png\" tvg-id=\"Rotana Cinema\" tvg-country=\"SA\" tvg-language=\"Arabic\" tvg-logo=\"tvgURI/logo.png\",\n\
     #EXT-X-BYTERANGE:3008@940\n\
@@ -94,7 +95,7 @@
     @"#EXTM3U\n\
     #EXT-X-VERSION:4\n\
     #EXT-X-SESSION-KEY:METHOD=SAMPLE-AES,URI=\"skd://AZSkNGRhODQtMjE3My00ZDIdSDFEzN2QtYzE1YTczMTRjZjkw\",KEYFORMAT=\"com.apple.streamingkeydelivery\"\n\
-    #EXT-X-STREAM-INF:AUDIO=\"600k\",BANDWIDTH=915685,PROGRAM-ID=1,CODECS=\"avc1.42c01e,mp4a.40.2\",RESOLUTION=640x360,SUBTITLES=\"subs\"\n\
+    #EXT-X-STREAM-INF:AUDIO=\"600k\",BANDWIDTH=915685,PROGRAM-ID=1,CODECS=\"avc1.42c01e,mp4a.40.2\",RESOLUTION=640x360,SUBTITLES=\"subs\",FRAME-RATE=7355608\n\
     http://hls.ted.com/talks/769/video/600k.m3u8?sponsor=Ripple\n\
     #EXT-X-STREAM-INF:AUDIO=\"600k\",BANDWIDTH=131499,PROGRAM-ID=1,CODECS=\"avc1.42c00c,mp4a.40.2\",RESOLUTION=320x180,SUBTITLES=\"subs\"\n\
     /talks/769/video/64k.m3u8?sponsor=Ripple\n\
