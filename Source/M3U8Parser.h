@@ -9,6 +9,7 @@
 #import "M3U8ExtXStreamInf.h"
 #import "M3U8ExtXStreamInfList.h"
 #import "M3U8ExtXKey.h"
+#improt "M3U8ExtXMap.h"
 #import "M3U8ExtXMedia.h"
 #import "M3U8ExtXMediaList.h"
 #import "M3U8SegmentInfo.h"

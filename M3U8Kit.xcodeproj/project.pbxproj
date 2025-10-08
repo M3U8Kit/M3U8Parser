@@ -31,7 +31,7 @@
 		01C15384287D0EFB009D0C01 /* NSArray+m3u8.h in Headers */ = {isa = PBXBuildFile; fileRef = 01C15382287D0EFB009D0C01 /* NSArray+m3u8.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		01C15385287D0EFB009D0C01 /* NSArray+m3u8.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C15383287D0EFB009D0C01 /* NSArray+m3u8.m */; };
 		62554C632DCCC6D700A30375 /* M3U8ExtXMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 62554C622DCCC6D700A30375 /* M3U8ExtXMap.m */; };
-		62554C642DCCC6D700A30375 /* M3U8ExtXMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 62554C612DCCC6D700A30375 /* M3U8ExtXMap.h */; };
+		62554C642DCCC6D700A30375 /* M3U8ExtXMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 62554C612DCCC6D700A30375 /* M3U8ExtXMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		62554C652DCCC6D700A30375 /* M3U8ExtXMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 62554C622DCCC6D700A30375 /* M3U8ExtXMap.m */; };
 		9D79F14A1EF784E500D16AFD /* NSString+m3u8.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D79F12F1EF784E500D16AFD /* NSString+m3u8.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D79F14C1EF784E500D16AFD /* NSString+m3u8.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D79F1301EF784E500D16AFD /* NSString+m3u8.m */; };
@@ -271,11 +271,11 @@
 				9D79F14A1EF784E500D16AFD /* NSString+m3u8.h in Headers */,
 				9D79F1621EF784E500D16AFD /* M3U8ExtXStreamInf.h in Headers */,
 				9D79F14E1EF784E500D16AFD /* NSURL+m3u8.h in Headers */,
-				62554C642DCCC6D700A30375 /* M3U8ExtXMap.h in Headers */,
 				9D79F16A1EF784E500D16AFD /* M3U8MasterPlaylist.h in Headers */,
 				F97F1AB02204979A006F5717 /* M3U8ExtXKey.h in Headers */,
 				9D79F15A1EF784E500D16AFD /* M3U8ExtXMedia.h in Headers */,
 				012455BB2525ABA600AF62C3 /* M3U8ExtXByteRange.h in Headers */,
+				62554C642DCCC6D700A30375 /* M3U8ExtXMap.h in Headers */,
 				01C15384287D0EFB009D0C01 /* NSArray+m3u8.h in Headers */,
 				012455D42525B8EC00AF62C3 /* M3U8LineReader.h in Headers */,
 			);

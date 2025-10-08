@@ -6,10 +6,13 @@
 //
 
 #import <Foundation/Foundation.h>
+
+@class M3U8ExtXByteRange;
 @interface M3U8ExtXMap : NSObject
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+@property (nonatomic, readonly) NSURL *URI;
+@property (nonatomic, readonly) M3U8ExtXByteRange *byteRange;
 
-- (NSURL *)url;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end
