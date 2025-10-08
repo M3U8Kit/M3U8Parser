@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "M3U8SegmentInfoList.h"
+#import "M3U8ExtXMap.h"
 
 typedef enum {
     M3U8MediaPlaylistTypeMedia = 0,     // The main media stream playlist.
@@ -28,6 +29,8 @@ typedef enum {
 @property (readonly, nonatomic, copy) NSURL *originalURL;
 
 @property (readonly, nonatomic, strong) M3U8SegmentInfoList *segmentList;
+
+@property (readonly, nonatomic, strong) M3U8ExtXMap *xMap;
 
 /** live or replay */
 @property (assign, readonly, nonatomic) BOOL isLive;
