@@ -4,14 +4,14 @@ import Foundation
 import PackageDescription
 
 let package = Package(
-    name: "M3U8Parser",
+    name: "M3U8Kit",
     products: [
-        .library(name: "M3U8Parser", targets: ["M3U8Parser"]),
+        .library(name: "M3U8Kit", targets: ["M3U8Kit"]),
     ],
     dependencies : [],
     targets: [
         .target(
-            name: "M3U8Parser",
+            name: "M3U8Kit",
             dependencies: [],
             path: "Source",
             resources: [.copy("PrivacyInfo.xcprivacy")],
@@ -21,7 +21,7 @@ let package = Package(
             ]
         ),
         .testTarget(name: "M3U8ParserTests",
-                    dependencies: ["M3U8Parser"],
+                    dependencies: ["M3U8Kit"],
                     path: "./M3U8KitTests",
                     exclude: []
         ),
