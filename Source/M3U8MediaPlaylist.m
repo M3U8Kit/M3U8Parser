@@ -112,25 +112,29 @@
         if ([line hasPrefix:M3U8_EXTINF]) {
             line = [line stringByReplacingOccurrencesOfString:M3U8_EXTINF withString:@""];
             
-            NSArray<NSString *> *components = [line componentsSeparatedByString:@","];
-            NSString *info = components.firstObject;
-            if (info) {
-                NSString *blankMark = @" ";
-                NSArray<NSString *> *additions = [info componentsSeparatedByString:blankMark];
-                // get duration
-                NSString *duration = additions.firstObject;
-                params[M3U8_EXTINF_DURATION] = duration;
+            NSRange commaRange = [line rangeOfString:@"," options:NSBackwardsSearch];
+            if (commaRange.location != NSNotFound) {
+                NSString *info = [line substringToIndex:commaRange.location];
+                NSString *title = [line substringFromIndex:commaRange.location + 1];
                 
-                // get additional parameters from Extended M3U https://en.wikipedia.org/wiki/M3U#Extended_M3U
-                if (additions.count > 1) {
-                    // no need remove duration(first element). `m3u_attributesFromAssignmentByMark` function will skip first non-equation value.
-                    params[M3U8_EXTINF_ADDITIONAL_PARAMETERS] = [additions m3u_attributesFromAssignmentByMark:blankMark];
+                if (info) {
+                    NSString *blankMark = @" ";
+                    NSArray<NSString *> *additions = [info componentsSeparatedByString:blankMark];
+                    // get duration
+                    NSString *duration = additions.firstObject;
+                    params[M3U8_EXTINF_DURATION] = duration;
+                    
+                    // get additional parameters from Extended M3U https://en.wikipedia.org/wiki/M3U#Extended_M3U
+                    if (additions.count > 1) {
+                        // no need remove duration(first element). `m3u_attributesFromAssignmentByMark` function will skip first non-equation value.
+                        params[M3U8_EXTINF_ADDITIONAL_PARAMETERS] = [additions m3u_attributesFromAssignmentByMark:blankMark];
+                    }
                 }
+               
+                // Get the title after the last comma
+                params[M3U8_EXTINF_TITLE] = title;
             }
-            if (components.count > 1) {
-                params[M3U8_EXTINF_TITLE] = components[1];
-            }
-            
+
             line = reader.next;
             // read ByteRange. only for version 4
             M3U8ExtXByteRange *byteRange = nil;
